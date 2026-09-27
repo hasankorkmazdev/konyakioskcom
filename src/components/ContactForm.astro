@@ -1,0 +1,62 @@
+---
+import { waLink } from '../data/site';
+interface Props {
+  subject?: string;
+}
+const { subject = '' } = Astro.props;
+---
+
+<form id="contact-form" class="form" method="post" action="/api/iletisim" novalidate>
+  <input type="hidden" name="page" value={subject} />
+  <div class="hp" aria-hidden="true"><label>Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <label>Ad Soyad<input name="name" required autocomplete="name" /></label>
+  <label>Telefon<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" /></label>
+  <label>E-posta (isteğe bağlı)<input name="email" type="email" autocomplete="email" /></label>
+  <label>İlgilendiğiniz ürün
+    <select name="product">
+      <option value="">Seçiniz</option>
+      <option>Klavyeli kiosk</option>
+      <option>Yatay kiosk</option>
+      <option>Dikey kiosk</option>
+      <option>Kütüphane kiosk</option>
+      <option>Emin değilim</option>
+    </select>
+  </label>
+  <label>Ekran boyutu
+    <select name="size">
+      <option value="">Seçiniz</option>
+      <option>21 inç</option>
+      <option>24 inç</option>
+      <option>32 inç</option>
+      <option>Emin değilim</option>
+    </select>
+  </label>
+  <label>Mesajınız<textarea name="message" rows="4" placeholder="Kullanım alanı, adet, şehir…"></textarea></label>
+  <button class="btn" type="submit">Gönder</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="muted">Ya da doğrudan <a href={waLink()} target="_blank" rel="noopener">WhatsApp'tan yazın</a>.</p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = form?.querySelector('.form-status') as HTMLElement | null;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    const data = new FormData(form);
+    if (!String(data.get('name')).trim() || !String(data.get('phone')).trim()) {
+      status.textContent = 'Lütfen ad soyad ve telefon alanlarını doldurun.';
+      return;
+    }
+    status.textContent = 'Gönderiliyor…';
+    try {
+      const res = await fetch('/api/iletisim', { method: 'POST', body: data });
+      if (!res.ok) throw new Error('fail');
+      form.reset();
+      status.textContent = 'Mesajınız alındı. En kısa sürede sizinle iletişime geçeceğiz.';
+    } catch {
+      const text = `Merhaba, iletişim formu: ${data.get('name')} - ${data.get('phone')} - ${data.get('product') || ''} ${data.get('size') || ''} ${data.get('message') || ''}`;
+      status.innerHTML = 'Form gönderilemedi. <a href="https://wa.me/905075751463?text=' + encodeURIComponent(text) + '" target="_blank" rel="noopener">Bilgilerinizi WhatsApp ile gönderin</a>.';
+    }
+  });
+</script>

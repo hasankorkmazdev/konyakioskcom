@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+
+const faq = [
+  { q: 'Ucuz kiosk almak mantıklı mı?', a: 'Kiosk sürekli çalışan bir cihazdır. Yalnızca başlangıç maliyetine bakmak yerine ekran kalitesi, gövde dayanımı ve destek süresini birlikte değerlendirmek gerekir.' },
+  { q: 'Maliyeti nasıl düşürebilirim?', a: 'Gereksiz donanımı çıkararak (ör. kamera veya klavye), ekran boyutunu ihtiyaca göre seçerek ve yalnızca gerekli çevre birimlerini ekleyerek maliyet optimize edilebilir.' },
+];
+---
+
+<Base
+  title="Uygun Maliyetli Kiosk | Bütçenize Uygun Kiosk – Vectanom Konya"
+  description="Bütçenize uygun kiosk seçimi: doğru ekran boyutu, model ve donanımla maliyeti optimize edin. Vectanom Kiosk Konya."
+  path="/uygun-maliyetli-kiosk/"
+  crumbs={[{ name: 'Uygun Maliyetli Kiosk', path: '/uygun-maliyetli-kiosk/' }]}
+  faq={faq}
+>
+  <section class="page-head container narrow prose">
+    <h1>Uygun Maliyetli Kiosk Nasıl Seçilir?</h1>
+    <p class="lead">Bütçenize uygun kiosk, en ucuz kiosk demek değildir; ihtiyacınıza tam uyan, gereksiz donanım içermeyen ve uzun süre sorunsuz çalışan kiosktur.</p>
+    <h2>Maliyeti belirleyen unsurlar</h2>
+    <ul class="ticks">
+      <li>Ekran boyutu: 21, 24 veya 32 inç</li>
+      <li>Model: yatay, dikey, klavyeli, kütüphane</li>
+      <li>Çevre birimleri: yazıcı, barkod/QR okuyucu, kamera, POS</li>
+      <li>Gövde ve kullanım yeri: iç mekan, yoğun kullanım</li>
+      <li>Yazılım ve kurulum ihtiyacı</li>
+    </ul>
+    <h2>Doğru başlangıç</h2>
+    <p>Kullanım alanınızı, günlük kullanıcı sayınızı ve ihtiyaç duyduğunuz çevre birimlerini bize iletin; gereksiz özellikler için ödeme yapmadan size uygun yapılandırmayı birlikte belirleyelim.</p>
+    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a><a class="btn btn-outline" href="/urunler/">Modelleri İnceleyin</a></div>
+  </section>
+  <Faq items={faq} />
+  <Cta />
+</Base>

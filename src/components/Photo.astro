@@ -1,0 +1,15 @@
+---
+import type { Photo } from '../data/galeri';
+interface Props {
+  photo: Photo;
+  size?: 'thumb' | 'large';
+  eager?: boolean;
+  alt?: string;
+  class?: string;
+}
+const { photo, size = 'thumb', eager = false, alt, class: cls = '' } = Astro.props;
+const src = size === 'large' ? photo.large : photo.thumb;
+const k = size === 'large' ? 1 : 0.5;
+---
+
+<img class={`photo ${cls}`} src={src} alt={alt ?? photo.alt} width={Math.round(photo.w * k)} height={Math.round(photo.h * k)} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />

@@ -1,0 +1,43 @@
+---
+import { site, waLink } from '../data/site';
+import { products } from '../data/products';
+import { sectors } from '../data/sectors';
+import { locations } from '../data/locations';
+---
+
+<footer class="ftr">
+  <div class="container ftr-grid">
+    <div>
+      <h2>Vectanom Kiosk</h2>
+      <p>Express Bilgisayar markası. Konya merkezli, Türkiye geneline kiosk çözümleri.</p>
+      <p><a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a><br /><a href={waLink()} target="_blank" rel="noopener">WhatsApp ile yazın</a></p>
+    </div>
+    <div>
+      <h2>Ürünler</h2>
+      <ul>{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
+    </div>
+    <div>
+      <h2>Sektörler</h2>
+      <ul>{sectors.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}<li><a href="/uygun-maliyetli-kiosk/">Uygun Maliyetli Kiosk</a></li></ul>
+    </div>
+    <div>
+      <h2>Konya</h2>
+      <ul>
+        <li><a href="/konya-kiosk/">Konya Kiosk</a></li>
+        {locations.map((l) => <li><a href={`/hizmet-bolgeleri/${l.slug}/`}>{l.name} Kiosk</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>Kurumsal</h2>
+      <ul>
+        <li><a href="/hakkimizda/">Hakkımızda</a></li>
+        <li><a href="/galeri/">Galeri</a></li>
+        <li><a href="/referanslar/">Referanslar</a></li>
+        <li><a href="/sss/">Sık Sorulan Sorular</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/iletisim/">İletişim</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container ftr-bot">© {new Date().getFullYear()} Vectanom Kiosk · konyakiosk.com</div>
+</footer>

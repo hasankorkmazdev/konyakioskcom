@@ -1,0 +1,17 @@
+{
+  "name": "konyakiosk",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "gorsel": "node scripts/gorselleri-isle.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.0.0",
+    "sharp": "^0.34.5"
+  }
+}

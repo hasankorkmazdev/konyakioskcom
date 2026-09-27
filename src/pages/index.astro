@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import RefStrip from '../components/RefStrip.astro';
+import { photosOf, productPhotoGroups, cover } from '../data/galeri';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { products } from '../data/products';
+import { sectors } from '../data/sectors';
+import { locations } from '../data/locations';
+import { waLink } from '../data/site';
+
+const faq = [
+  { q: 'Hangi kiosk modellerini sunuyorsunuz?', a: 'Klavyeli, yatay, dikey ve kütüphane kiosk modellerini 21, 24 ve 32 inç ekran seçenekleriyle sunuyoruz.' },
+  { q: 'Konya dışına da teslimat yapıyor musunuz?', a: 'Evet. Konya merkezli çalışıyoruz ve Türkiye geneline kiosk çözümleri sunuyoruz.' },
+  { q: 'Kiosk için nasıl bilgi alabilirim?', a: 'İletişim formunu doldurabilir, WhatsApp üzerinden yazabilir veya bizi arayabilirsiniz. İhtiyacınızı dinleyip size uygun modeli birlikte belirleriz.' },
+  { q: 'Kiosk kafe, büfe ve restoran dışında nerelerde kullanılır?', a: 'Belediye, kamu kurumları, hastaneler, kütüphaneler ve kurumsal tesislerde bilgilendirme, sorgulama, randevu ve kayıt amacıyla kullanılır.' },
+];
+---
+
+<Base
+  title="Kiosk Konya | Kafe, Büfe, Restoran, Belediye Kiosk – Vectanom"
+  description="Konya kiosk çözümleri: kafe, büfe, restoran, belediye ve kütüphane için klavyeli, yatay ve dikey dokunmatik kiosk. 21, 24 ve 32 inç. Vectanom Kiosk – Express Bilgisayar markası."
+  path="/"
+  faq={faq}
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Konya Kiosk: İşletmeniz İçin Self-Servis Çözümler</h1>
+        <p>Kafe, büfe, restoran, belediye ve kütüphane için klavyeli, yatay ve dikey dokunmatik kiosk. 21, 24 ve 32 inç seçenekleriyle Vectanom Kiosk.</p>
+        <div class="btns">
+          <a class="btn btn-white" href="/iletisim/">İletişime Geçin</a>
+          <a class="btn btn-ghost" href={waLink()} target="_blank" rel="noopener">WhatsApp ile Yazın</a>
+        </div>
+      </div>
+      <div class="hero-photo"><Photo photo={cover("urunler/klavyeli-kiosk")} size="large" eager alt="Klavyeli dokunmatik kiosk 24 inç" /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Kiosk Modellerimiz</h2>
+      <p class="muted">Her model 21, 24 ve 32 inç ekran seçenekleriyle sunulur.</p>
+      <div class="grid">
+        {products.map((p) => (
+          <a class="card" href={`/urunler/${p.slug}/`}>
+            {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+            <h3>{p.name}</h3>
+            <p>{p.description.split('.')[0]}.</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Sektöre Göre Kiosk Çözümleri</h2>
+      <div class="grid">
+        {sectors.map((s) => (
+          <a class="card" href={`/sektorler/${s.slug}/`}>
+            <h3>{s.name}</h3>
+            <p>{s.intro.split('.')[0]}.</p>
+          </a>
+        ))}
+        <a class="card" href="/uygun-maliyetli-kiosk/">
+          <h3>Uygun Maliyetli Kiosk</h3>
+          <p>Bütçenize göre doğru model ve donanım seçimi.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <h2>Neden Vectanom Kiosk?</h2>
+        <ul class="ticks">
+          <li>Express Bilgisayar güvencesi ve Konya merkezli destek</li>
+          <li>Kullanım alanınıza göre model ve donanım danışmanlığı</li>
+          <li>Yazıcı, barkod/QR okuyucu ve kamera entegrasyonu</li>
+          <li>Kendi yazılımınızı veya web uygulamanızı kiosk modunda çalıştırma</li>
+          <li>Türkiye genelinde sevkiyat</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Konya ve İlçelerinde</h2>
+        <p>Selçuklu, Meram, Karatay başta olmak üzere Konya'nın tüm ilçelerine kiosk kurulum ve teslimat hizmeti veriyoruz.</p>
+        <ul class="tags">
+          {locations.map((l) => <li><a href={`/hizmet-bolgeleri/${l.slug}/`}>{l.name}</a></li>)}
+        </ul>
+        <p style="margin-top:1rem"><a href="/konya-kiosk/">Konya kiosk hizmetleri →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <RefStrip />
+
+  <Faq items={faq} />
+  <Cta />
+</Base>

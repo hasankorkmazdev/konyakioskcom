@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site, waLink } from '../data/site';
+---
+
+<Base
+  title="İletişim | Vectanom Kiosk Konya"
+  description="Vectanom Kiosk ile iletişime geçin. WhatsApp, telefon veya iletişim formu ile kiosk hakkında bilgi alın."
+  path="/iletisim/"
+  crumbs={[{ name: 'İletişim', path: '/iletisim/' }]}
+>
+  <section class="page-head container">
+    <h1>İletişim</h1>
+    <p class="lead">İhtiyacınızı yazın, en kısa sürede size dönüş yapalım.</p>
+  </section>
+  <section class="section">
+    <div class="container split">
+      <div>
+        <ContactForm subject="iletisim" />
+      </div>
+      <div>
+        <h2>Bize Ulaşın</h2>
+        <ul class="ticks">
+          <li>Telefon: <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></li>
+          <li>WhatsApp: <a href={waLink()} target="_blank" rel="noopener">Mesaj yazın</a></li>
+          <li>Hizmet bölgesi: Konya ve Türkiye geneli</li>
+        </ul>
+        <p class="muted">Vectanom Kiosk, Express Bilgisayar markasıdır.</p>
+      </div>
+    </div>
+  </section>
+</Base>

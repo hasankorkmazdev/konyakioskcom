@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import Photo from '../../components/Photo.astro';
+import Gallery from '../../components/Gallery.astro';
+import { photosOf, productPhotoGroups, sectorPhotoGroups } from '../../data/galeri';
+import { sectors } from '../../data/sectors';
+import { products } from '../../data/products';
+
+export function getStaticPaths() {
+  return sectors.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const photos = photosOf(...(sectorPhotoGroups[s.slug] ?? []));
+const recs = products.filter((p) => s.recommended.includes(p.slug));
+---
+
+<Base title={s.title} description={s.description} path={`/sektorler/${s.slug}/`} image={photos[0]?.large} crumbs={[{ name: s.name, path: `/sektorler/${s.slug}/` }]} faq={s.faq}>
+  <section class="page-head container">
+    <h1>{s.h1}</h1>
+    <p class="lead">{s.intro}</p>
+    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>{s.name} Çözümünün Faydaları</h2>
+      <ul class="ticks">{s.benefits.map((b) => <li>{b}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Önerilen Modeller</h2>
+      <div class="grid">
+        {recs.map((p) => (
+          <a class="card" href={`/urunler/${p.slug}/`}>
+            {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+            <h3>{p.name}</h3>
+            <p>{p.sizes.join(' · ')}</p>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:1.2rem">Konya ve çevresinde hizmet veriyoruz: <a href="/konya-kiosk/">Konya kiosk</a>.</p>
+    </div>
+  </section>
+
+  {photos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>{s.name} Örnekleri</h2>
+        <Gallery photos={photos} actions={false} />
+      </div>
+    </section>
+  )}
+
+  <Faq items={s.faq} />
+  <Cta />
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+---
+
+<Base
+  title="Hakkımızda | Vectanom Kiosk – Express Bilgisayar"
+  description="Vectanom Kiosk, Express Bilgisayar'ın kiosk markasıdır. Konya merkezli, Türkiye geneline dokunmatik kiosk çözümleri sunar."
+  path="/hakkimizda/"
+  crumbs={[{ name: 'Hakkımızda', path: '/hakkimizda/' }]}
+>
+  <section class="page-head container narrow prose">
+    <h1>Hakkımızda</h1>
+    <p class="lead">Vectanom Kiosk, Express Bilgisayar'ın kiosk markasıdır.</p>
+    <p>Kafe, büfe, restoran, belediye ve kütüphane gibi farklı alanlarda kullanılan dokunmatik kiosk çözümleri sunuyoruz. Klavyeli, yatay, dikey ve kütüphane modellerini 21, 24 ve 32 inç ekran seçenekleriyle temin ediyoruz.</p>
+    <h2>Yaklaşımımız</h2>
+    <p>Her işletmenin ihtiyacı farklıdır. Önce kullanım alanınızı dinler, ardından gereksiz donanım eklemeden size uygun modeli ve yapılandırmayı öneririz.</p>
+    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+  </section>
+  <Cta />
+</Base>

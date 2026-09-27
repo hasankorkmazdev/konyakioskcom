@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { products } from '../data/products';
+
+const faq = [
+  { q: 'Kiosk nedir?', a: 'Kullanıcının personel yardımı olmadan sipariş, sorgulama, randevu veya kayıt işlemi yapabildiği dokunmatik ekranlı self-servis cihazdır.' },
+  { q: 'Hangi ekran boyutları mevcut?', a: 'Tüm modellerde 21, 24 ve 32 inç seçenekleri sunulur.' },
+  { q: 'Yatay mı dikey mi seçmeliyim?', a: 'Görsel ağırlıklı sipariş ekranlarında yatay, liste ve bilgilendirme ekranlarında dikey model uygundur.' },
+  { q: 'Kiosk fiyatlarını nasıl öğrenebilirim?', a: 'Fiyat; model, ekran boyutu ve çevre birimlerine göre değişir. İletişim formu veya WhatsApp üzerinden ihtiyacınızı iletin, size dönüş yapalım.' },
+  { q: 'Konya dışına gönderim yapıyor musunuz?', a: 'Evet, Türkiye genelinde sevkiyat yapıyoruz.' },
+  ...products.flatMap((p) => p.faq.slice(0, 1)),
+];
+---
+
+<Base
+  title="Sık Sorulan Sorular | Kiosk – Vectanom Kiosk Konya"
+  description="Kiosk nedir, hangi model ve ekran boyutu seçilmeli, teslimat ve iletişim hakkında sık sorulan sorular."
+  path="/sss/"
+  crumbs={[{ name: 'Sık Sorulan Sorular', path: '/sss/' }]}
+  faq={faq}
+>
+  <section class="page-head container"><h1>Sık Sorulan Sorular</h1></section>
+  <Faq items={faq} title="Kiosk hakkında merak edilenler" />
+  <Cta />
+</Base>

@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { posts } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+
+// body satırlarını bloklara çevir
+const blocks: { t: 'h2' | 'p' | 'ul'; v: string | string[] }[] = [];
+for (const line of p.body) {
+  if (line.startsWith('## ')) blocks.push({ t: 'h2', v: line.slice(3) });
+  else if (line.startsWith('- ')) {
+    const last = blocks[blocks.length - 1];
+    if (last && last.t === 'ul') (last.v as string[]).push(line.slice(2));
+    else blocks.push({ t: 'ul', v: [line.slice(2)] });
+  } else blocks.push({ t: 'p', v: line });
+}
+
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: p.title,
+  description: p.description,
+  datePublished: p.date,
+  dateModified: p.date,
+  inLanguage: 'tr',
+  author: { '@type': 'Organization', name: 'Vectanom Kiosk' },
+  publisher: { '@type': 'Organization', name: 'Vectanom Kiosk' },
+  mainEntityOfPage: `https://konyakiosk.com/blog/${p.slug}/`,
+};
+---
+
+<Base title={`${p.title} | Vectanom Kiosk`} description={p.description} path={`/blog/${p.slug}/`} type="article" crumbs={[{ name: 'Blog', path: '/blog/' }, { name: p.title, path: `/blog/${p.slug}/` }]}>
+  <script type="application/ld+json" set:html={JSON.stringify(article)} />
+  <article class="section">
+    <div class="container narrow prose">
+      <h1>{p.title}</h1>
+      <p class="post-meta"><time datetime={p.date}>{new Date(p.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>
+      {blocks.map((b) => b.t === 'h2' ? <h2>{b.v}</h2> : b.t === 'ul' ? <ul>{(b.v as string[]).map((x) => <li>{x}</li>)}</ul> : <p>{b.v}</p>)}
+      <p>Kiosk seçimi için <a href="/urunler/">modellerimizi</a> inceleyebilir ya da <a href="/iletisim/">bizimle iletişime geçebilirsiniz</a>.</p>
+    </div>
+  </article>
+  <Cta />
+</Base>

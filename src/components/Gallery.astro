@@ -1,0 +1,55 @@
+---
+import type { Photo } from '../data/galeri';
+import { site } from '../data/site';
+
+interface Props {
+  photos: Photo[];
+  actions?: boolean;
+  lazy?: boolean;
+}
+const { photos, actions = true, lazy = true } = Astro.props;
+const shareUrl = (p: Photo) => `https://wa.me/?text=${encodeURIComponent(`${p.alt} – ${site.url}${p.download}`)}`;
+---
+
+<ul class="gallery" data-gallery>
+  {photos.map((p) => (
+    <li>
+      <a class="g-thumb" href={p.large} data-full={p.large} data-alt={p.alt} aria-label={`${p.alt} – büyüt`}>
+        <img src={p.thumb} alt={p.alt} width={Math.round(p.w / 2)} height={Math.round(p.h / 2)} loading={lazy ? 'lazy' : 'eager'} decoding="async" />
+      </a>
+      {actions && (
+        <div class="g-actions">
+          <a href={p.download} download={`${p.id}.jpg`}>İndir</a>
+          <a href={shareUrl(p)} target="_blank" rel="noopener">WhatsApp'ta paylaş</a>
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
+
+<dialog class="lightbox" id="lightbox" aria-label="Görsel önizleme">
+  <button class="lb-close" type="button" aria-label="Kapat">×</button>
+  <img alt="" />
+  <p class="lb-cap"></p>
+</dialog>
+
+<script>
+  const box = document.getElementById('lightbox') as HTMLDialogElement | null;
+  if (box && !box.dataset.ready) {
+    box.dataset.ready = '1';
+    const img = box.querySelector('img') as HTMLImageElement;
+    const cap = box.querySelector('.lb-cap') as HTMLElement;
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest('a.g-thumb') as HTMLAnchorElement | null;
+      if (a && typeof box.showModal === 'function') {
+        e.preventDefault();
+        img.src = a.dataset.full!;
+        img.alt = a.dataset.alt || '';
+        cap.textContent = a.dataset.alt || '';
+        box.showModal();
+      } else if (e.target === box || (e.target as HTMLElement).classList.contains('lb-close')) {
+        box.close();
+      }
+    });
+  }
+</script>

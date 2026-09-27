@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import { photosOf, productPhotoGroups } from '../../data/galeri';
+import Cta from '../../components/Cta.astro';
+import { products } from '../../data/products';
+---
+
+<Base
+  title="Kiosk Modelleri: Klavyeli, Yatay, Dikey, Kütüphane | Vectanom"
+  description="Klavyeli, yatay, dikey ve kütüphane kiosk modelleri. 21, 24 ve 32 inç dokunmatik ekran seçenekleri. Vectanom Kiosk ürün gamı."
+  path="/urunler/"
+  crumbs={[{ name: 'Ürünler', path: '/urunler/' }]}
+>
+  <section class="page-head container">
+    <h1>Kiosk Modelleri</h1>
+    <p class="lead">Kullanım alanınıza uygun dört ana model; hepsi 21, 24 ve 32 inç ekran seçenekleriyle.</p>
+  </section>
+  <section class="section">
+    <div class="container grid">
+      {products.map((p) => (
+        <a class="card" href={`/urunler/${p.slug}/`}>
+          {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+          <h3>{p.name}</h3>
+          <p>{p.description}</p>
+          <ul class="tags">{p.sizes.map((s) => <li>{s}</li>)}</ul>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Cta />
+</Base>

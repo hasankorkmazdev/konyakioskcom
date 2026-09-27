@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import Gallery from '../../components/Gallery.astro';
+import { photosOf, productPhotoGroups } from '../../data/galeri';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import { products } from '../../data/products';
+import { sectors } from '../../data/sectors';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const related = sectors.filter((s) => s.recommended.includes(p.slug));
+const photos = photosOf(...(productPhotoGroups[p.slug] ?? []));
+const others = products.filter((x) => x.slug !== p.slug);
+---
+
+<Base title={p.title} description={p.description} path={`/urunler/${p.slug}/`} image={photos[0]?.large} crumbs={[{ name: 'Ürünler', path: '/urunler/' }, { name: p.name, path: `/urunler/${p.slug}/` }]} faq={p.faq}>
+  <section class="page-head container split">
+    <div>
+      <h1>{p.h1}</h1>
+      <p class="lead">{p.intro}</p>
+      <ul class="tags">{p.sizes.map((s) => <li>{s}</li>)}</ul>
+      <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+    </div>
+    {photos[0] && <div class="figure"><Photo photo={photos[0]} size="large" eager /></div>}
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <h2>Özellikler</h2>
+        <ul class="ticks">{p.features.map((f) => <li>{f}</li>)}</ul>
+      </div>
+      <div>
+        <h2>Kullanım Alanları</h2>
+        <ul class="ticks">{p.uses.map((u) => <li>{u}</li>)}</ul>
+        {related.length > 0 && (
+          <>
+            <h3>İlgili sektörler</h3>
+            <ul class="tags">{related.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}</ul>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {photos.length > 1 && (
+    <section class="section alt">
+      <div class="container">
+        <h2>{p.name} Fotoğrafları</h2>
+        <Gallery photos={photos} />
+        <p style="margin-top:1rem"><a href="/galeri/">Tüm kiosk fotoğrafları →</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <h2>Diğer Modeller</h2>
+      <div class="grid">
+        {others.map((o) => (
+          <a class="card" href={`/urunler/${o.slug}/`}><h3>{o.name}</h3><p>{o.sizes.join(' · ')}</p></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Faq items={p.faq} />
+  <Cta />
+</Base>

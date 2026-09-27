@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { locations } from '../data/locations';
+import { sectors } from '../data/sectors';
+
+const faq = [
+  { q: 'Konya\'da kiosk hizmeti veriyor musunuz?', a: 'Evet. Vectanom Kiosk, Express Bilgisayar markası olarak Konya merkezli çalışır ve tüm ilçelere kurulum ve teslimat sağlar.' },
+  { q: 'Hangi ilçelere hizmet veriyorsunuz?', a: 'Selçuklu, Meram, Karatay, Ereğli, Akşehir, Beyşehir, Seydişehir, Çumra ve Konya\'nın diğer ilçeleri.' },
+];
+---
+
+<Base
+  title="Konya Kiosk | Kafe, Büfe, Belediye Kiosk Konya – Vectanom"
+  description="Konya kiosk: Selçuklu, Meram, Karatay ve tüm ilçelerde kafe, büfe, restoran, belediye ve kütüphane kiosk çözümleri. Vectanom Kiosk."
+  path="/konya-kiosk/"
+  crumbs={[{ name: 'Konya Kiosk', path: '/konya-kiosk/' }]}
+  faq={faq}
+>
+  <section class="page-head container">
+    <h1>Konya Kiosk Çözümleri</h1>
+    <p class="lead">Konya'daki işletme, belediye ve kurumlara dokunmatik kiosk temin ediyoruz. Ürün seçiminden kuruluma ve destek sürecine kadar yanınızdayız.</p>
+    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Konya İlçeleri</h2>
+      <div class="grid">
+        {locations.map((l) => (
+          <a class="card" href={`/hizmet-bolgeleri/${l.slug}/`}><h3>{l.name} Kiosk</h3><p>{l.text.split(';')[0]} için kiosk çözümleri.</p></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Konya'da Sektörlere Göre Kiosk</h2>
+      <ul class="tags">{sectors.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}</ul>
+    </div>
+  </section>
+
+  <Faq items={faq} />
+  <Cta />
+</Base>

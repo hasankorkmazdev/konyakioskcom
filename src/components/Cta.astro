@@ -1,0 +1,21 @@
+---
+import { waLink, site } from '../data/site';
+interface Props {
+  text?: string;
+}
+const { text = 'Projenizi anlatın, size uygun kiosk modelini birlikte belirleyelim.' } = Astro.props;
+---
+
+<section class="cta">
+  <div class="container cta-in">
+    <div>
+      <h2>Kiosk için bizimle iletişime geçin</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta-btns">
+      <a class="btn btn-white" href="/iletisim/">İletişim Formu</a>
+      <a class="btn btn-ghost" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+    </div>
+  </div>
+</section>
