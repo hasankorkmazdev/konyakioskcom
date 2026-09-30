@@ -313,7 +313,7 @@
   {
     "slug": "haritalama-kiosk",
     "type": "haritalama",
-    "name": "Haritalama Kiosk",
+    "name": "Haritalama & Navigasyon Kiosk",
     "description": "Haritalama kiosku: bina içi yönlendirme, harita ve bilgilendirme. AVM, hastane, kampüs ve belediye için.",
     "intro": "Haritalama kiosku, ziyaretçilere bina veya alan içinde yol tarifi, konum ve bilgi sunar. Kampüs, AVM ve hastanelerde yönlendirmeyi kolaylaştırır.",
     "sizes": [
@@ -337,8 +337,8 @@
         "a": "Alan planınıza göre harita arayüzünün hazırlanması konusunda birlikte çalışırız."
       }
     ],
-    "title": "Haritalama Kiosk | Vectanom Kiosk Konya",
-    "h1": "Haritalama Kiosk"
+    "title": "Haritalama & Navigasyon Kiosk | Vectanom Kiosk Konya",
+    "h1": "Haritalama & Navigasyon Kiosk"
   },
   {
     "slug": "siparis-kiosk",

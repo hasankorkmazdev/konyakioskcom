@@ -104,7 +104,7 @@ export const productPhotoGroups: Record<string, string[]> = {
   'self-kiosk': ['urunler/self-servis-kiosk'],
   'totem-kiosk': ['urunler/standart-kiosk'],
   'siramatik-kiosk': ['urunler/odeme-kiosku'],
-  'haritalama-kiosk': ['urunler/dikey-kiosk'],
+  'haritalama-kiosk': ['urunler/yatay-kiosk'],
   'siparis-kiosk': ['urunler/self-servis-kiosk'],
 };
 

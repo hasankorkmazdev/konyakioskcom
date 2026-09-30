@@ -24,7 +24,7 @@ export const sectors: Sector[] = [
       'Sipariş hataları azalır; müşteri ne seçtiğini kendisi görür',
       'Menü ve kampanyalar kioskta anında güncellenir',
     ],
-    recommended: ['yatay-kiosk'],
+    recommended: ['yatay-kiosk', 'siparis-kiosk'],
     faq: [
       { q: 'Kafe için hangi kiosk modeli uygun?', a: 'Menü görsellerini geniş gösterdiği için genellikle yatay ekranlı kiosk tercih edilir.' },
       { q: 'Küçük kafeler için de mantıklı mı?', a: 'Sipariş hacmi ve kasadaki yoğunluğa bağlıdır. İşletmenizi dinleyip size uygun modeli birlikte belirleriz.' },
