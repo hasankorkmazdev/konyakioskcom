@@ -1,5 +1,6 @@
 ---
 import { waLink } from '../data/site';
+import { products } from '../data/products';
 interface Props {
   subject?: string;
 }
@@ -15,10 +16,7 @@ const { subject = '' } = Astro.props;
   <label>İlgilendiğiniz ürün
     <select name="product">
       <option value="">Seçiniz</option>
-      <option>Klavyeli kiosk</option>
-      <option>Yatay kiosk</option>
-      <option>Dikey kiosk</option>
-      <option>Kütüphane kiosk</option>
+      {products.map((p) => <option>{p.name}</option>)}
       <option>Emin değilim</option>
     </select>
   </label>

@@ -23,7 +23,7 @@ const others = products.filter((x) => x.slug !== p.slug);
       <h1>{p.h1}</h1>
       <p class="lead">{p.intro}</p>
       <ul class="tags">{p.sizes.map((s) => <li>{s}</li>)}</ul>
-      <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+      <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a> <a class="btn btn-ghost-dark" href="/kendi-kioskunu-olustur/">Kendi Kioskunu Oluştur</a></div>
     </div>
     {photos[0] && <div class="figure"><Photo photo={photos[0]} size="large" eager /></div>}
   </section>
@@ -52,7 +52,7 @@ const others = products.filter((x) => x.slug !== p.slug);
       <div class="container">
         <h2>{p.name} Fotoğrafları</h2>
         <Gallery photos={photos} />
-        <p style="margin-top:1rem"><a href="/galeri/">Tüm kiosk fotoğrafları →</a></p>
+        <p style="margin-top:1rem"><a href="/urunler/">Tüm kiosk modelleri →</a></p>
       </div>
     </section>
   )}

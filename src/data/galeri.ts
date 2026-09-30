@@ -99,6 +99,13 @@ export const productPhotoGroups: Record<string, string[]> = {
   'yatay-kiosk': ['urunler/yatay-kiosk'],
   'dikey-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk', 'urunler/ekonomik-kiosk'],
   'kutuphane-kiosk': ['urunler/kutuphane-kiosk'],
+  'klavyeli-24-inc-kiosk': ['urunler/klavyeli-kiosk'],
+  'desk-kiosk': ['urunler/yatay-kiosk'],
+  'self-kiosk': ['urunler/self-servis-kiosk'],
+  'totem-kiosk': ['urunler/standart-kiosk'],
+  'siramatik-kiosk': ['urunler/odeme-kiosku'],
+  'haritalama-kiosk': ['urunler/dikey-kiosk'],
+  'siparis-kiosk': ['urunler/self-servis-kiosk'],
 };
 
 /** Sektör sayfası -> gösterilecek galeri grupları */

@@ -1,0 +1,224 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import config from '../data/configurator.json';
+import { site } from '../data/site';
+
+const g = (id: string) => config.groups.find((x) => x.id === id)!;
+const modelInfo: Record<string, string> = {
+  Kule: 'Yatay veya dikey kullanılabilen, her montaj tipine uygun çok amaçlı kiosk.',
+  Totem: 'Büyük dikey ekranlı, ayaklı bilgilendirme ve tanıtım kiosku.',
+  Desk: 'Tezgah ve masa üstü için kompakt, yatay ekranlı kiosk.',
+};
+const sections = [
+  { title: 'Ekran', ids: ['yon', 'ekran'] },
+  { title: 'Donanım', ids: ['ram', 'disk', 'disktip'] },
+  { title: 'Gövde', ids: ['montaj', 'renk'] },
+];
+const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Özel Reklam': 'linear-gradient(135deg,#2a3385,#e8534a)' };
+---
+
+<Base
+  title="Kendi Kioskunu Oluştur | Model, Ekran, RAM, Disk Seçin – Vectanom"
+  description="Kendi kioskunuzu oluşturun: model, ekran boyutu, RAM, disk ve ek donanımları seçin, teklifinizi WhatsApp veya telefonla alın."
+  path="/kendi-kioskunu-olustur/"
+  crumbs={[{ name: 'Kendi Kioskunu Oluştur', path: '/kendi-kioskunu-olustur/' }]}
+>
+  <section class="page-head container">
+    <h1>Kendi Kioskunu Oluştur</h1>
+    <p class="lead">Modeli seçin, donanımı ayarlayın. Sağdaki özet seçtikçe güncellenir; hazır olunca teklifi WhatsApp'tan isteyin.</p>
+  </section>
+
+  <section class="section">
+    <div class="container builder" data-wa={site.whatsapp} data-rules={JSON.stringify(config.rules)}>
+      <form class="cfg" onsubmit="return false">
+        <div class="step">
+          <h2><span class="n">1</span> Model</h2>
+          <div class="models">
+            {config.models.map((m, i) => (
+              <label class="mcard">
+                <input type="radio" name="model" value={m} data-slug={m} checked={i === 0} />
+                <span class="mbox">
+                  <svg viewBox="0 0 80 100" aria-hidden="true">
+                    {m === 'Kule' && <><rect x="22" y="6" width="36" height="52" rx="4" fill="currentColor"/><rect x="26" y="10" width="28" height="44" rx="2" fill="#fff" opacity=".9"/><rect x="36" y="58" width="8" height="26" fill="currentColor"/><rect x="24" y="84" width="32" height="6" rx="3" fill="currentColor"/></>}
+                    {m === 'Totem' && <><rect x="26" y="4" width="28" height="70" rx="4" fill="currentColor"/><rect x="30" y="8" width="20" height="62" rx="2" fill="#fff" opacity=".9"/><rect x="22" y="74" width="36" height="16" rx="3" fill="currentColor"/></>}
+                    {m === 'Desk' && <><rect x="10" y="22" width="60" height="38" rx="4" fill="currentColor"/><rect x="14" y="26" width="52" height="30" rx="2" fill="#fff" opacity=".9"/><rect x="30" y="60" width="20" height="10" fill="currentColor"/><rect x="18" y="70" width="44" height="6" rx="3" fill="currentColor"/></>}
+                  </svg>
+                  <strong>{m}</strong>
+                  <small>{modelInfo[m]}</small>
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {sections.map((sec, i) => (
+          <div class="step">
+            <h2><span class="n">{i + 2}</span> {sec.title}</h2>
+            <div class="row">
+              {sec.ids.map((id) => {
+                const grp = g(id);
+                return grp.id === 'renk' ? (
+                  <div class="field wide">
+                    <span class="lbl">{grp.label}</span>
+                    <div class="swatches">
+                      {grp.options.map((o) => (
+                        <label class="sw"><input type="radio" name={grp.id} value={o} checked={grp.default === o} /><span><i style={`background:${swatch[o]}`}></i>{o}</span></label>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <label class="field">
+                    <span class="lbl">{grp.label}</span>
+                    <select name={grp.id}>
+                      {grp.options.map((o) => <option value={o} selected={grp.default === o}>{o}</option>)}
+                    </select>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+
+        <div class="step">
+          <h2><span class="n">5</span> Ek Donanımlar</h2>
+          <div class="chips">
+            {g('aksesuar').options.map((o) => (
+              <label class="chip"><input type="checkbox" name="aksesuar" value={o} /><span>{o}</span></label>
+            ))}
+          </div>
+        </div>
+
+        <div class="step">
+          <h2><span class="n">6</span> Notunuz</h2>
+          <textarea name="not" rows="3" placeholder="Adet, şehir, kullanım alanı…"></textarea>
+        </div>
+      </form>
+
+      <aside class="summary">
+        <div class="preview" id="preview" aria-hidden="true"></div>
+        <h2 id="sum-title">Kule</h2>
+        <ul id="summary-list"></ul>
+        <a id="wa-btn" class="btn" href="#" target="_blank" rel="noopener">WhatsApp ile Teklif İste</a>
+        <a class="btn btn-outline" href="/iletisim/">İletişim Formu</a>
+        <p class="muted">Fiyat, seçiminize göre size özel hazırlanır.</p>
+      </aside>
+    </div>
+  </section>
+  <Cta />
+</Base>
+
+<style is:global>
+  .builder { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 960px) { .builder { grid-template-columns: 1.7fr 1fr; } .summary { position: sticky; top: 90px; } }
+  .cfg .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem 1.4rem; margin-bottom: 1rem; }
+  .cfg .step h2 { font-size: 1.15rem; display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+  .cfg .n { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--brand); color: #fff; font-size: .9rem; }
+  .models { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .mcard input, .sw input, .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .mbox { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .3rem; height: 100%; padding: 1rem .8rem; border: 2px solid var(--line); border-radius: var(--radius); cursor: pointer; color: var(--brand); transition: .15s; }
+  .mbox svg { width: 56px; height: 70px; }
+  .mbox strong { color: var(--ink); font-size: 1.1rem; }
+  .mbox small { color: var(--muted); line-height: 1.35; }
+  .mcard:hover .mbox { border-color: var(--brand); }
+  .mcard input:checked + .mbox { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 3px rgba(42,51,133,.15); }
+  .mcard input:focus-visible + .mbox, .sw input:focus-visible + span, .chip input:focus-visible + span { outline: 2px solid var(--brand-dark); outline-offset: 2px; }
+  .row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .field { display: block; }
+  .field.wide { grid-column: 1 / -1; }
+  .lbl { display: block; font-weight: 600; font-size: .9rem; margin-bottom: .35rem; color: var(--muted); }
+  .field select, .cfg textarea { width: 100%; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; color: var(--ink); }
+  .field select:focus, .cfg textarea:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
+  .swatches, .chips { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .sw span, .chip span { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem; border: 2px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .92rem; background: #fff; transition: .15s; }
+  .sw i { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid #c9cce0; }
+  .chip span::before { content: '+'; font-weight: 700; color: var(--brand); }
+  .sw input:checked + span, .chip input:checked + span { border-color: var(--brand); background: var(--brand-soft); }
+  .chip input:checked + span::before { content: '✓'; }
+  .sw:hover span, .chip:hover span { border-color: var(--brand); }
+  .summary { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; background: var(--brand-soft); }
+  .summary h2 { margin-bottom: .6rem; }
+  .preview { display: grid; place-items: center; height: 190px; margin-bottom: .8rem; background: #fff; border-radius: 10px; }
+  .summary ul { list-style: none; padding: 0; margin: 0 0 1rem; }
+  .summary li { display: flex; justify-content: space-between; gap: 1rem; padding: .35rem 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+  .summary li span:last-child { font-weight: 600; text-align: right; }
+  .summary .btn { display: block; text-align: center; margin-bottom: .5rem; }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.builder')!;
+  const form = root.querySelector('form')!;
+  const rules = JSON.parse(root.dataset.rules || '{}');
+  const list = document.getElementById('summary-list')!;
+  const wa = document.getElementById('wa-btn') as HTMLAnchorElement;
+  const preview = document.getElementById('preview')!;
+  const title = document.getElementById('sum-title')!;
+  const labels: Record<string, string> = { yon: 'Yön', ekran: 'Ekran', ram: 'RAM', disk: 'Disk', disktip: 'Disk tipi', montaj: 'Montaj', renk: 'Renk', aksesuar: 'Ek donanım' };
+  const colors: Record<string, string> = { Beyaz: '#e6e8f0', Siyah: '#1b1c22', 'Özel Reklam': '#e8534a' };
+
+  function drawPreview(model: string, yon: string, renk: string, montaj: string, ekran: string) {
+    const c = colors[renk] || '#2a3385';
+    const st = `fill="${c}" stroke="#2a3385" stroke-width="2"`;
+    const portrait = yon === 'Dikey';
+    const f = ({ '21.5 inç': 0.8, '24 inç': 0.9, '27 inç': 1, '32 inç': 1.1 } as Record<string, number>)[ekran] ?? 1;
+    const sw = Math.round((portrait ? 56 : 92) * f), sh = Math.round((portrait ? 92 : 56) * f);
+    const x = 100 - sw / 2;
+    const screen = (y: number) => `<rect x="${x}" y="${y}" width="${sw}" height="${sh}" rx="6" ${st}/><rect x="${x + 6}" y="${y + 6}" width="${sw - 12}" height="${sh - 12}" rx="3" fill="#2a3385" opacity=".85"/>`;
+    let body: string;
+    if (montaj === 'Duvar tipi') {
+      const y = 28;
+      body = `<rect x="0" y="0" width="200" height="150" fill="#eef0fb"/><rect x="0" y="150" width="200" height="20" fill="#dfe2f2"/>${screen(y)}<rect x="92" y="${y + sh}" width="16" height="6" ${st}/>`;
+    } else if (montaj === 'Masa tipi') {
+      const y = 140 - 14 - sh - 6;
+      body = `${screen(y)}<rect x="84" y="${y + sh}" width="32" height="14" ${st}/><rect x="66" y="${y + sh + 14}" width="68" height="8" rx="4" ${st}/><rect x="20" y="140" width="160" height="8" rx="2" fill="#b9bedc"/><rect x="30" y="148" width="8" height="20" fill="#b9bedc"/><rect x="162" y="148" width="8" height="20" fill="#b9bedc"/>`;
+    } else {
+      const pw = model === 'Totem' ? 32 : 16;
+      body = `${screen(6)}<rect x="${100 - pw / 2}" y="${6 + sh}" width="${pw}" height="${152 - sh - 6}" ${st}/><rect x="62" y="152" width="76" height="10" rx="5" ${st}/>`;
+    }
+    preview.innerHTML = `<svg viewBox="0 0 200 170" width="100%" height="100%">${body}</svg>`;
+  }
+
+  function update() {
+    const modelEl = form.querySelector<HTMLInputElement>('input[name=model]:checked')!;
+    const rule: Record<string, any> = rules[modelEl.dataset.slug || ''] || {};
+
+    form.querySelectorAll<HTMLSelectElement>('select').forEach((sel) => {
+      const allowed: string[] | undefined = rule[sel.name];
+      Array.from(sel.options).forEach((o) => { o.disabled = !!allowed && !allowed.includes(o.value); });
+      if (sel.selectedOptions[0]?.disabled) {
+        const d = rule.defaults?.[sel.name];
+        sel.value = Array.from(sel.options).find((o) => !o.disabled && o.value === d)?.value ?? Array.from(sel.options).find((o) => !o.disabled)?.value ?? sel.value;
+      }
+    });
+    form.querySelectorAll<HTMLInputElement>('input[type=radio]:not([name=model]), input[type=checkbox]').forEach((i) => {
+      const allowed: string[] | undefined = rule[i.name];
+      i.disabled = !!allowed && !allowed.includes(i.value);
+      if (i.disabled) i.checked = false;
+      (i.nextElementSibling as HTMLElement).style.opacity = i.disabled ? '.35' : '';
+    });
+
+    const fd = new FormData(form);
+    const model = String(fd.get('model'));
+    const rows = Object.keys(labels).map((k): [string, string] => {
+      const v = fd.getAll(k) as string[];
+      return [labels[k], v.length ? v.join(', ') : 'Yok'];
+    });
+    const note = String(fd.get('not') || '');
+    title.textContent = model;
+    drawPreview(model, String(fd.get('yon')), String(fd.get('renk')), String(fd.get('montaj')), String(fd.get('ekran')));
+    list.innerHTML = '';
+    rows.forEach(([k, v]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('span'); a.textContent = k;
+      const b = document.createElement('span'); b.textContent = v;
+      li.append(a, b);
+      list.append(li);
+    });
+    const text = `Merhaba, kendi kioskumu oluşturdum:\n- Model: ${model}\n` + rows.map(([k, v]) => `- ${k}: ${v}`).join('\n') + (note ? `\nNot: ${note}` : '');
+    wa.href = `https://wa.me/${root.dataset.wa}?text=${encodeURIComponent(text)}`;
+  }
+
+  form.addEventListener('change', update);
+  form.addEventListener('input', update);
+  update();
+</script>

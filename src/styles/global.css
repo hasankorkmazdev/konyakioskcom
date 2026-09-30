@@ -192,3 +192,5 @@ p { margin: 0 0 1em; }
 .logo-strip { gap: 1.5rem 3rem; }
 .logo-strip img { max-height: 64px; max-width: 170px; }
 .logo-strip a.dark { background: var(--brand-dark); border-radius: 10px; padding: .4rem .9rem; }
+
+.btn-ghost-dark { background: transparent; color: var(--brand-dark); border: 1px solid var(--brand); }
