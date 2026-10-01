@@ -1,6 +1,7 @@
 ---
 import { waLink } from '../../data/generalInformation';
 import { products } from '../../data/products';
+import Dropdown from '../ui/Dropdown.astro';
 interface Props {
   subject?: string;
 }
@@ -14,20 +15,10 @@ const { subject = '' } = Astro.props;
   <label>Telefon<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" /></label>
   <label>E-posta (isteğe bağlı)<input name="email" type="email" autocomplete="email" /></label>
   <label>İlgilendiğiniz ürün
-    <select name="product">
-      <option value="">Seçiniz</option>
-      {products.map((p) => <option>{p.name}</option>)}
-      <option>Emin değilim</option>
-    </select>
+    <Dropdown name="product" label="İlgilendiğiniz ürün" placeholder="Seçiniz" options={[...products.map((p) => p.name), 'Emin değilim']} />
   </label>
   <label>Ekran boyutu
-    <select name="size">
-      <option value="">Seçiniz</option>
-      <option>21 inç</option>
-      <option>24 inç</option>
-      <option>32 inç</option>
-      <option>Emin değilim</option>
-    </select>
+    <Dropdown name="size" label="Ekran boyutu" placeholder="Seçiniz" options={['21 inç', '24 inç', '32 inç', 'Emin değilim']} />
   </label>
   <label>Mesajınız<textarea name="message" rows="4" placeholder="Kullanım alanı, adet, şehir…"></textarea></label>
   <button class="btn" type="submit">Gönder</button>
@@ -38,6 +29,13 @@ const { subject = '' } = Astro.props;
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = form?.querySelector('.form-status') as HTMLElement | null;
+  // "Kendi Kioskunu Oluştur" sayfasından gelen seçimleri mesaja ekle
+  try {
+    const cfg = sessionStorage.getItem('kiosk-config');
+    const msg = form?.querySelector('textarea[name=message]') as HTMLTextAreaElement | null;
+    if (cfg && msg && !msg.value) msg.value = cfg;
+    sessionStorage.removeItem('kiosk-config');
+  } catch {}
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!status) return;

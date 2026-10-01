@@ -164,40 +164,6 @@ export const products: Product[] = [
     ]
   },
   {
-    slug: "klavyeli-24-inc-kiosk",
-    type: "klavyeli",
-    name: "Klavyeli 24 İnç Kiosk",
-    description: "24 inç dokunmatik ekranlı, klavyeli kiosk. Sorgulama, kayıt ve randevu işlemleri için hazır, kendi yazılımınızla çalışır.",
-    h1: "Klavyeli 24 İnç Kiosk",
-    intro: "24 inç dokunmatik ekran ve entegre klavye bir arada. Kimlik no, telefon ve arama gibi metin girişi gereken uygulamalar için en çok tercih edilen boyuttur.",
-    tags: [
-      "Entegre Klavye",
-      "Yazıcı",
-      "Barkod/QR Okuyucu",
-      "Kamera"
-    ],
-    features: [
-      "24 inç dokunmatik ekran",
-      "Entegre fiziksel klavye",
-      "Boyalı metal gövde, kablolar içeride",
-      "Kiosk modunda çalışan Windows altyapısı",
-      "İsteğe bağlı yazıcı, barkod/QR okuyucu ve kamera"
-    ],
-    uses: [
-      "Belediye ve kamu hizmet noktaları",
-      "Hastane kayıt ve sorgulama",
-      "Okul ve üniversite",
-      "Ziyaretçi kayıt"
-    ],
-    faq: [
-      {
-        q: "24 inç klavyeli kioskta kendi yazılımım çalışır mı?",
-        a: "Evet. Kiosk Windows tabanlıdır; web veya masaüstü uygulamanız kiosk modunda çalıştırılabilir."
-      }
-    ],
-    title: "Klavyeli 24 İnç Kiosk | Vectanom Kiosk Konya"
-  },
-  {
     slug: "desk-kiosk",
     type: "desk",
     name: "Desk Kiosk",

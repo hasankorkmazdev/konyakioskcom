@@ -74,7 +74,6 @@ export const productPhotoGroups: Record<string, string[]> = {
   'yatay-kiosk': ['urunler/yatay-kiosk'],
   'dikey-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk', 'urunler/ekonomik-kiosk'],
   'kutuphane-kiosk': ['urunler/kutuphane-kiosk'],
-  'klavyeli-24-inc-kiosk': ['urunler/klavyeli-kiosk'],
   'desk-kiosk': ['urunler/yatay-kiosk'],
   'self-kiosk': ['urunler/self-servis-kiosk'],
   'totem-kiosk': ['urunler/standart-kiosk'],
@@ -88,6 +87,9 @@ export const useCasePhotoGroups: Record<string, string[]> = {
   'self-servis-siparis-kiosku': ['urunler/self-servis-kiosk'],
   'belediye-siramatik-kiosku': ['urunler/tahsilat-kabini', 'urunler/odeme-kiosku'],
   'hastane-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
+  'havalimani-check-in-kiosku': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
   'kutuphane-kiosku': ['urunler/kutuphane-kiosk'],
   'bilgilendirme-kiosku': ['urunler/yatay-kiosk', 'urunler/standart-kiosk'],
+  'otopark-tahsilat-kiosku': ['urunler/odeme-kiosku', 'urunler/tahsilat-kabini'],
+  'fatura-odeme-kiosku': ['urunler/odeme-kiosku', 'referanslar/koski'],
 };

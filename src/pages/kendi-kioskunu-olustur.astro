@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Cta from '../components/sections/Cta.astro';
+import Dropdown from '../components/ui/Dropdown.astro';
 import { configurator as config } from '../data/configurator';
 import { generalInformation } from '../data/generalInformation';
 
 const g = (id: string) => config.groups.find((x) => x.id === id)!;
 const modelInfo: Record<string, string> = {
-  Kule: 'Yatay veya dikey kullanılabilen, her montaj tipine uygun çok amaçlı kiosk.',
+  Standart: 'Yatay veya dikey kullanılabilen, her montaj tipine uygun çok amaçlı kiosk.',
   Totem: 'Büyük dikey ekranlı, ayaklı bilgilendirme ve tanıtım kiosku.',
   Desk: 'Tezgah ve masa üstü için kompakt, yatay ekranlı kiosk.',
 };
@@ -40,7 +41,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
                 <input type="radio" name="model" value={m} data-slug={m} checked={i === 0} />
                 <span class="mbox">
                   <svg viewBox="0 0 80 100" aria-hidden="true">
-                    {m === 'Kule' && <><rect x="22" y="6" width="36" height="52" rx="4" fill="currentColor"/><rect x="26" y="10" width="28" height="44" rx="2" fill="#fff" opacity=".9"/><rect x="36" y="58" width="8" height="26" fill="currentColor"/><rect x="24" y="84" width="32" height="6" rx="3" fill="currentColor"/></>}
+                    {m === 'Standart' && <><rect x="22" y="6" width="36" height="52" rx="4" fill="currentColor"/><rect x="26" y="10" width="28" height="44" rx="2" fill="#fff" opacity=".9"/><rect x="36" y="58" width="8" height="26" fill="currentColor"/><rect x="24" y="84" width="32" height="6" rx="3" fill="currentColor"/></>}
                     {m === 'Totem' && <><rect x="26" y="4" width="28" height="70" rx="4" fill="currentColor"/><rect x="30" y="8" width="20" height="62" rx="2" fill="#fff" opacity=".9"/><rect x="22" y="74" width="36" height="16" rx="3" fill="currentColor"/></>}
                     {m === 'Desk' && <><rect x="10" y="22" width="60" height="38" rx="4" fill="currentColor"/><rect x="14" y="26" width="52" height="30" rx="2" fill="#fff" opacity=".9"/><rect x="30" y="60" width="20" height="10" fill="currentColor"/><rect x="18" y="70" width="44" height="6" rx="3" fill="currentColor"/></>}
                   </svg>
@@ -68,12 +69,10 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
                     </div>
                   </div>
                 ) : (
-                  <label class="field">
-                    <span class="lbl">{grp.label}</span>
-                    <select name={grp.id}>
-                      {grp.options.map((o) => <option value={o} selected={grp.default === o}>{o}</option>)}
-                    </select>
-                  </label>
+                  <div class="field">
+                    <span class="lbl" id={`lbl-${grp.id}`}>{grp.label}</span>
+                    <Dropdown name={grp.id} options={grp.options} value={grp.default} labelledby={`lbl-${grp.id}`} />
+                  </div>
                 );
               })}
             </div>
@@ -97,10 +96,10 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
 
       <aside class="summary">
         <div class="preview" id="preview" aria-hidden="true"></div>
-        <h2 id="sum-title">Kule</h2>
+        <h2 id="sum-title">Standart</h2>
         <ul id="summary-list"></ul>
         <a id="wa-btn" class="btn" href="#" target="_blank" rel="noopener">WhatsApp ile Teklif İste</a>
-        <a class="btn btn-outline" href="/iletisim/">İletişim Formu</a>
+        <a id="contact-btn" class="btn btn-outline" href="/iletisim/">İletişim Formu</a>
         <p class="muted">Fiyat, seçiminize göre size özel hazırlanır.</p>
       </aside>
     </div>
@@ -127,8 +126,8 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
   .field { display: block; }
   .field.wide { grid-column: 1 / -1; }
   .lbl { display: block; font-weight: 600; font-size: .9rem; margin-bottom: .35rem; color: var(--muted); }
-  .field select, .cfg textarea { width: 100%; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; color: var(--ink); }
-  .field select:focus, .cfg textarea:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
+  .cfg textarea { width: 100%; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; color: var(--ink); }
+  .cfg textarea:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
   .swatches, .chips { display: flex; flex-wrap: wrap; gap: .6rem; }
   .sw span, .chip span { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem; border: 2px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .92rem; background: #fff; transition: .15s; }
   .sw i { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid #c9cce0; }
@@ -151,6 +150,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
   const rules = JSON.parse(root.dataset.rules || '{}');
   const list = document.getElementById('summary-list')!;
   const wa = document.getElementById('wa-btn') as HTMLAnchorElement;
+  const contactBtn = document.getElementById('contact-btn')!;
   const preview = document.getElementById('preview')!;
   const title = document.getElementById('sum-title')!;
   const labels: Record<string, string> = { yon: 'Yön', ekran: 'Ekran', ram: 'RAM', disk: 'Disk', disktip: 'Disk tipi', montaj: 'Montaj', renk: 'Renk', aksesuar: 'Ek donanım' };
@@ -163,16 +163,31 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
     const f = ({ '21.5 inç': 0.8, '24 inç': 0.9, '27 inç': 1, '32 inç': 1.1 } as Record<string, number>)[ekran] ?? 1;
     const sw = Math.round((portrait ? 56 : 92) * f), sh = Math.round((portrait ? 92 : 56) * f);
     const x = 100 - sw / 2;
-    const screen = (y: number) => `<rect x="${x}" y="${y}" width="${sw}" height="${sh}" rx="6" ${st}/><rect x="${x + 6}" y="${y + 6}" width="${sw - 12}" height="${sh - 12}" rx="3" fill="#2a3385" opacity=".85"/>`;
+    const screen = (y: number) => `<rect x="${x}" y="${y}" width="${sw}" height="${sh}" rx="6" ${st}/><rect x="${x + 6}" y="${y + 6}" width="${sw - 12}" height="${sh - 12}" rx="3" fill="#5b6bd9"/>`;
+    // Köşeleri yuvarlatılmış çokgen yolu
+    const round = (pts: number[][], r: number) => pts.map(([px, py], k) => {
+      const [ax, ay] = pts[(k + pts.length - 1) % pts.length], [bx, by] = pts[(k + 1) % pts.length];
+      const da = Math.hypot(ax - px, ay - py), db = Math.hypot(bx - px, by - py);
+      const p1 = [px + (ax - px) / da * r, py + (ay - py) / da * r], p2 = [px + (bx - px) / db * r, py + (by - py) / db * r];
+      return `${k ? 'L' : 'M'}${p1[0]} ${p1[1]}Q${px} ${py} ${p2[0]} ${p2[1]}`;
+    }).join('') + 'Z';
     let body: string;
     if (montaj === 'Duvar tipi') {
       const y = 28;
-      body = `<rect x="0" y="0" width="200" height="150" fill="#eef0fb"/><rect x="0" y="150" width="200" height="20" fill="#dfe2f2"/>${screen(y)}<rect x="92" y="${y + sh}" width="16" height="6" ${st}/>`;
+      body = `<rect x="0" y="0" width="200" height="150" fill="#eef0fb"/><rect x="0" y="150" width="200" height="20" fill="#dfe2f2"/>${screen(y)}`;
     } else if (montaj === 'Masa tipi') {
       const y = 140 - 14 - sh - 6;
-      body = `${screen(y)}<rect x="84" y="${y + sh}" width="32" height="14" ${st}/><rect x="66" y="${y + sh + 14}" width="68" height="8" rx="4" ${st}/><rect x="20" y="140" width="160" height="8" rx="2" fill="#b9bedc"/><rect x="30" y="148" width="8" height="20" fill="#b9bedc"/><rect x="162" y="148" width="8" height="20" fill="#b9bedc"/>`;
+      body = `<rect x="88" y="${y + sh - 6}" width="24" height="20" ${st}/><rect x="66" y="${y + sh + 14}" width="68" height="8" rx="4" ${st}/>${screen(y)}`;
+    } else if (model === 'Desk') {
+      // Geriye yatık (yukarı bakan) ekran: üst kenar dar, alt kenar geniş yamuk
+      const t = 6, h = Math.round(sh * 0.92), y = 116 - h, bt = y + h, g = 24;
+      body = `<rect x="88" y="${bt - 6}" width="24" height="${g + 6}" rx="3" ${st}/><rect x="66" y="${bt + g}" width="68" height="8" rx="4" ${st}/>`
+        + `<path d="${round([[x + t, y], [x + sw - t, y], [x + sw, bt], [x, bt]], 8)}" stroke-linejoin="round" ${st}/>`
+        + `<path d="${round([[x + t + 5, y + 7], [x + sw - t - 5, y + 7], [x + sw - 7, bt - 7], [x + 7, bt - 7]], 5)}" fill="#5b6bd9"/>`;
+    } else if (model === 'Totem') {
+      body = `<rect x="${x - 4}" y="2" width="${sw + 8}" height="150" rx="8" ${st}/>${screen(8)}<rect x="56" y="152" width="88" height="10" rx="5" ${st}/>`;
     } else {
-      const pw = model === 'Totem' ? 32 : 16;
+      const pw = 24;
       body = `${screen(6)}<rect x="${100 - pw / 2}" y="${6 + sh}" width="${pw}" height="${152 - sh - 6}" ${st}/><rect x="62" y="152" width="76" height="10" rx="5" ${st}/>`;
     }
     preview.innerHTML = `<svg viewBox="0 0 200 170" width="100%" height="100%">${body}</svg>`;
@@ -189,6 +204,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
         const d = rule.defaults?.[sel.name];
         sel.value = Array.from(sel.options).find((o) => !o.disabled && o.value === d)?.value ?? Array.from(sel.options).find((o) => !o.disabled)?.value ?? sel.value;
       }
+      sel.dispatchEvent(new Event('dropdown:sync'));
     });
     form.querySelectorAll<HTMLInputElement>('input[type=radio]:not([name=model]), input[type=checkbox]').forEach((i) => {
       const allowed: string[] | undefined = rule[i.name];
@@ -216,7 +232,12 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
     });
     const text = `Merhaba, kendi kioskumu oluşturdum:\n- Model: ${model}\n` + rows.map(([k, v]) => `- ${k}: ${v}`).join('\n') + (note ? `\nNot: ${note}` : '');
     wa.href = `https://wa.me/${root.dataset.wa}?text=${encodeURIComponent(text)}`;
+    contactBtn.dataset.config = `Seçtiğim kiosk:\n- Model: ${model}\n` + rows.map(([k, v]) => `- ${k}: ${v}`).join('\n') + (note ? `\nNot: ${note}` : '');
   }
+
+  contactBtn.addEventListener('click', () => {
+    try { sessionStorage.setItem('kiosk-config', contactBtn.dataset.config || ''); } catch {}
+  });
 
   form.addEventListener('change', update);
   form.addEventListener('input', update);

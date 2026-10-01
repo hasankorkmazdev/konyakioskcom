@@ -1,7 +1,7 @@
 // models: seçilebilir kiosk tipleri. rules[model][grup] = izin verilen seçenekler (yazılmayan grup = hepsi serbest); rules[model].defaults = o modelde varsayılan.
 export const configurator = {
   models: [
-    "Kule",
+    "Standart",
     "Totem",
     "Desk"
   ],
@@ -20,7 +20,7 @@ export const configurator = {
       id: "ekran",
       label: "Ekran Boyutu",
       type: "radio",
-      default: "21.5 inç",
+      default: "32 inç",
       options: [
         "21.5 inç",
         "24 inç",
@@ -101,21 +101,29 @@ export const configurator = {
     }
   ],
   rules: {
-    Kule: {},
+    Standart: {},
     Totem: {
       yon: [
         "Dikey"
       ],
+      ekran: [
+        "24 inç",
+        "27 inç",
+        "32 inç"
+      ],
       montaj: [
         "Ayaklı"
-      ]
+      ],
+      defaults: {
+        ekran: "32 inç"
+      }
     },
     Desk: {
       yon: [
         "Yatay"
       ],
       montaj: [
-        "Masa tipi"
+        "Ayaklı"
       ]
     }
   }
