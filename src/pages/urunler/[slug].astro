@@ -6,13 +6,13 @@ import { photosOf, productPhotoGroups } from '../../data/galeri';
 import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
 import { products } from '../../data/products';
-import { sectors } from '../../data/sectors';
+import { useCases } from '../../data/useCases';
 
 export function getStaticPaths() {
   return products.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
-const related = sectors.filter((s) => s.recommended.includes(p.slug));
+const related = useCases.filter((s) => s.recommended.includes(p.slug));
 const photos = photosOf(...(productPhotoGroups[p.slug] ?? []));
 const others = products.filter((x) => x.slug !== p.slug);
 ---
@@ -39,8 +39,8 @@ const others = products.filter((x) => x.slug !== p.slug);
         <ul class="ticks">{p.uses.map((u) => <li>{u}</li>)}</ul>
         {related.length > 0 && (
           <>
-            <h3>İlgili sektörler</h3>
-            <ul class="tags">{related.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}</ul>
+            <h3>Kullanım alanları</h3>
+            <ul class="tags">{related.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
           </>
         )}
       </div>

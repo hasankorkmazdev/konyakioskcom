@@ -4,19 +4,19 @@ import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
 import Photo from '../../components/ui/Photo.astro';
 import Gallery from '../../components/sections/Gallery.astro';
-import { photosOf, productPhotoGroups, sectorPhotoGroups } from '../../data/galeri';
-import { sectors } from '../../data/sectors';
+import { photosOf, productPhotoGroups, useCasePhotoGroups } from '../../data/galeri';
+import { useCases } from '../../data/useCases';
 import { products } from '../../data/products';
 
 export function getStaticPaths() {
-  return sectors.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+  return useCases.map((s) => ({ params: { slug: s.slug }, props: { s } }));
 }
 const { s } = Astro.props;
-const photos = photosOf(...(sectorPhotoGroups[s.slug] ?? []));
+const photos = photosOf(...(useCasePhotoGroups[s.slug] ?? []));
 const recs = products.filter((p) => s.recommended.includes(p.slug));
 ---
 
-<Base title={s.title} description={s.description} path={`/sektorler/${s.slug}/`} image={photos[0]?.large} crumbs={[{ name: s.name, path: `/sektorler/${s.slug}/` }]} faq={s.faq}>
+<Base title={s.title} description={s.description} path={`/kullanim-alanlari/${s.slug}/`} image={photos[0]?.large} crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }, { name: s.name, path: `/kullanim-alanlari/${s.slug}/` }]} faq={s.faq}>
   <section class="page-head container">
     <h1>{s.h1}</h1>
     <p class="lead">{s.intro}</p>
@@ -25,7 +25,7 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
 
   <section class="section">
     <div class="container narrow">
-      <h2>{s.name} Çözümünün Faydaları</h2>
+      <h2>Sağladığı Faydalar</h2>
       <ul class="ticks">{s.benefits.map((b) => <li>{b}</li>)}</ul>
     </div>
   </section>
@@ -49,7 +49,7 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
   {photos.length > 0 && (
     <section class="section">
       <div class="container">
-        <h2>{s.name} Örnekleri</h2>
+        <h2>Örnek Görseller</h2>
         <Gallery photos={photos} actions={false} />
       </div>
     </section>

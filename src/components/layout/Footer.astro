@@ -1,7 +1,7 @@
 ---
 import { generalInformation, waLink } from '../../data/generalInformation';
 import { products } from '../../data/products';
-import { sectors } from '../../data/sectors';
+import { useCases } from '../../data/useCases';
 import { locations } from '../../data/locations';
 ---
 
@@ -17,8 +17,8 @@ import { locations } from '../../data/locations';
       <ul>{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
     </div>
     <div>
-      <h2>Sektörler</h2>
-      <ul>{sectors.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}<li><a href="/uygun-maliyetli-kiosk/">Uygun Maliyetli Kiosk</a></li></ul>
+      <h2>Kullanım Alanları</h2>
+      <ul>{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}<li><a href="/uygun-maliyetli-kiosk/">Uygun Maliyetli Kiosk</a></li></ul>
     </div>
     <div>
       <h2>Konya</h2>

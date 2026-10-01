@@ -1,0 +1,6 @@
+# Eski sektör sayfaları -> yeni kullanım alanı sayfaları
+/sektorler/kafe-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
+/sektorler/restoran-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
+/sektorler/bufe-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
+/sektorler/hizli-satis-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
+/sektorler/belediye-kiosk/ /kullanim-alanlari/belediye-siramatik-kiosku/ 301

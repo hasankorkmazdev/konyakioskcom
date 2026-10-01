@@ -55,7 +55,7 @@ export interface Reference {
   logoBg?: 'dark'; // logo beyaz öğeler içeriyorsa koyu zemin kullan
 }
 
-export interface Sector {
+export interface UseCase {
   slug: string;
   name: string;
   title: string;

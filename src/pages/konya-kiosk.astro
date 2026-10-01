@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Cta from '../components/sections/Cta.astro';
 import Faq from '../components/sections/Faq.astro';
 import { locations } from '../data/locations';
-import { sectors } from '../data/sectors';
+import { useCases } from '../data/useCases';
 
 const faq = [
   { q: 'Konya\'da kiosk hizmeti veriyor musunuz?', a: 'Evet. Vectanom Kiosk, Express Bilgisayar markası olarak Konya merkezli çalışır ve tüm ilçelere kurulum ve teslimat sağlar.' },
@@ -37,8 +37,8 @@ const faq = [
 
   <section class="section alt">
     <div class="container">
-      <h2>Konya'da Sektörlere Göre Kiosk</h2>
-      <ul class="tags">{sectors.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}</ul>
+      <h2>Konya'da Kullanım Alanına Göre Kiosk</h2>
+      <ul class="tags">{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
     </div>
   </section>
 

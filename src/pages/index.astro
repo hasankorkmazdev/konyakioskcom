@@ -6,7 +6,7 @@ import { photosOf, productPhotoGroups, cover } from '../data/galeri';
 import Cta from '../components/sections/Cta.astro';
 import Faq from '../components/sections/Faq.astro';
 import { products } from '../data/products';
-import { sectors } from '../data/sectors';
+import { useCases } from '../data/useCases';
 import { locations } from '../data/locations';
 import { waLink } from '../data/generalInformation';
 
@@ -56,10 +56,10 @@ const faq = [
 
   <section class="section alt">
     <div class="container">
-      <h2>Sektöre Göre Kiosk Çözümleri</h2>
+      <h2>Kullanım Alanına Göre Kiosk Çözümleri</h2>
       <div class="grid">
-        {sectors.map((s) => (
-          <a class="card" href={`/sektorler/${s.slug}/`}>
+        {useCases.map((s) => (
+          <a class="card" href={`/kullanim-alanlari/${s.slug}/`}>
             <h3>{s.name}</h3>
             <p>{s.intro.split('.')[0]}.</p>
           </a>

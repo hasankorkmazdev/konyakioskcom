@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { locations } from '../../data/locations';
 import { products } from '../../data/products';
-import { sectors } from '../../data/sectors';
+import { useCases } from '../../data/useCases';
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
@@ -31,8 +31,8 @@ const others = locations.filter((x) => x.slug !== l.slug);
         <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
       </div>
       <div>
-        <h2>Sektörler</h2>
-        <ul class="ticks">{sectors.map((s) => <li><a href={`/sektorler/${s.slug}/`}>{s.name}</a></li>)}</ul>
+        <h2>Kullanım Alanları</h2>
+        <ul class="ticks">{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
       </div>
     </div>
   </section>

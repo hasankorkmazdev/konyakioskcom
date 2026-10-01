@@ -46,9 +46,9 @@ konyakiosk/
 │   │   └── ui/           Photo, WhatsAppButton
 │   ├── data/             Sitenin tüm içeriği (aşağıya bakın)
 │   ├── lib/seo.ts        Google için sayfa bilgisi üreten fonksiyonlar
-│   ├── types/index.ts    Veri tipleri (Product, Sector, Post, ...)
+│   ├── types/index.ts    Veri tipleri (Product, UseCase, Post, ...)
 │   └── styles/global.css Tüm stiller
-├── public/               Olduğu gibi yayınlanan dosyalar
+├── public/               Olduğu gibi yayınlanan dosyalar (_redirects: eski adres yönlendirmeleri)
 │   ├── images/           İşlenmiş fotoğraflar (otomatik üretilir)
 │   ├── favicon.svg
 │   ├── robots.txt
@@ -66,10 +66,10 @@ konyakiosk/
 
 | Adres                                      | Dosya                                 | İçerik kaynağı                         |
 | -------------------------------------------- | --------------------------------------- | -------------------------------------------- |
-| `/`                                        | `pages/index.astro`                   | Ürünler, sektörler, bölgeler özeti    |
+| `/`                                        | `pages/index.astro`                   | Ürünler, kullanım alanları, bölgeler özeti    |
 | `/urunler/`                                | `pages/urunler/index.astro`           | `products.ts`                              |
 | `/urunler/<slug>/`                         | `pages/urunler/[slug].astro`          | `products.ts` (her ürün için bir sayfa) |
-| `/sektorler/<slug>/`                       | `pages/sektorler/[slug].astro`        | `sectors.ts`                               |
+| `/kullanim-alanlari/`, `/kullanim-alanlari/<slug>/` | `pages/kullanim-alanlari/`                    | `useCases.ts`                               |
 | `/hizmet-bolgeleri/<slug>/`                | `pages/hizmet-bolgeleri/[slug].astro` | `locations.ts` (Konya ilçeleri)           |
 | `/blog/`, `/blog/<slug>/`                  | `pages/blog/`                         | `posts.ts`                                 |
 | `/referanslar/`                            | `pages/referanslar.astro`             | `references.ts` + fotoğraflar             |
@@ -88,7 +88,7 @@ Bütün metinler `src/data/` altındadır. Kod okumadan, sadece bu dosyaları d�
 | -------------------------- | ----------------------------------------------------------------------- | --------------------------------- |
 | `generalInformation.ts`  | Firma adı, telefon, WhatsApp numarası, site adresi, renk,`waLink()` | İletişim bilgisi değişince  |
 | `products.ts`            | Kiosk modelleri: ad, başlık, açıklama, etiketler (`tags`), özellikler, SSS | Ürün eklerken/değiştirirken |
-| `sectors.ts`             | Sektör sayfaları ve her sektöre önerilen kiosklar                 | Yeni sektör eklerken           |
+| `useCases.ts`             | Kullanım alanı sayfaları (self servis sipariş, sıramatik vb.) ve önerilen ürünler | Yeni kullanım alanı eklerken           |
 | `locations.ts`           | Konya ilçeleri ve ilçe metinleri                                    | Yeni ilçe eklerken             |
 | `references.ts`          | Referans kurumlar                                                     | Yeni referans eklerken          |
 | `posts.ts`               | Blog yazıları                                                       | Yeni yazı yazarken             |

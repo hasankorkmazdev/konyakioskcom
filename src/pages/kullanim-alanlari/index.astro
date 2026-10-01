@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/sections/Cta.astro';
+import { useCases } from '../../data/useCases';
+---
+
+<Base
+  title="Kiosk Kullanım Alanları | Sipariş, Sıramatik, Bilgilendirme | Vectanom Kiosk Konya"
+  description="Self servis sipariş, belediye ve hastane sıramatik, kütüphane kitap iade ve bilgilendirme kioskları. Kullanım alanınıza uygun kiosk çözümünü inceleyin."
+  path="/kullanim-alanlari/"
+  crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }]}
+>
+  <section class="page-head container">
+    <h1>Kiosk Kullanım Alanları</h1>
+    <p class="lead">Self servis sipariş, sıramatik, kitap iade ve bilgilendirme gibi ihtiyacınıza uygun kiosk çözümlerini inceleyin.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid">
+        {useCases.map((u) => (
+          <a class="card" href={`/kullanim-alanlari/${u.slug}/`}>
+            <h2 style="font-size:1.15rem">{u.name}</h2>
+            <p>{u.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

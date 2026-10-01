@@ -83,11 +83,11 @@ export const productPhotoGroups: Record<string, string[]> = {
   'siparis-kiosk': ['urunler/self-servis-kiosk'],
 };
 
-/** Sektör sayfası -> gösterilecek galeri grupları */
-export const sectorPhotoGroups: Record<string, string[]> = {
-  'kafe-kiosk': ['urunler/self-servis-kiosk'],
-  'bufe-kiosk': ['urunler/self-servis-kiosk', 'urunler/ekonomik-kiosk'],
-  'restoran-kiosk': ['urunler/self-servis-kiosk'],
-  'hizli-satis-kiosk': ['urunler/self-servis-kiosk', 'urunler/ekonomik-kiosk'],
-  'belediye-kiosk': ['urunler/tahsilat-kabini', 'urunler/odeme-kiosku', 'urunler/standart-kiosk'],
+/** Kullanım alanı sayfası -> gösterilecek galeri grupları */
+export const useCasePhotoGroups: Record<string, string[]> = {
+  'self-servis-siparis-kiosku': ['urunler/self-servis-kiosk'],
+  'belediye-siramatik-kiosku': ['urunler/tahsilat-kabini', 'urunler/odeme-kiosku'],
+  'hastane-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
+  'kutuphane-kiosku': ['urunler/kutuphane-kiosk'],
+  'bilgilendirme-kiosku': ['urunler/yatay-kiosk', 'urunler/standart-kiosk'],
 };
