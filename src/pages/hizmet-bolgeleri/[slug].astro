@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Cta from '../../components/Cta.astro';
+import Cta from '../../components/sections/Cta.astro';
 import { locations } from '../../data/locations';
 import { products } from '../../data/products';
 import { sectors } from '../../data/sectors';
@@ -28,7 +28,7 @@ const others = locations.filter((x) => x.slug !== l.slug);
     <div class="container split">
       <div>
         <h2>{l.name}'da Sunduğumuz Modeller</h2>
-        <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a> ({p.sizes.join(', ')})</li>)}</ul>
+        <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
       </div>
       <div>
         <h2>Sektörler</h2>

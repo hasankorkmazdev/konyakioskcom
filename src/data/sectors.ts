@@ -1,14 +1,5 @@
-export interface Sector {
-  slug: string;
-  name: string;
-  title: string;
-  description: string;
-  h1: string;
-  intro: string;
-  benefits: string[];
-  recommended: string[];
-  faq: { q: string; a: string }[];
-}
+import type { Sector } from '../types';
+export type { Sector } from '../types';
 
 export const sectors: Sector[] = [
   {

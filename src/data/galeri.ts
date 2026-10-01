@@ -1,23 +1,7 @@
 import manifest from './gallery.generated.json';
+import type { Photo, Group } from '../types';
+export type { Photo, Group } from '../types';
 
-export interface Photo {
-  id: string;
-  group: string; // örn. "urunler/klavyeli-kiosk"
-  w: number;
-  h: number;
-  thumb: string;
-  large: string;
-  download: string;
-  alt: string;
-}
-
-export interface Group {
-  key: string; // "urunler/klavyeli-kiosk"
-  slug: string;
-  title: string;
-  blurb: string;
-  photos: Photo[];
-}
 
 const titles: Record<string, { title: string; blurb: string }> = {
   'urunler/klavyeli-kiosk': { title: 'Klavyeli Kiosk', blurb: '24 inç dokunmatik ekranlı, klavyeli kiosk. Sorgulama ve kayıt işlemleri için.' },
@@ -76,15 +60,6 @@ export function getGroup(key: string): Group {
     })),
   };
 }
-
-export const productGroups = [
-  'urunler/klavyeli-kiosk', 'urunler/yatay-kiosk', 'urunler/dikey-kiosk', 'urunler/kutuphane-kiosk',
-  'urunler/self-servis-kiosk', 'urunler/standart-kiosk', 'urunler/ekonomik-kiosk', 'urunler/odeme-kiosku', 'urunler/tahsilat-kabini',
-].map(getGroup).filter((g) => g.photos.length);
-
-export const referenceGroups = [
-  'referanslar/konya-buyuksehir-belediyesi', 'referanslar/koski', 'referanslar/kaski', 'referanslar/sivas-belediyesi', 'referanslar/igdir-belediyesi',
-].map(getGroup).filter((g) => g.photos.length);
 
 export const logos = manifest.logos as Record<string, string>;
 

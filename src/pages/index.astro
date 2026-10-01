@@ -1,14 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
-import Photo from '../components/Photo.astro';
-import RefStrip from '../components/RefStrip.astro';
+import Photo from '../components/ui/Photo.astro';
+import RefStrip from '../components/sections/RefStrip.astro';
 import { photosOf, productPhotoGroups, cover } from '../data/galeri';
-import Cta from '../components/Cta.astro';
-import Faq from '../components/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
+import Faq from '../components/sections/Faq.astro';
 import { products } from '../data/products';
 import { sectors } from '../data/sectors';
 import { locations } from '../data/locations';
-import { waLink } from '../data/site';
+import { waLink } from '../data/generalInformation';
 
 const faq = [
   { q: 'Hangi kiosk modellerini sunuyorsunuz?', a: 'Sıramatik kiosk, sipariş kiosk, self kiosk, totem kiosk, haritalama kiosk, desk kiosk, klavyeli, yatay, dikey ve kütüphane kiosk modellerini sunuyoruz. Ayrıca Kule, Totem ve Desk tiplerinde kendi kioskunuzu oluşturabilirsiniz.' },

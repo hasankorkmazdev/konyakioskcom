@@ -1,8 +1,5 @@
-export interface Location {
-  slug: string;
-  name: string;
-  text: string;
-}
+import type { Location } from '../types';
+export type { Location } from '../types';
 
 export const locations: Location[] = [
   { slug: 'selcuklu-kiosk', name: 'Selçuklu', text: "Selçuklu; üniversite kampüsleri, alışveriş merkezleri, kütüphaneler ve yoğun kafe-restoran hattıyla Konya'nın en hareketli ilçelerinden biridir. Bu yoğunlukta kafe ve hızlı satış işletmelerinde self-servis sipariş kiosku, kütüphane ve kampüslerde ise ödünç alma ve bilgilendirme kioskları öne çıkar." },

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import ContactForm from '../components/ContactForm.astro';
-import { site, waLink } from '../data/site';
+import ContactForm from '../components/sections/ContactForm.astro';
+import { generalInformation, waLink } from '../data/generalInformation';
 ---
 
 <Base
@@ -22,7 +22,7 @@ import { site, waLink } from '../data/site';
       <div>
         <h2>Bize Ulaşın</h2>
         <ul class="ticks">
-          <li>Telefon: <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></li>
+          <li>Telefon: <a href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a></li>
           <li>WhatsApp: <a href={waLink()} target="_blank" rel="noopener">Mesaj yazın</a></li>
           <li>Hizmet bölgesi: Konya ve Türkiye geneli</li>
         </ul>

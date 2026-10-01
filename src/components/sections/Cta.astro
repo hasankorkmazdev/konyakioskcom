@@ -1,5 +1,5 @@
 ---
-import { waLink, site } from '../data/site';
+import { waLink, generalInformation } from '../../data/generalInformation';
 interface Props {
   text?: string;
 }
@@ -15,7 +15,7 @@ const { text = 'Projenizi anlatın, size uygun kiosk modelini birlikte belirleye
     <div class="cta-btns">
       <a class="btn btn-white" href="/iletisim/">İletişim Formu</a>
       <a class="btn btn-ghost" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn-ghost" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      <a class="btn btn-ghost" href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a>
     </div>
   </div>
 </section>

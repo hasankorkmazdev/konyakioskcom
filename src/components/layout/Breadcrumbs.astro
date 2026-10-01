@@ -1,0 +1,23 @@
+---
+// Sayfa üstündeki "Ana Sayfa › Ürünler › Kiosk" yolu. Son öğe tıklanamaz (bulunulan sayfa).
+import type { Crumb } from '../../lib/seo';
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+const last = crumbs.length - 1;
+---
+
+{crumbs.length > 0 && (
+  <nav class="crumbs container" aria-label="Sayfa yolu">
+    <a href="/">Ana Sayfa</a>
+    {crumbs.map((c, i) => (
+      <>
+        <span aria-hidden="true">›</span>
+        {i === last ? <span aria-current="page">{c.name}</span> : <a href={c.path}>{c.name}</a>}
+      </>
+    ))}
+  </nav>
+)}

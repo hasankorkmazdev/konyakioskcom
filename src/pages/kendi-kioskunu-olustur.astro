@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import Cta from '../components/Cta.astro';
-import config from '../data/configurator.json';
-import { site } from '../data/site';
+import Cta from '../components/sections/Cta.astro';
+import { configurator as config } from '../data/configurator';
+import { generalInformation } from '../data/generalInformation';
 
 const g = (id: string) => config.groups.find((x) => x.id === id)!;
 const modelInfo: Record<string, string> = {
@@ -30,7 +30,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
   </section>
 
   <section class="section">
-    <div class="container builder" data-wa={site.whatsapp} data-rules={JSON.stringify(config.rules)}>
+    <div class="container builder" data-wa={generalInformation.whatsapp} data-rules={JSON.stringify(config.rules)}>
       <form class="cfg" onsubmit="return false">
         <div class="step">
           <h2><span class="n">1</span> Model</h2>

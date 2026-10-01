@@ -1,10 +1,5 @@
-export interface Reference {
-  slug: string; // gorsel-kaynak/referanslar/<slug>/ klasörü ve logolar/<slug>.(svg|png) dosya adı
-  name: string;
-  group: string;
-  note: string;
-  logoBg?: 'dark'; // logo beyaz öğeler içeriyorsa koyu zemin kullan
-}
+import type { Reference } from '../types';
+export type { Reference } from '../types';
 
 // Yeni kurum eklemek: gorsel-kaynak/referanslar/<slug>/ klasörüne fotoğrafları,
 // gorsel-kaynak/referanslar/logolar/<slug>.svg|png dosyasına logoyu koyup `npm run gorsel` çalıştırın.

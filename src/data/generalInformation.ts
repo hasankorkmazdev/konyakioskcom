@@ -1,4 +1,4 @@
-export const site = {
+export const generalInformation = {
   name: 'Vectanom Kiosk',
   brand: 'Vectanom',
   parent: 'Express Bilgisayar',
@@ -11,4 +11,4 @@ export const site = {
 };
 
 export const waLink = (text = 'Merhaba, kiosk hakkında bilgi almak istiyorum.') =>
-  `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
+  `https://wa.me/${generalInformation.whatsapp}?text=${encodeURIComponent(text)}`;

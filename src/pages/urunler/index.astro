@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Photo from '../../components/Photo.astro';
+import Photo from '../../components/ui/Photo.astro';
 import { photosOf, productPhotoGroups } from '../../data/galeri';
-import Cta from '../../components/Cta.astro';
+import Cta from '../../components/sections/Cta.astro';
 import { products } from '../../data/products';
 ---
 
@@ -23,7 +23,7 @@ import { products } from '../../data/products';
           {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
           <h3>{p.name}</h3>
           <p>{p.description}</p>
-          <ul class="tags">{p.sizes.map((s) => <li>{s}</li>)}</ul>
+          {p.tags.length > 0 && <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>}
         </a>
       ))}
     </div>

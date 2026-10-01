@@ -1,0 +1,45 @@
+---
+// <head> içindeki başlık, açıklama, sosyal medya ve Google bilgilerini tek yerde toplar.
+import { generalInformation } from '../../data/generalInformation';
+import { absoluteUrl, ogImageUrl, buildJsonLd } from '../../lib/seo';
+import type { Crumb, FaqItem } from '../../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  crumbs: Crumb[];
+  faq: FaqItem[];
+  type: 'website' | 'article';
+  noindex: boolean;
+  image?: string;
+}
+
+const { title, description, path, crumbs, faq, type, noindex, image } = Astro.props;
+const canonical = absoluteUrl(path);
+const ogImage = ogImageUrl(image);
+const jsonLd = buildJsonLd(crumbs, faq);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,follow" />}
+<meta name="theme-color" content={generalInformation.color} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<!-- Sosyal medyada paylaşılınca görünen kart (Open Graph / Twitter) -->
+<meta property="og:type" content={type} />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content={generalInformation.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Google için yapılandırılmış veri -->
+<script type="application/ld+json" set:html={jsonLd} />

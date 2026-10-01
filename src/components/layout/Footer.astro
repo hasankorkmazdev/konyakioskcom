@@ -1,8 +1,8 @@
 ---
-import { site, waLink } from '../data/site';
-import { products } from '../data/products';
-import { sectors } from '../data/sectors';
-import { locations } from '../data/locations';
+import { generalInformation, waLink } from '../../data/generalInformation';
+import { products } from '../../data/products';
+import { sectors } from '../../data/sectors';
+import { locations } from '../../data/locations';
 ---
 
 <footer class="ftr">
@@ -10,7 +10,7 @@ import { locations } from '../data/locations';
     <div>
       <h2>Vectanom Kiosk</h2>
       <p>Express Bilgisayar markası. Konya merkezli, Türkiye geneline kiosk çözümleri.</p>
-      <p><a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a><br /><a href={waLink()} target="_blank" rel="noopener">WhatsApp ile yazın</a></p>
+      <p><a href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a><br /><a href={waLink()} target="_blank" rel="noopener">WhatsApp ile yazın</a></p>
     </div>
     <div>
       <h2>Ürünler</h2>

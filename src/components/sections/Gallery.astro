@@ -1,6 +1,6 @@
 ---
-import type { Photo } from '../data/galeri';
-import { site } from '../data/site';
+import type { Photo } from '../../data/galeri';
+import { generalInformation } from '../../data/generalInformation';
 
 interface Props {
   photos: Photo[];
@@ -8,7 +8,7 @@ interface Props {
   lazy?: boolean;
 }
 const { photos, actions = true, lazy = true } = Astro.props;
-const shareUrl = (p: Photo) => `https://wa.me/?text=${encodeURIComponent(`${p.alt} – ${site.url}${p.download}`)}`;
+const shareUrl = (p: Photo) => `https://wa.me/?text=${encodeURIComponent(`${p.alt} – ${generalInformation.url}${p.download}`)}`;
 ---
 
 <ul class="gallery" data-gallery>

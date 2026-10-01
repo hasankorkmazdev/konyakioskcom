@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Cta from '../../components/Cta.astro';
-import Faq from '../../components/Faq.astro';
-import Photo from '../../components/Photo.astro';
-import Gallery from '../../components/Gallery.astro';
+import Cta from '../../components/sections/Cta.astro';
+import Faq from '../../components/sections/Faq.astro';
+import Photo from '../../components/ui/Photo.astro';
+import Gallery from '../../components/sections/Gallery.astro';
 import { photosOf, productPhotoGroups, sectorPhotoGroups } from '../../data/galeri';
 import { sectors } from '../../data/sectors';
 import { products } from '../../data/products';
@@ -38,7 +38,7 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
           <a class="card" href={`/urunler/${p.slug}/`}>
             {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
             <h3>{p.name}</h3>
-            <p>{p.sizes.join(' · ')}</p>
+            <p>{p.tags.join(' · ')}</p>
           </a>
         ))}
       </div>

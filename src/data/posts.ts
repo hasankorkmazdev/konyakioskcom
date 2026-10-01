@@ -1,10 +1,5 @@
-export interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  body: string[];
-}
+import type { Post } from '../types';
+export type { Post } from '../types';
 
 // body: '## ' ile başlayan satır H2, '- ' ile başlayan satır liste, diğerleri paragraf.
 export const posts: Post[] = [
