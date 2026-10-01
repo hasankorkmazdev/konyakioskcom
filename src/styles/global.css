@@ -61,7 +61,7 @@ p { margin: 0 0 1em; }
 .crumbs a { color: var(--muted); }
 
 /* hero */
-.hero { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; padding: 4rem 0; }
+.hero { background: linear-gradient(135deg, #0b1f5c 0%, #1a46a8 60%, #2f7fd6 100%); color: #fff; padding: 4rem 0; }
 .hero h1 { color: #fff; }
 .hero p { font-size: 1.15rem; max-width: 60ch; opacity: .95; }
 .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
