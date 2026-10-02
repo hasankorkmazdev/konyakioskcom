@@ -3,6 +3,7 @@ import { generalInformation, waLink } from '../../data/generalInformation';
 import { products } from '../../data/products';
 import { useCases } from '../../data/useCases';
 import { locations } from '../../data/locations';
+import { nedirPages } from '../../data/nedir';
 ---
 
 <footer class="ftr">
@@ -30,6 +31,7 @@ import { locations } from '../../data/locations';
     <div>
       <h2>Kurumsal</h2>
       <ul>
+        {nedirPages.map((n) => <li><a href={`/${n.slug}/`}>{n.h1}</a></li>)}
         <li><a href="/hakkimizda/">Hakkımızda</a></li>
         <li><a href="/kendi-kioskunu-olustur/">Kendi Kioskunu Oluştur</a></li>
         <li><a href="/referanslar/">Referanslar</a></li>

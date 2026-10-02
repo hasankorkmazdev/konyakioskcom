@@ -9,6 +9,7 @@ export const generalInformation = {
   email: 'bilgi@konyakiosk.com',
   color: '#2a3385',
   region: 'Konya',
+  author: 'Hasan Korkmaz',
 };
 
 export const waLink = (text = 'Merhaba, kiosk hakkında bilgi almak istiyorum.') =>

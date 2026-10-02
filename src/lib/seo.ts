@@ -53,6 +53,23 @@ const faqSchema = (faq: FaqItem[]) => ({
   mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 });
 
+/** "... nedir?" gibi bilgi sayfaları için Article bilgisi: yazar ve tarihleri Google'a bildirir. */
+export function buildArticleJsonLd(a: { title: string; description: string; path: string; published: string; modified: string; image?: string }): string {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.title,
+    description: a.description,
+    inLanguage: 'tr',
+    datePublished: a.published,
+    dateModified: a.modified,
+    image: ogImageUrl(a.image),
+    mainEntityOfPage: absoluteUrl(a.path),
+    author: { '@type': 'Person', name: generalInformation.author },
+    publisher: { '@type': 'Organization', name: generalInformation.name, url: generalInformation.url },
+  });
+}
+
 /** Sayfaya gömülecek JSON-LD metnini üretir. Breadcrumb ve SSS yalnızca verilmişse eklenir. */
 export function buildJsonLd(crumbs: Crumb[], faq: FaqItem[]): string {
   // Her sayfada işletme bilgisi vardır; yol ve SSS yalnızca sayfa verdiyse eklenir.

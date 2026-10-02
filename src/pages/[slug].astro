@@ -1,0 +1,84 @@
+---
+// "... nedir?" sayfaları: içerik src/data/nedir.ts içinde, adres /<slug>/.
+import Base from '../layouts/Base.astro';
+import Photo from '../components/ui/Photo.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import Cta from '../components/sections/Cta.astro';
+import Faq from '../components/sections/Faq.astro';
+import { nedirPages } from '../data/nedir';
+import { products } from '../data/products';
+import { useCases } from '../data/useCases';
+import { photosOf, productPhotoGroups } from '../data/galeri';
+import { generalInformation } from '../data/generalInformation';
+import { buildArticleJsonLd } from '../lib/seo';
+
+export function getStaticPaths() {
+  return nedirPages.map((n) => ({ params: { slug: n.slug }, props: { n } }));
+}
+const { n } = Astro.props;
+const product = products.find((p) => p.slug === n.product)!;
+const photos = photosOf(...(productPhotoGroups[n.product] ?? []));
+const cases = useCases.filter((u) => n.useCases.includes(u.slug));
+const related = nedirPages.filter((x) => n.related.includes(x.slug));
+const path = `/${n.slug}/`;
+const fmt = (d: string) => new Date(d).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, path, published: n.published, modified: n.modified, image: photos[0]?.large });
+---
+
+<Base title={n.title} description={n.description} path={path} type="article" image={photos[0]?.large} crumbs={[{ name: n.h1, path }]} faq={n.faq}>
+  <script type="application/ld+json" set:html={articleLd} />
+  <section class="page-head container split">
+    <div>
+      <h1>{n.h1}</h1>
+      <p class="lead">{n.intro}</p>
+      <p class="post-meta">Yazan: <strong>{generalInformation.author}</strong> · Yayın: <time datetime={n.published}>{fmt(n.published)}</time>{n.modified !== n.published && <> · Güncelleme: <time datetime={n.modified}>{fmt(n.modified)}</time></>}</p>
+      <div class="btns"><a class="btn" href="/iletisim/">Teklif Alın</a> <a class="btn btn-ghost-dark" href={`/urunler/${product.slug}/`}>{product.name}</a></div>
+    </div>
+    {photos[0] && <div class="figure"><Photo photo={photos[0]} size="large" alt={n.photoAlt} eager /></div>}
+  </section>
+
+  <article class="section">
+    <div class="container narrow prose">
+      <p class="summary">{n.summary}</p>
+      {n.sections.map((s) => (
+        <>
+          <h2>{s.heading}</h2>
+          {s.paragraphs?.map((t) => <p>{t}</p>)}
+          {s.list && <ul class="ticks">{s.list.map((x) => <li>{typeof x === 'string' ? x : x.href ? <a href={x.href}>{x.text}</a> : x.text}</li>)}</ul>}
+        </>
+      ))}
+    </div>
+  </article>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Bizim Çözümümüz: {product.name}</h2>
+      <p>{product.intro}</p>
+      <ul class="tags">{product.tags.map((t) => <li>{t}</li>)}</ul>
+      {photos.length > 1 && <Gallery photos={photos} />}
+      <p style="margin-top:1rem"><a href={`/urunler/${product.slug}/`}>{product.name} detayları →</a></p>
+    </div>
+  </section>
+
+  {(cases.length > 0 || related.length > 0) && (
+    <section class="section">
+      <div class="container">
+        {cases.length > 0 && (
+          <>
+            <h2>İlgili Kullanım Alanları</h2>
+            <ul class="tags">{cases.map((u) => <li><a href={`/kullanim-alanlari/${u.slug}/`}>{u.name}</a></li>)}</ul>
+          </>
+        )}
+        {related.length > 0 && (
+          <>
+            <h2 style="margin-top:1.6rem">Bunlara da Bakın</h2>
+            <ul class="tags">{related.map((r) => <li><a href={`/${r.slug}/`}>{r.h1}</a></li>)}</ul>
+          </>
+        )}
+      </div>
+    </section>
+  )}
+
+  <Faq items={n.faq} />
+  <Cta />
+</Base>

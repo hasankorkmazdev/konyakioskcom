@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { posts } from '../../data/posts';
+import { nedirPages } from '../../data/nedir';
 
 export function getStaticPaths() {
   return posts.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -40,6 +41,7 @@ const article = {
       <h1>{p.title}</h1>
       <p class="post-meta"><time datetime={p.date}>{new Date(p.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>
       {blocks.map((b) => b.t === 'h2' ? <h2>{b.v}</h2> : b.t === 'ul' ? <ul>{(b.v as string[]).map((x) => <li>{x}</li>)}</ul> : <p>{b.v}</p>)}
+      <p>Daha fazla bilgi için: {nedirPages.map((n, i) => <>{i > 0 && ', '}<a href={`/${n.slug}/`}>{n.h1}</a></>)}.</p>
       <p>Kiosk seçimi için <a href="/urunler/">modellerimizi</a> inceleyebilir ya da <a href="/iletisim/">bizimle iletişime geçebilirsiniz</a>.</p>
     </div>
   </article>
