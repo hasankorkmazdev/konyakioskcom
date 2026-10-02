@@ -10,7 +10,7 @@ import { locations } from '../../data/locations';
     <div>
       <h2>Vectanom Kiosk</h2>
       <p>Express Bilgisayar markası. Konya merkezli, Türkiye geneline kiosk çözümleri.</p>
-      <p><a href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a><br /><a href={waLink()} target="_blank" rel="noopener">WhatsApp ile yazın</a></p>
+      <p><a href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a><br /><a href={`mailto:${generalInformation.email}`}>{generalInformation.email}</a><br /><a href={waLink()} target="_blank" rel="noopener">WhatsApp ile yazın</a></p>
     </div>
     <div>
       <h2>Ürünler</h2>
@@ -35,6 +35,7 @@ import { locations } from '../../data/locations';
         <li><a href="/referanslar/">Referanslar</a></li>
         <li><a href="/sss/">Sık Sorulan Sorular</a></li>
         <li><a href="/blog/">Blog</a></li>
+        <li><a href="/bayilik/">Bayilik</a></li>
         <li><a href="/iletisim/">İletişim</a></li>
       </ul>
     </div>

@@ -90,6 +90,7 @@ export const useCasePhotoGroups: Record<string, string[]> = {
   'havalimani-check-in-kiosku': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
   'kutuphane-kiosku': ['urunler/kutuphane-kiosk'],
   'bilgilendirme-kiosku': ['urunler/yatay-kiosk', 'urunler/standart-kiosk'],
-  'otopark-tahsilat-kiosku': ['urunler/odeme-kiosku', 'urunler/tahsilat-kabini'],
+  'otopark-odeme-kiosku': ['urunler/odeme-kiosku', 'urunler/tahsilat-kabini'],
   'fatura-odeme-kiosku': ['urunler/odeme-kiosku', 'referanslar/koski'],
+  'yiyecek-icecek-otomati-kiosku': ['urunler/self-servis-kiosk', 'urunler/odeme-kiosku'],
 };

@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/sections/Faq.astro';
+import DealerForm from '../components/sections/DealerForm.astro';
+import { generalInformation, waLink } from '../data/generalInformation';
+
+const benefits = [
+  { t: 'Uygun bayi fiyatı', d: 'Bayilere özel fiyatlandırma ile rekabetçi teklifler sunarsınız.' },
+  { t: 'Şehrinizde tek bayi', d: 'Her şehirde yalnızca bir bayi ile çalışırız; bölgenizdeki talepler size yönlendirilir.' },
+  { t: 'Eğitim ve bilgi desteği', d: 'Ürünler, kurulum ve satış süreci hakkında eğitim ve bilgi desteği alırsınız.' },
+  { t: 'Proje ortaklıkları', d: 'Belediye, kurum ve işletme projelerinde birlikte teklif hazırlar, birlikte uygularız.' },
+];
+const steps = [
+  { t: 'Başvuru', d: "Formu doldurun veya WhatsApp'tan yazın." },
+  { t: 'Bölge kontrolü', d: 'Şehrinizde mevcut bir bayi olup olmadığına bakarız.' },
+  { t: 'Görüşme', d: 'Çalışma şekli, fiyat ve eğitim konularını netleştiririz.' },
+  { t: 'Bayilik', d: 'Anlaşma sonrası ürün ve eğitim sürecini başlatırız.' },
+];
+const faq = [
+  { q: 'Bayilik şartları nelerdir?', a: 'IT sektöründe faaliyet gösteriyor olmanız ve başvurduğunuz şehirde başka bir Vectanom Kiosk bayisinin bulunmaması gerekir.' },
+  { q: 'Şehrimde zaten bayi varsa başvurabilir miyim?', a: 'Her şehirde tek bayi ile çalıştığımız için o şehir için başvuru alamıyoruz. Başka bir şehir için başvurabilirsiniz.' },
+  { q: 'Bayilere ne sağlıyorsunuz?', a: 'Uygun bayi fiyatı, eğitim ve bilgi desteği ile proje ortaklıkları sunuyoruz.' },
+  { q: 'Başvurudan sonra ne olur?', a: 'Başvurunuz alındıktan sonra bölgenizi kontrol eder, uygunsa sizinle görüşme planlarız.' },
+];
+---
+
+<Base
+  title="Kiosk Bayilik | Vectanom Kiosk Bayisi Olun"
+  description="Vectanom Kiosk bayisi olun. IT sektöründe faaliyet gösteren firmalara şehir bazlı tek bayilik, uygun fiyat, eğitim ve proje ortaklıkları."
+  path="/bayilik/"
+  crumbs={[{ name: 'Bayilik', path: '/bayilik/' }]}
+  faq={faq}
+>
+  <section class="page-head container">
+    <h1>Vectanom Kiosk Bayisi Olun</h1>
+    <p class="lead">IT sektöründe faaliyet gösteren firmalarla, şehir bazında tek bayi modeliyle çalışıyoruz.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Bayilere Sunduklarımız</h2>
+      <div class="grid">
+        {benefits.map((b) => <div class="card"><h3>{b.t}</h3><p>{b.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container split">
+      <div>
+        <h2>Bayilik Şartları</h2>
+        <ul class="ticks">
+          <li>IT sektöründe faaliyet gösteriyor olmak</li>
+          <li>Başvurulan şehirde başka bir bayinin bulunmaması</li>
+        </ul>
+        <h2>Süreç Nasıl İşler?</h2>
+        <ol>
+          {steps.map((s) => <li><strong>{s.t}:</strong> {s.d}</li>)}
+        </ol>
+      </div>
+      <div>
+        <h2>Bayilik Başvurusu</h2>
+        <DealerForm />
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Bayilik hakkında sık sorulanlar" />
+
+  <section class="cta">
+    <div class="container cta-in">
+      <div>
+        <h2>Bayilik hakkında görüşelim</h2>
+        <p>Sorularınız için e-posta veya WhatsApp üzerinden bize ulaşın.</p>
+      </div>
+      <div class="cta-btns">
+        <a class="btn btn-white" href={`mailto:${generalInformation.email}?subject=Bayilik`}>E-posta Gönderin</a>
+        <a class="btn btn-ghost" href={waLink('Merhaba, Vectanom Kiosk bayiliği hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

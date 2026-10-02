@@ -16,16 +16,28 @@ export async function onRequestPost({ request, env }) {
   if (!name || !phone) return new Response('Eksik bilgi', { status: 400 });
 
   const email = clean('email', 100);
-  const lines = [
-    `Ad: ${name}`,
-    `Tel: ${phone}`,
-    `E-posta: ${email}`,
-    `Ürün: ${clean('product', 60)}`,
-    `Boyut: ${clean('size', 30)}`,
-    `Mesaj: ${clean('message', 1000)}`,
-    `Sayfa: ${clean('page', 100)}`,
-  ];
-  const text = ['KIOSK ILETISIM TALEBI', ...lines].join('\n');
+  const isDealer = clean('page', 100) === 'bayilik';
+  const title = isDealer ? 'KIOSK BAYILIK BASVURUSU' : 'KIOSK ILETISIM TALEBI';
+  const lines = isDealer
+    ? [
+        `Ad: ${name}`,
+        `Firma: ${clean('company', 100)}`,
+        `Tel: ${phone}`,
+        `E-posta: ${email}`,
+        `Şehir: ${clean('city', 100)}`,
+        `Faaliyet: ${clean('field', 100)}`,
+        `Mesaj: ${clean('message', 1000)}`,
+      ]
+    : [
+        `Ad: ${name}`,
+        `Tel: ${phone}`,
+        `E-posta: ${email}`,
+        `Ürün: ${clean('product', 60)}`,
+        `Boyut: ${clean('size', 30)}`,
+        `Mesaj: ${clean('message', 1000)}`,
+        `Sayfa: ${clean('page', 100)}`,
+      ];
+  const text = [title, ...lines].join('\n');
 
   const jobs = [];
 
@@ -33,7 +45,7 @@ export async function onRequestPost({ request, env }) {
     const body = {
       from: env.MAIL_FROM || 'Vectanom Kiosk <onboarding@resend.dev>',
       to: [env.MAIL_TO || 'hasankorkmazdev@gmail.com'],
-      subject: 'KIOSK ILETISIM TALEBI',
+      subject: title,
       text,
     };
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) body.reply_to = email;

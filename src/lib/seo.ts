@@ -29,6 +29,7 @@ const businessSchema = () => ({
   name: generalInformation.name,
   url: generalInformation.url,
   telephone: generalInformation.phoneTel,
+  email: generalInformation.email,
   description: 'Kafe, büfe, restoran, belediye ve kütüphane için dokunmatik kiosk çözümleri. Klavyeli, yatay ve dikey kiosk; 21, 24 ve 32 inç.',
   areaServed: [{ '@type': 'AdministrativeArea', name: 'Konya' }, { '@type': 'Country', name: 'Türkiye' }],
   parentOrganization: { '@type': 'Organization', name: generalInformation.parent },

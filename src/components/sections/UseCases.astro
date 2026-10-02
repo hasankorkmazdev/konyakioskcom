@@ -1,0 +1,21 @@
+---
+import { useCases } from '../../data/useCases';
+---
+
+<section class="section alt">
+  <div class="container">
+    <h2>Kullanım Alanına Göre Kiosk Çözümleri</h2>
+    <div class="grid">
+      {useCases.map((s) => (
+        <a class="card" href={`/kullanim-alanlari/${s.slug}/`}>
+          <h3>{s.name}</h3>
+          <p>{s.intro.split('.')[0]}.</p>
+        </a>
+      ))}
+      <a class="card" href="/uygun-maliyetli-kiosk/">
+        <h3>Uygun Maliyetli Kiosk</h3>
+        <p>Bütçenize göre doğru model ve donanım seçimi.</p>
+      </a>
+    </div>
+  </div>
+</section>

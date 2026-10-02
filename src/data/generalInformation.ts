@@ -6,6 +6,7 @@ export const generalInformation = {
   phoneDisplay: '0507 575 14 63',
   phoneTel: '+905075751463',
   whatsapp: '905075751463',
+  email: 'bilgi@konyakiosk.com',
   color: '#2a3385',
   region: 'Konya',
 };

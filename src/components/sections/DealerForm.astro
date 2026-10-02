@@ -1,0 +1,46 @@
+---
+import { waLink } from '../../data/generalInformation';
+import Dropdown from '../ui/Dropdown.astro';
+---
+
+<form id="dealer-form" class="form" method="post" action="/api/iletisim" novalidate>
+  <input type="hidden" name="page" value="bayilik" />
+  <div class="hp" aria-hidden="true"><label>Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <label>Ad Soyad<input name="name" required autocomplete="name" /></label>
+  <label>Firma Adı<input name="company" required autocomplete="organization" /></label>
+  <label>Telefon<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" /></label>
+  <label>E-posta<input name="email" type="email" required autocomplete="email" /></label>
+  <label>Şehir / İlçe<input name="city" required autocomplete="address-level2" /></label>
+  <label>Faaliyet alanınız
+    <Dropdown name="field" label="Faaliyet alanınız" placeholder="Seçiniz" options={['Bilgisayar / IT satış ve servis', 'Yazılım / otomasyon', 'Ağ / güvenlik / sistem entegrasyonu', 'Diğer IT hizmetleri']} />
+  </label>
+  <label>Kendinizi kısaca tanıtın<textarea name="message" rows="4" placeholder="Deneyiminiz, müşteri çevreniz, hedeflediğiniz bölge…"></textarea></label>
+  <button class="btn" type="submit">Başvuruyu Gönder</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="muted">Ya da doğrudan <a href={waLink('Merhaba, Vectanom Kiosk bayiliği hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">WhatsApp'tan yazın</a>.</p>
+</form>
+
+<script>
+  const form = document.getElementById('dealer-form') as HTMLFormElement | null;
+  const status = form?.querySelector('.form-status') as HTMLElement | null;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    const data = new FormData(form);
+    const need = ['name', 'company', 'phone', 'email', 'city', 'field'];
+    if (need.some((k) => !String(data.get(k) || '').trim())) {
+      status.textContent = 'Lütfen tüm zorunlu alanları doldurun.';
+      return;
+    }
+    status.textContent = 'Gönderiliyor…';
+    try {
+      const res = await fetch('/api/iletisim', { method: 'POST', body: data });
+      if (!res.ok) throw new Error('fail');
+      form.reset();
+      status.textContent = 'Başvurunuz alındı. Bölgenizi kontrol edip en kısa sürede sizinle iletişime geçeceğiz.';
+    } catch {
+      const text = `Merhaba, bayilik başvurusu: ${data.get('name')} - ${data.get('company')} - ${data.get('city')} - ${data.get('phone')} - ${data.get('field')}`;
+      status.innerHTML = 'Form gönderilemedi. <a href="https://wa.me/905075751463?text=' + encodeURIComponent(text) + '" target="_blank" rel="noopener">Bilgilerinizi WhatsApp ile gönderin</a>.';
+    }
+  });
+</script>

@@ -4,3 +4,6 @@
 /sektorler/bufe-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
 /sektorler/hizli-satis-kiosk/ /kullanim-alanlari/self-servis-siparis-kiosku/ 301
 /sektorler/belediye-kiosk/ /kullanim-alanlari/belediye-siramatik-kiosku/ 301
+
+# Otopark slug değişikliği
+/kullanim-alanlari/otopark-tahsilat-kiosku/ /kullanim-alanlari/otopark-odeme-kiosku/ 301
