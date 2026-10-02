@@ -8,6 +8,7 @@ export const generalInformation = {
   whatsapp: '905075751463',
   color: '#2a3385',
   region: 'Konya',
+  author: 'Hasan Korkmaz',
 };
 
 export const waLink = (text = 'Merhaba, kiosk hakkında bilgi almak istiyorum.') =>

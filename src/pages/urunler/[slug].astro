@@ -7,6 +7,7 @@ import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
 import { products } from '../../data/products';
 import { useCases } from '../../data/useCases';
+import { nedirPages } from '../../data/nedir';
 
 export function getStaticPaths() {
   return products.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -14,6 +15,7 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 const related = useCases.filter((s) => s.recommended.includes(p.slug));
 const photos = photosOf(...(productPhotoGroups[p.slug] ?? []));
+const guides = nedirPages.filter((n) => n.product === p.slug);
 const others = products.filter((x) => x.slug !== p.slug);
 ---
 
@@ -67,6 +69,15 @@ const others = products.filter((x) => x.slug !== p.slug);
       </div>
     </div>
   </section>
+
+  {guides.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>Rehberler</h2>
+        <ul class="tags">{guides.map((g) => <li><a href={`/${g.slug}/`}>{g.h1}</a></li>)}</ul>
+      </div>
+    </section>
+  )}
 
   <Faq items={p.faq} />
   <Cta />

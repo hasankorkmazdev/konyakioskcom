@@ -143,6 +143,7 @@ p { margin: 0 0 1em; }
 .wa-float { position: fixed; right: 16px; bottom: 16px; width: 56px; height: 56px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0,0,0,.25); z-index: 60; }
 .wa-float:hover { filter: brightness(.95); }
 .post-meta { color: var(--muted); font-size: .9rem; }
+.summary { background: var(--brand-soft); border-left: 4px solid var(--brand); border-radius: 8px; padding: .9rem 1.1rem; font-weight: 600; }
 
 /* fotoğraflar */
 .photo { display: block; width: 100%; height: auto; object-fit: contain; background: #fff; }

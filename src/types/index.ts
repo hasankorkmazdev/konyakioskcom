@@ -66,3 +66,31 @@ export interface UseCase {
   recommended: string[];
   faq: { q: string; a: string }[];
 }
+
+export interface NedirListItem {
+  text: string;
+  href?: string; // verilirse madde bir iç bağlantı olur
+}
+
+export interface NedirSection {
+  heading: string;
+  paragraphs?: string[];
+  list?: (string | NedirListItem)[];
+}
+
+export interface Nedir {
+  slug: string; // /<slug>/ adresinde yayınlanır, örn. "self-servis-kiosk-nedir"
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  summary: string; // girişin hemen altında kısa cevap
+  published: string; // YYYY-AA-GG
+  modified: string; // içerik güncellendikçe değiştirin
+  photoAlt: string;
+  sections: NedirSection[];
+  product: string; // products.ts slug'ı: sayfada referans verilen bizim ürünümüz
+  useCases: string[]; // useCases.ts slug'ları
+  related: string[]; // başka nedir sayfalarının slug'ları
+  faq: { q: string; a: string }[];
+}
