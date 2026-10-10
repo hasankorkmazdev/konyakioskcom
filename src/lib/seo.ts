@@ -17,8 +17,8 @@ export interface FaqItem {
 /** Sitenin mutlak adresini üretir: absoluteUrl('/urunler/') → https://konyakiosk.com/urunler/ */
 export const absoluteUrl = (path: string) => new URL(path, generalInformation.url).href;
 
-/** Sosyal medya paylaşımlarında görsel verilmezse kullanılan varsayılan görsel. */
-const DEFAULT_OG_IMAGE = '/images/urunler/klavyeli-kiosk/klavyeli-kiosk-24-inc-on-large.webp';
+/** Sosyal medya paylaşımlarında görsel verilmezse kullanılan varsayılan görsel. JPG: bazı platformlar webp göstermez. */
+const DEFAULT_OG_IMAGE = '/images/urunler/klavyeli-kiosk/klavyeli-kiosk-24-inc-on-paylas.jpg';
 
 export const ogImageUrl = (image?: string) => absoluteUrl(image ?? DEFAULT_OG_IMAGE);
 

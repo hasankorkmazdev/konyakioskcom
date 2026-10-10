@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Photo from '../../components/ui/Photo.astro';
-import { photosOf, productPhotoGroups } from '../../data/galeri';
+import ProductCover from '../../components/ui/ProductCover.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { products } from '../../data/products';
 ---
@@ -20,7 +19,7 @@ import { products } from '../../data/products';
     <div class="container grid">
       {products.map((p) => (
         <a class="card" href={`/urunler/${p.slug}/`}>
-          {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+          <ProductCover slug={p.slug} alt={p.name} />
           <h3>{p.name}</h3>
           <p>{p.description}</p>
           {p.tags.length > 0 && <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>}

@@ -79,6 +79,7 @@ for (const section of SECTIONS) {
 }
 
 // Kurum logoları: gorsel-kaynak/referanslar/logolar/<kurum-slug>.(svg|png|jpg|webp)
+// Manifestte boyutlar da tutulur; <img> width/height alır, sayfa yüklenirken kayma olmaz.
 const ldir = path.join(SRC, 'referanslar', 'logolar');
 if (fs.existsSync(ldir)) {
   const outL = path.join(OUT, 'referanslar', 'logolar');
@@ -87,10 +88,11 @@ if (fs.existsSync(ldir)) {
     const slug = f.replace(/\.[^.]+$/, '');
     if (/\.svg$/i.test(f)) {
       fs.copyFileSync(path.join(ldir, f), path.join(outL, `${slug}.svg`));
-      manifest.logos[slug] = `/images/referanslar/logolar/${slug}.svg`;
+      const { width, height } = await sharp(path.join(ldir, f)).metadata();
+      manifest.logos[slug] = { src: `/images/referanslar/logolar/${slug}.svg`, w: width, h: height };
     } else if (RASTER.test(f)) {
-      await sharp(path.join(ldir, f)).rotate().trim({ threshold: 10 }).resize(400, 200, { fit: 'inside', withoutEnlargement: true }).webp({ quality: 90 }).toFile(path.join(outL, `${slug}.webp`));
-      manifest.logos[slug] = `/images/referanslar/logolar/${slug}.webp`;
+      const { width, height } = await sharp(path.join(ldir, f)).rotate().trim({ threshold: 10 }).resize(400, 200, { fit: 'inside', withoutEnlargement: true }).webp({ quality: 90 }).toFile(path.join(outL, `${slug}.webp`));
+      manifest.logos[slug] = { src: `/images/referanslar/logolar/${slug}.webp`, w: width, h: height };
     }
   }
 }

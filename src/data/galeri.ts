@@ -61,24 +61,24 @@ export function getGroup(key: string): Group {
   };
 }
 
-export const logos = manifest.logos as Record<string, string>;
+export const logos = manifest.logos as Record<string, { src: string; w: number; h: number }>;
 
 /** Bir ürün/sektör sayfası için birden çok gruptan görsel toplar. */
 export const photosOf = (...keys: string[]) => keys.flatMap((k) => getGroup(k).photos);
 
 export const cover = (key: string): Photo => getGroup(key).photos[0];
 
-/** Ürün sayfası -> gösterilecek galeri grupları */
+/**
+ * Ürün sayfası -> gösterilecek galeri grupları.
+ * Yalnızca o ürünün kendi fotoğrafları eklenir; başka modelin fotoğrafı (alt metni de o modelin adını taşır)
+ * yanıltıcıdır. Fotoğrafı olmayan ürün (desk, totem, sıramatik, haritalama) burada yer almaz, sayfası fotoğrafsız görünür.
+ */
 export const productPhotoGroups: Record<string, string[]> = {
   'klavyeli-kiosk': ['urunler/klavyeli-kiosk'],
   'yatay-kiosk': ['urunler/yatay-kiosk'],
   'dikey-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk', 'urunler/ekonomik-kiosk'],
   'kutuphane-kiosk': ['urunler/kutuphane-kiosk'],
-  'desk-kiosk': ['urunler/yatay-kiosk'],
   'self-kiosk': ['urunler/self-servis-kiosk'],
-  'totem-kiosk': ['urunler/standart-kiosk'],
-  'siramatik-kiosk': ['urunler/odeme-kiosku'],
-  'haritalama-kiosk': ['urunler/yatay-kiosk'],
   'siparis-kiosk': ['urunler/self-servis-kiosk'],
 };
 

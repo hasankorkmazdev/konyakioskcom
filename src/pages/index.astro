@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Photo from '../components/ui/Photo.astro';
 import RefStrip from '../components/sections/RefStrip.astro';
-import { photosOf, productPhotoGroups, cover } from '../data/galeri';
+import ProductCover from '../components/ui/ProductCover.astro';
+import { cover } from '../data/galeri';
 import Cta from '../components/sections/Cta.astro';
 import Faq from '../components/sections/Faq.astro';
 import { products } from '../data/products';
@@ -20,7 +21,7 @@ const faq = [
 
 <Base
   title="Kiosk Konya | Sıramatik, Sipariş, Self Servis Kiosk – Vectanom"
-  description="Konya kiosk üreticisi: sıramatik kiosk, sipariş kiosk, self servis, totem, haritalama, klavyeli ve kütüphane kiosk. Kendi kioskunu oluştur, Türkiye geneli teslimat. Vectanom Kiosk."
+  description="Konya merkezli kiosk üreticisi: sıramatik, sipariş, self servis, totem, klavyeli ve kütüphane kiosk. Kendi kioskunu oluşturun, Türkiye geneline teslimat."
   path="/"
   faq={faq}
 >
@@ -45,7 +46,7 @@ const faq = [
       <div class="grid">
         {products.map((p) => (
           <a class="card" href={`/urunler/${p.slug}/`}>
-            {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+            <ProductCover slug={p.slug} alt={p.name} />
             <h3>{p.name}</h3>
             <p>{p.description.split('.')[0]}.</p>
           </a>

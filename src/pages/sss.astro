@@ -10,8 +10,11 @@ const faq = [
   { q: 'Yatay mı dikey mi seçmeliyim?', a: 'Görsel ağırlıklı sipariş ekranlarında yatay, liste ve bilgilendirme ekranlarında dikey model uygundur.' },
   { q: 'Kiosk fiyatlarını nasıl öğrenebilirim?', a: 'Fiyat; model, ekran boyutu ve çevre birimlerine göre değişir. İletişim formu veya WhatsApp üzerinden ihtiyacınızı iletin, size dönüş yapalım.' },
   { q: 'Konya dışına gönderim yapıyor musunuz?', a: 'Evet, Türkiye genelinde sevkiyat yapıyoruz.' },
-  ...products.flatMap((p) => p.faq.slice(0, 1)),
 ];
+
+// Ürün soruları kendi ürün sayfasında SSS olarak işaretlidir. Burada yalnızca gösterilir ve ürün sayfasına bağlanır;
+// Google aynı soru-cevabın sitede tek bir yerde işaretlenmesini ister.
+const productFaq = products.filter((p) => p.faq.length).map((p) => ({ ...p.faq[0], product: p }));
 ---
 
 <Base
@@ -23,5 +26,17 @@ const faq = [
 >
   <section class="page-head container"><h1>Sık Sorulan Sorular</h1></section>
   <Faq items={faq} title="Kiosk hakkında merak edilenler" />
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>Modellere göre sorular</h2>
+      {productFaq.map((f) => (
+        <details class="faq">
+          <summary>{f.q}</summary>
+          <p>{f.a} <a href={`/urunler/${f.product.slug}/`}>{f.product.name} sayfasına git →</a></p>
+        </details>
+      ))}
+    </div>
+  </section>
   <Cta />
 </Base>

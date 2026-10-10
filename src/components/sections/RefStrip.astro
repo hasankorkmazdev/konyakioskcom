@@ -9,7 +9,7 @@ import { logos } from '../../data/galeri';
     <div class="logo-strip">
       {references.map((r) => (
         <a href={`/referanslar/#${r.slug}`} title={r.name} class={r.logoBg ? "dark" : ""}>
-          {logos[r.slug] ? <img src={logos[r.slug]} alt={r.name} loading="lazy" /> : <span>{r.name}</span>}
+          {logos[r.slug] ? <img src={logos[r.slug].src} alt={r.name} width={logos[r.slug].w} height={logos[r.slug].h} loading="lazy" /> : <span>{r.name}</span>}
         </a>
       ))}
     </div>

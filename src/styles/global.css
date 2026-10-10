@@ -179,6 +179,7 @@ p { margin: 0 0 1em; }
 .ref .ref-img img { width: 100%; height: 100%; object-fit: cover; }
 .ref .ref-body { padding: .8rem 1rem 1rem; }
 .ref .ref-body p { margin: 0; color: var(--muted); font-size: .93rem; }
+.ref .ref-name { display: block; color: var(--brand-dark); margin-bottom: .2rem; }
 .logo-strip { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; align-items: center; justify-content: center; }
 .logo-strip a, .logo-strip span { display: inline-flex; align-items: center; min-height: 48px; color: var(--muted); font-weight: 700; text-decoration: none; }
 .logo-strip img { max-height: 48px; width: auto; max-width: 150px; object-fit: contain; }
@@ -197,6 +198,10 @@ p { margin: 0 0 1em; }
 .g-thumb { aspect-ratio: 4 / 5; padding: .6rem; display: grid; place-items: center; background: linear-gradient(180deg, #f6f7fd 0%, #e9ecf9 100%); }
 .g-thumb img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 .ref .ref-img img { object-position: center; }
+/* fotoğrafı olmayan ürünün yer tutucu çizimi */
+.photo-ph { display: grid; place-items: center; color: #c5cbea; }
+.photo-ph svg { width: 42%; height: auto; }
+.figure .photo-ph { aspect-ratio: 4 / 5; max-height: 520px; }
 
 /* görsellerin zemini beyaz olduğundan kutu da beyaz: kutu içinde kutu görünmesin */
 .card .photo, .figure, .g-thumb { background: #fff; }

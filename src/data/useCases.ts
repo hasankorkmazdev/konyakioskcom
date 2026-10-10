@@ -10,7 +10,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'self-servis-siparis-kiosku',
     name: 'Self Servis Sipariş Kioskları',
-    title: 'Self Servis Sipariş Kiosku | Restoran, Kafe, Fast Food | Vectanom Kiosk Konya',
+    title: 'Self Servis Sipariş Kiosku: Restoran, Kafe ve Fast Food',
     description: 'Restoran, kafe, fast food işletmeleri ve yemek katları için self servis sipariş kiosku. Müşteri menüyü inceler, siparişini hızlıca verir. Konya ve çevresi.',
     h1: 'Self Servis Sipariş Kiosku: Restoran, Kafe ve Fast Food İçin',
     intro: 'Self servis sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini hızlıca oluşturmasını sağlar. Yoğun saatlerde sıra bekleme süresini azaltır; kasadaki personel siparişi almak yerine hazırlığa ve servise odaklanır. Restoran, kafe, fast food işletmeleri ve yemek katları için Konya ve çevresinde self servis kiosk çözümleri sunuyoruz.',
@@ -25,14 +25,14 @@ export const useCases: UseCase[] = [
     faq: [
       { q: 'Self servis sipariş kiosku nedir?', a: 'Müşterinin personele ihtiyaç duymadan menüden ürün seçip siparişini ve ödemesini kendisinin tamamladığı dokunmatik ekranlı cihazdır.' },
       { q: 'Restoran, kafe ve fast food için aynı kiosk mu kullanılır?', a: 'Temel yapı aynıdır. Menü büyüklüğüne, ödeme yöntemine ve yazıcı ihtiyacına göre ekran boyutu ve donanım seçilir.' },
-      { q: 'Mevcut adisyon programımıza bağlanır mı?', a: 'Kullandığınız programın entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
+      { q: 'Self servis kiosk siparişleri adisyon programımıza aktarılır mı?', a: 'Kullandığınız adisyon programının entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
       { q: 'Self servis sipariş kiosku fiyatı nedir?', a: 'Fiyat; ekran boyutuna, donanıma (yazıcı, POS, QR okuyucu, sesli sipariş) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
   },
   {
     slug: 'belediye-siramatik-kiosku',
     name: 'Belediye Sıramatik Kioskları',
-    title: 'Belediye Sıramatik Kiosku ve Tahsilat Kiosku | Vectanom Kiosk Konya',
+    title: 'Belediye Sıramatik ve Tahsilat Kiosku | Vectanom Konya',
     description: 'Belediyeler için sıramatik sistemi kiosku ve kredi kartlı, nakit tahsilat kioskları. Sıra bekleme süresini azaltın. Teklif için iletişime geçin.',
     h1: 'Belediyeler İçin Sıramatik ve Tahsilat Kiosku',
     intro: 'Belediyelerde yoğun hizmet noktalarında sıra bekleme süresini azaltmak için sıramatik kioskları, vatandaşların borç ve bedel ödemelerini kendi başına yapabilmesi için tahsilat kioskları kullanılır. Sıramatik kiosku vatandaşın hizmetini seçip sıra numarası almasını sağlar; tahsilat kiosku nakit ve kredi kartlı ödeme alabilir. Farklı belediyelerde hizmet veren tahsilat ve sıramatik kioskları üretiyoruz.',
@@ -76,7 +76,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'havalimani-check-in-kiosku',
     name: 'Havalimanı Check-in ve Bilet Kioskları',
-    title: 'Havalimanı Check-in Kiosku ve Uçak Bileti Alma | Vectanom Kiosk',
+    title: 'Havalimanı Check-in ve Uçak Bileti Kiosku | Vectanom',
     description: 'Havalimanı ve havaalanları için self servis check-in ve uçak bileti alma kiosku. Yolcular kayıt ve bilet işlemlerini sıra beklemeden kendi yapar.',
     h1: 'Havalimanı Check-in ve Uçak Bileti Alma Kiosku',
     intro: 'Havalimanı ve havaalanlarında check-in kiosku, yolcuların kayıt (check-in) ve uçak bileti alma işlemlerini gişede sıra beklemeden kendi başlarına yapabilmesini sağlar. Dokunmatik ekranda yolcu rezervasyonunu veya bilet kodunu girer ya da QR/barkod okuyucuyla okutur, kimlik okuma ve yazıcı ile bilet çıktısı seçenekleriyle işlemini tamamlar. Check-in ve bilet yazılımı havayolu ya da yer hizmetleri sisteminden sağlanır, kiosk donanımı bu sistemle çalışacak şekilde hazırlanır.',
@@ -98,7 +98,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'kutuphane-kiosku',
     name: 'Kütüphane Kioskları',
-    title: 'Kütüphane Kiosku: Kitap İade ve Ödünç Alma | Vectanom Kiosk Konya',
+    title: 'Kütüphane Kiosku: Kitap İade ve Ödünç Alma | Vectanom',
     description: 'Kütüphaneler için kitap iade ve ödünç alma kiosku. Barkod okuyuculu, kart okuma seçenekli, ödünç alma fişi yazıcılı kiosk.',
     h1: 'Kütüphane Kiosku: Kitap İade ve Ödünç Alma',
     intro: 'Kütüphane kiosku, okuyucuların kitap iade etme ve ödünç alma işlemlerini görevli beklemeden kendi başlarına yapabilmesini sağlar. Barkod okuyucu ile kitap tanınır, üye kartı veya kimlik okuma seçeneğiyle üye doğrulanır, istenirse ödünç alma fişi yazdırılır.',
@@ -112,15 +112,15 @@ export const useCases: UseCase[] = [
     recommended: ['kutuphane-kiosk'],
     faq: [
       { q: 'Kütüphane kiosku neler yapar?', a: 'Kitap iade ve ödünç alma işlemleri, barkod okuma ve üye doğrulama gibi işlemlerde kullanılır.' },
-      { q: 'Mevcut kütüphane otomasyonumuzla çalışır mı?', a: 'Otomasyon yazılımının entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
+      { q: 'Kütüphane kiosku otomasyon programımıza entegre edilebilir mi?', a: 'Otomasyon yazılımının entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
       { q: 'Kütüphane kiosku fiyatı nedir?', a: 'Fiyat; ekran boyutu, donanım ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
   },
   {
     slug: 'bilgilendirme-kiosku',
     name: 'Bilgilendirme Kioskları',
-    title: 'Bilgilendirme Kiosku, Harita ve Mezarlık Bilgi | Vectanom Kiosk Konya',
-    description: 'Bina içi yönlendirme, harita, mezarlık bilgi (mezar yeri sorgulama) ve bilgilendirme kioskları. Dikey dokunmatik ekranlı, uzaktan içerik güncellenebilen modeller.',
+    title: 'Bilgilendirme Kiosku: Harita, Yönlendirme, Mezarlık Bilgi',
+    description: 'Bina içi yönlendirme, harita ve mezar yeri sorgulama için bilgilendirme kioskları. Dikey dokunmatik ekranlı, içeriği uzaktan güncellenen modeller.',
     h1: 'Bilgilendirme Kiosku: Bilgi, Harita, Yönlendirme ve Mezarlık Bilgi',
     intro: 'Bilgilendirme kioskları; hastane, belediye, okul, alışveriş merkezi ve kurumsal binalarda ziyaretçilerin aradığı birimi, kişiyi veya hizmeti kendi başına bulmasını sağlar. Haritalama kiosku bina içi yönlendirme yapar, bilgi kiosku ise duyuru ve içerikleri merkezi olarak gösterir. Mezarlık bilgi kiosku, mezarlıklarda ziyaretçilerin mezar yeri sorgulaması yapıp aradığı mezarı harita üzerinde bulmasını sağlar; mezar bilgisi belediyenin mezarlık bilgi sisteminden alınır.',
     benefits: [
@@ -143,7 +143,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'otopark-odeme-kiosku',
     name: 'Otopark Ödeme Kioskları',
-    title: 'Otopark Ödeme Kiosku | Kredi Kartlı, Nakit Ödeme | Vectanom Kiosk Konya',
+    title: 'Otopark Ödeme Kiosku | Kredi Kartlı ve Nakit – Vectanom',
     description: 'Otoparklar için otopark ödeme kiosku. Sürücü park ücretini bilet veya QR/barkod okutarak kiosktan öder, fişini alır. Konya ve çevresi.',
     h1: 'Otopark Ödeme Kiosku: Park Ücretini Kiosktan Ödeme',
     intro: 'Otopark ödeme kiosku, sürücülerin park ücretini gişede sıra beklemeden kendi başlarına ödemesini sağlar. Sürücü park biletini veya QR/barkodunu okutur, ücreti ekranda görür ve ödemesini yapar; istenirse ödeme fişi yazdırılır. Kiosk donanımı otopark otomasyonunun kullandığı yazılımla çalışacak şekilde hazırlanır. Otoparklar, belediyeler ve özel işletmeler için ödeme kioskları üretiyoruz.',
@@ -159,7 +159,7 @@ export const useCases: UseCase[] = [
     faq: [
       { q: 'Otopark ödeme kiosku nedir?', a: 'Sürücünün park ücretini bilet veya QR/barkod okutarak, gişeye gitmeden kendi başına ödediği dokunmatik ekranlı cihazdır.' },
       { q: 'Otopark otomasyon yazılımımızla çalışır mı?', a: 'Otomasyon yazılımının entegrasyon imkânlarına göre birlikte değerlendirme yapılır. Kiosk donanımını bu sistemle çalışacak şekilde hazırlarız.' },
-      { q: 'Hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve nakit gibi seçenekler proje ihtiyacına göre belirlenir.' },
+      { q: 'Otopark ödeme kioskunda hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve nakit gibi seçenekler otopark işletmesinin ihtiyacına göre belirlenir.' },
       { q: 'Dış mekanda kullanılabilir mi?', a: 'Dış mekan ödeme kabini seçenekleri mevcuttur. Kullanım yerinize göre birlikte değerlendirelim.' },
       { q: 'Otopark ödeme kiosku fiyatı nedir?', a: 'Fiyat; model, donanım (POS, okuyucu, yazıcı) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
@@ -167,7 +167,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'fatura-odeme-kiosku',
     name: 'Fatura Ödeme Kioskları',
-    title: 'Fatura Ödeme Kiosku | Su ve Belediye Borç Tahsilatı | Vectanom Kiosk Konya',
+    title: 'Fatura Ödeme Kiosku | Su ve Belediye Borç Tahsilatı',
     description: 'Belediye, su idaresi ve kurumlar için fatura ödeme kiosku. Abone fatura ve borcunu sorgular, kredi kartı veya nakit ile öder. Konya ve çevresi.',
     h1: 'Fatura Ödeme Kiosku: Sorgula, Öde, Fişini Al',
     intro: 'Fatura ödeme kiosku, abonelerin ve vatandaşların fatura ve borçlarını sıra beklemeden kendi başlarına sorgulayıp ödemesini sağlar. Kullanıcı abone numarasını girer veya okutur, borcunu görür ve ödemesini yapar; ödeme fişi yazıcıdan alınır. Su, belediye hizmet bedelleri ve benzeri tahsilatlar için kullanılır. Fatura ve borç bilgisi kurumun kendi yazılımından alınır, kiosk donanımı bu sistemle çalışacak şekilde hazırlanır. Farklı kurumlarda hizmet veren tahsilat kioskları üretiyoruz.',
@@ -183,7 +183,7 @@ export const useCases: UseCase[] = [
     faq: [
       { q: 'Fatura ödeme kiosku nedir?', a: 'Abonenin fatura veya borcunu sorgulayıp kredi kartı ya da nakitle kendi başına ödediği dokunmatik ekranlı cihazdır.' },
       { q: 'Kurumumuzun tahsilat yazılımıyla çalışır mı?', a: 'Fatura ve borç bilgisi kurumun kendi yazılımından alınır. Entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
-      { q: 'Hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve nakit gibi seçenekler proje ihtiyacına göre belirlenir.' },
+      { q: 'Fatura ödeme kioskunda hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve nakit gibi seçenekler kurumun tahsilat altyapısına göre belirlenir.' },
       { q: 'Hangi kurumlara tahsilat kiosku sağladınız?', a: 'Referanslarımızı Referanslar sayfasında görebilirsiniz.' },
       { q: 'Fatura ödeme kiosku fiyatı nedir?', a: 'Fiyat; model, donanım (POS, okuyucu, yazıcı) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
@@ -191,7 +191,7 @@ export const useCases: UseCase[] = [
   {
     slug: 'yiyecek-icecek-otomati-kiosku',
     name: 'Yiyecek İçecek Otomatı Kioskları',
-    title: 'Yiyecek İçecek Otomatı Kiosku | Otomat İşletmeleri İçin | Vectanom Kiosk Konya',
+    title: 'Yiyecek İçecek Otomatı Kiosku | Vectanom Kiosk Konya',
     description: 'Yiyecek içecek otomatı işletmeleri için dokunmatik ekranlı kiosk. Müşteri ürününü ekrandan seçer, kredi kartı veya QR ile öder. Konya ve çevresi.',
     h1: 'Yiyecek İçecek Otomatı İşletmesi İçin Dokunmatik Kiosk',
     intro: 'Yiyecek içecek otomatı işletmeleri; okul, hastane, fabrika, AVM ve toplu kullanım alanlarında sıcak-soğuk içecek, atıştırmalık ve hazır yiyecek satışı yapar. Dokunmatik ekranlı kiosk, müşterinin ürünleri ekranda görsel olarak incelemesini, seçimini yapmasını ve ödemesini tek noktada tamamlamasını sağlar. Kiosk donanımı, işletmenin kullandığı otomat veya satış yazılımıyla çalışacak şekilde hazırlanır. Konya ve çevresindeki otomat işletmeleri için ihtiyaca uygun kiosk çözümleri sunuyoruz.',
@@ -207,7 +207,7 @@ export const useCases: UseCase[] = [
     faq: [
       { q: 'Yiyecek içecek otomatı kiosku nedir?', a: 'Müşterinin otomattaki ürünleri dokunmatik ekranda inceleyip seçtiği ve ödemesini yaptığı kiosk cihazıdır.' },
       { q: 'Otomat işletmemin mevcut yazılımıyla çalışır mı?', a: 'Kullandığınız otomat veya satış yazılımının entegrasyon imkânlarına göre birlikte değerlendirme yapılır. Kiosk donanımını bu sistemle çalışacak şekilde hazırlarız.' },
-      { q: 'Hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve QR ödeme gibi seçenekler proje ihtiyacına göre belirlenir.' },
+      { q: 'Otomat kioskunda hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve QR ödeme gibi seçenekler proje ihtiyacına göre belirlenir.' },
       { q: 'Hangi mekanlar için uygundur?', a: 'Okul, hastane, iş yeri, AVM gibi kapalı ve toplu kullanım alanları için uygundur. Kullanım yerinize göre model ve donanım birlikte seçilir.' },
       { q: 'Yiyecek içecek otomatı kiosku fiyatı nedir?', a: 'Fiyat; model, ekran boyutu, donanım (POS, okuyucu, yazıcı) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],

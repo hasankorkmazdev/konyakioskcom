@@ -22,10 +22,10 @@ const cases = useCases.filter((u) => n.useCases.includes(u.slug));
 const related = nedirPages.filter((x) => n.related.includes(x.slug));
 const path = `/${n.slug}/`;
 const fmt = (d: string) => new Date(d).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
-const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, path, published: n.published, modified: n.modified, image: photos[0]?.large });
+const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, path, published: n.published, modified: n.modified, image: photos[0]?.download });
 ---
 
-<Base title={n.title} description={n.description} path={path} type="article" image={photos[0]?.large} crumbs={[{ name: n.h1, path }]} faq={n.faq}>
+<Base title={n.title} description={n.description} path={path} type="article" image={photos[0]?.download} crumbs={[{ name: n.h1, path }]} faq={n.faq}>
   <script type="application/ld+json" set:html={articleLd} />
   <section class="page-head container split">
     <div>

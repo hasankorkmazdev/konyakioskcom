@@ -191,7 +191,7 @@ export const products: Product[] = [
         a: "Hayır, masa üstü kullanım içindir. Zemin tipi için ayaklı modellerimize bakabilirsiniz."
       }
     ],
-    title: "Desk Kiosk | Vectanom Kiosk Konya",
+    title: "Desk Kiosk – Masaüstü Dokunmatik Kiosk | Vectanom Konya",
     h1: "Desk Kiosk"
   },
   {
@@ -252,7 +252,7 @@ export const products: Product[] = [
         a: "Uzaktan içerik yönetimi altyapısıyla ekran içeriği kiosk başında olmadan güncellenebilir."
       }
     ],
-    title: "Totem Kiosk | Vectanom Kiosk Konya",
+    title: "Totem Kiosk – Ayaklı Bilgilendirme Kiosku | Vectanom Konya",
     h1: "Totem Kiosk"
   },
   {
@@ -281,7 +281,7 @@ export const products: Product[] = [
         a: "Sisteminizin kiosk kullanımına uygunluğunu birlikte değerlendiririz."
       }
     ],
-    title: "Sıramatik Kiosk | Vectanom Kiosk Konya",
+    title: "Sıramatik Kiosk – Fişli Sıra Alma Kiosku | Vectanom Konya",
     h1: "Sıramatik Kiosk"
   },
   {
@@ -315,7 +315,7 @@ export const products: Product[] = [
     slug: "siparis-kiosk",
     type: "siparis",
     name: "Self Servis Sipariş Kiosku",
-    description: "Restoran, kafe ve fast food işletmeleri için self servis sipariş kiosku. Müşteri menüyü inceler, ürününü seçer, siparişini hızlıca oluşturur. Konya ve çevresi.",
+    description: "Restoran, kafe ve fast food için self servis sipariş kiosku. Müşteri menüyü inceler, ürününü seçer, siparişini hızlıca verir. Konya ve çevresi.",
     intro: "Restoran, kafe, fast food işletmeleri ve yemek katları için tasarlanan self servis sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini hızlıca oluşturmasını sağlar. Dokunmatik sipariş kiosku, yoğun saatlerde sıra bekleme süresini azaltarak işletmelere daha hızlı ve pratik bir sipariş deneyimi sunar. Konya ve çevresinde restoran, kafe ve işletmeler için self servis kiosk çözümleri sunuyoruz.",
     tags: [
       "POS",

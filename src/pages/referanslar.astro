@@ -5,39 +5,47 @@ import Cta from '../components/sections/Cta.astro';
 import { references } from '../data/references';
 import { getGroup, logos } from '../data/galeri';
 
-const items = references.map((r) => ({ ...r, g: getGroup(r.group), logo: logos[r.slug] })).filter((r) => r.g.photos.length);
+// Tüm kurumlar kart olarak listelenir. Fotoğrafı olan kurumun kartı aşağıdaki galeri bölümüne gider;
+// fotoğrafı olmayanın kartı kendisi #slug hedefidir (ana sayfadaki logo linkleri boşa düşmesin).
+const items = references.map((r) => ({ ...r, photos: getGroup(r.group).photos, logo: logos[r.slug] }));
+const withPhotos = items.filter((r) => r.photos.length);
 ---
 
 <Base
-  title="Referanslar | Belediye Kiosk Tahsilat Projeleri – Vectanom Kiosk"
-  description="Konya Büyükşehir Belediyesi, KOSKİ, KASKİ, Sivas ve Iğdır Belediyesi dahil kurumlar için hayata geçirilen kiosk tahsilat projeleri."
+  title="Referanslar | Belediye ve Kurum Kiosk Projeleri – Vectanom"
+  description="Konya Büyükşehir, Sivas ve Iğdır belediyeleri, KOSKİ ve KASKİ için tahsilat kioskları; Necmettin Erbakan Üniversitesi ve Çukurova Havalimanı projeleri."
   path="/referanslar/"
-  image={items[0]?.g.photos[0]?.large}
+  image={withPhotos[0]?.photos[0]?.download}
   crumbs={[{ name: 'Referanslar', path: '/referanslar/' }]}
 >
   <section class="page-head container">
     <h1>Referanslar</h1>
-    <p class="lead">Çalıştığımız kurumlar ve hayata geçirdiğimiz kiosk tahsilat projeleri.</p>
+    <p class="lead">Çalıştığımız kurumlar ve hayata geçirdiğimiz kiosk projeleri: belediye ve su idarelerinde tahsilat kioskları, üniversite ve havalimanı projeleri.</p>
   </section>
 
   <section class="section">
     <div class="container refs">
-      {items.map((r) => (
-        <a class="ref" href={`#${r.slug}`}>
-          <div class={`ref-logo${r.logoBg ? " dark" : ""}`}>{r.logo ? <img src={r.logo} alt={`${r.name} logosu`} loading="lazy" /> : <strong>{r.name}</strong>}</div>
-          <div class="ref-img"><img src={r.g.photos[0].thumb} alt={r.g.photos[0].alt} loading="lazy" width={r.g.photos[0].w / 2} height={r.g.photos[0].h / 2} /></div>
-          <div class="ref-body"><p>{r.note}</p></div>
-        </a>
-      ))}
+      {items.map((r) => {
+        const inner = (
+          <>
+            <div class={`ref-logo${r.logoBg ? " dark" : ""}`}>{r.logo ? <img src={r.logo.src} alt={`${r.name} logosu`} width={r.logo.w} height={r.logo.h} loading="lazy" /> : <strong>{r.name}</strong>}</div>
+            {r.photos[0] && <div class="ref-img"><img src={r.photos[0].thumb} alt={r.photos[0].alt} loading="lazy" width={Math.round(r.photos[0].w / 2)} height={Math.round(r.photos[0].h / 2)} /></div>}
+            <div class="ref-body"><strong class="ref-name">{r.name}</strong><p>{r.note}</p></div>
+          </>
+        );
+        return r.photos.length
+          ? <a class="ref" href={`#${r.slug}`}>{inner}</a>
+          : <div class="ref" id={r.slug} style="scroll-margin-top:70px">{inner}</div>;
+      })}
     </div>
   </section>
 
-  {items.map((r) => (
+  {withPhotos.map((r) => (
     <section class="section alt" id={r.slug} style="scroll-margin-top:70px">
       <div class="container">
         <h2>{r.name}</h2>
         <p class="muted">{r.note}</p>
-        <Gallery photos={r.g.photos} />
+        <Gallery photos={r.photos} />
       </div>
     </section>
   ))}

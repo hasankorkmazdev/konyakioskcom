@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { posts } from '../../data/posts';
 import { nedirPages } from '../../data/nedir';
+import { generalInformation } from '../../data/generalInformation';
+import { buildArticleJsonLd } from '../../lib/seo';
 
 export function getStaticPaths() {
   return posts.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -20,26 +22,17 @@ for (const line of p.body) {
   } else blocks.push({ t: 'p', v: line });
 }
 
-const article = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: p.title,
-  description: p.description,
-  datePublished: p.date,
-  dateModified: p.date,
-  inLanguage: 'tr',
-  author: { '@type': 'Organization', name: 'Vectanom Kiosk' },
-  publisher: { '@type': 'Organization', name: 'Vectanom Kiosk' },
-  mainEntityOfPage: `https://konyakiosk.com/blog/${p.slug}/`,
-};
+const path = `/blog/${p.slug}/`;
+// "Nedir" sayfalarıyla aynı Article bilgisi: yazar kişi olarak (generalInformation.author) bildirilir.
+const articleLd = buildArticleJsonLd({ title: p.title, description: p.description, path, published: p.date, modified: p.date });
 ---
 
-<Base title={`${p.title} | Vectanom Kiosk`} description={p.description} path={`/blog/${p.slug}/`} type="article" crumbs={[{ name: 'Blog', path: '/blog/' }, { name: p.title, path: `/blog/${p.slug}/` }]}>
-  <script type="application/ld+json" set:html={JSON.stringify(article)} />
+<Base title={`${p.title} | Vectanom Kiosk`} description={p.description} path={path} type="article" crumbs={[{ name: 'Blog', path: '/blog/' }, { name: p.title, path }]}>
+  <script type="application/ld+json" set:html={articleLd} />
   <article class="section">
     <div class="container narrow prose">
       <h1>{p.title}</h1>
-      <p class="post-meta"><time datetime={p.date}>{new Date(p.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>
+      <p class="post-meta">Yazan: <strong>{generalInformation.author}</strong> · <time datetime={p.date}>{new Date(p.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>
       {blocks.map((b) => b.t === 'h2' ? <h2>{b.v}</h2> : b.t === 'ul' ? <ul>{(b.v as string[]).map((x) => <li>{x}</li>)}</ul> : <p>{b.v}</p>)}
       <p>Daha fazla bilgi için: {nedirPages.map((n, i) => <>{i > 0 && ', '}<a href={`/${n.slug}/`}>{n.h1}</a></>)}.</p>
       <p>Kiosk seçimi için <a href="/urunler/">modellerimizi</a> inceleyebilir ya da <a href="/iletisim/">bizimle iletişime geçebilirsiniz</a>.</p>

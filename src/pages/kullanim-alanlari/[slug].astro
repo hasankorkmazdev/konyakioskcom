@@ -2,9 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
-import Photo from '../../components/ui/Photo.astro';
+import ProductCover from '../../components/ui/ProductCover.astro';
 import Gallery from '../../components/sections/Gallery.astro';
-import { photosOf, productPhotoGroups, useCasePhotoGroups } from '../../data/galeri';
+import { photosOf, useCasePhotoGroups } from '../../data/galeri';
 import { useCases } from '../../data/useCases';
 import { products } from '../../data/products';
 import { nedirPages } from '../../data/nedir';
@@ -17,7 +17,7 @@ const photos = photosOf(...(useCasePhotoGroups[s.slug] ?? []));
 const recs = products.filter((p) => s.recommended.includes(p.slug));
 ---
 
-<Base title={s.title} description={s.description} path={`/kullanim-alanlari/${s.slug}/`} image={photos[0]?.large} crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }, { name: s.name, path: `/kullanim-alanlari/${s.slug}/` }]} faq={s.faq}>
+<Base title={s.title} description={s.description} path={`/kullanim-alanlari/${s.slug}/`} image={photos[0]?.download} crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }, { name: s.name, path: `/kullanim-alanlari/${s.slug}/` }]} faq={s.faq}>
   <section class="page-head container">
     <h1>{s.h1}</h1>
     <p class="lead">{s.intro}</p>
@@ -37,7 +37,7 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
       <div class="grid">
         {recs.map((p) => (
           <a class="card" href={`/urunler/${p.slug}/`}>
-            {photosOf(...(productPhotoGroups[p.slug] ?? []))[0] && <Photo photo={photosOf(...(productPhotoGroups[p.slug] ?? []))[0]} alt={p.name} />}
+            <ProductCover slug={p.slug} alt={p.name} />
             <h3>{p.name}</h3>
             <p>{p.tags.join(' · ')}</p>
           </a>

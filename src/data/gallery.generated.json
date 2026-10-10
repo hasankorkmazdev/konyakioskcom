@@ -340,12 +340,40 @@
   ]
  },
  "logos": {
-  "cukurova-havalimani": "/images/referanslar/logolar/cukurova-havalimani.webp",
-  "igdir-belediyesi": "/images/referanslar/logolar/igdir-belediyesi.webp",
-  "kaski": "/images/referanslar/logolar/kaski.webp",
-  "konya-buyuksehir-belediyesi": "/images/referanslar/logolar/konya-buyuksehir-belediyesi.webp",
-  "koski": "/images/referanslar/logolar/koski.webp",
-  "necmettin-erbakan-universitesi": "/images/referanslar/logolar/necmettin-erbakan-universitesi.webp",
-  "sivas-belediyesi": "/images/referanslar/logolar/sivas-belediyesi.webp"
+  "cukurova-havalimani": {
+   "src": "/images/referanslar/logolar/cukurova-havalimani.webp",
+   "w": 400,
+   "h": 144
+  },
+  "igdir-belediyesi": {
+   "src": "/images/referanslar/logolar/igdir-belediyesi.webp",
+   "w": 400,
+   "h": 133
+  },
+  "kaski": {
+   "src": "/images/referanslar/logolar/kaski.webp",
+   "w": 400,
+   "h": 121
+  },
+  "konya-buyuksehir-belediyesi": {
+   "src": "/images/referanslar/logolar/konya-buyuksehir-belediyesi.webp",
+   "w": 212,
+   "h": 200
+  },
+  "koski": {
+   "src": "/images/referanslar/logolar/koski.webp",
+   "w": 158,
+   "h": 200
+  },
+  "necmettin-erbakan-universitesi": {
+   "src": "/images/referanslar/logolar/necmettin-erbakan-universitesi.webp",
+   "w": 200,
+   "h": 200
+  },
+  "sivas-belediyesi": {
+   "src": "/images/referanslar/logolar/sivas-belediyesi.webp",
+   "w": 200,
+   "h": 200
+  }
  }
 }

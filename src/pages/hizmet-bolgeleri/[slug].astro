@@ -4,6 +4,7 @@ import Cta from '../../components/sections/Cta.astro';
 import { locations } from '../../data/locations';
 import { products } from '../../data/products';
 import { useCases } from '../../data/useCases';
+import { locative } from '../../lib/tr';
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
@@ -14,7 +15,7 @@ const others = locations.filter((x) => x.slug !== l.slug);
 
 <Base
   title={`${l.name} Kiosk | Kafe, Büfe, Belediye Kiosk – Vectanom`}
-  description={`${l.name} kiosk: ${l.name}'da kafe, büfe, restoran, belediye ve kütüphane için dokunmatik kiosk çözümleri. Vectanom Kiosk, Konya.`}
+  description={`${l.name} kiosk: ${locative(l.name)} kafe, büfe, restoran, belediye ve kütüphane için dokunmatik kiosk çözümleri. Vectanom Kiosk, Konya.`}
   path={`/hizmet-bolgeleri/${l.slug}/`}
   crumbs={[{ name: 'Konya Kiosk', path: '/konya-kiosk/' }, { name: `${l.name} Kiosk`, path: `/hizmet-bolgeleri/${l.slug}/` }]}
 >
@@ -27,7 +28,7 @@ const others = locations.filter((x) => x.slug !== l.slug);
   <section class="section">
     <div class="container split">
       <div>
-        <h2>{l.name}'da Sunduğumuz Modeller</h2>
+        <h2>{locative(l.name)} Sunduğumuz Modeller</h2>
         <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
       </div>
       <div>
