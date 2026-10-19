@@ -4,6 +4,8 @@ import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
 import ContentSections from '../../components/sections/ContentSections.astro';
 import ProductCover from '../../components/ui/ProductCover.astro';
+import Photo from '../../components/ui/Photo.astro';
+import KioskArt from '../../components/ui/KioskArt.astro';
 import Gallery from '../../components/sections/Gallery.astro';
 import { photosOf, useCasePhotoGroups } from '../../data/galeri';
 import { useCases } from '../../data/useCases';
@@ -16,13 +18,18 @@ export function getStaticPaths() {
 const { s } = Astro.props;
 const photos = photosOf(...(useCasePhotoGroups[s.slug] ?? []));
 const recs = products.filter((p) => s.recommended.includes(p.slug));
+// Ayrıntılı (sections içeren) sayfalarda başlığın yanında kapak görseli: ilk fotoğraf, yoksa kiosk çizimi (yer tutucu)
+const cover = !!s.sections;
 ---
 
 <Base title={s.title} description={s.description} path={`/kullanim-alanlari/${s.slug}/`} image={photos[0]?.download} crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }, { name: s.name, path: `/kullanim-alanlari/${s.slug}/` }]} faq={s.faq}>
-  <section class="page-head container">
-    <h1>{s.h1}</h1>
-    <p class="lead">{s.intro}</p>
-    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+  <section class={cover ? 'page-head container split' : 'page-head container'}>
+    <div>
+      <h1>{s.h1}</h1>
+      <p class="lead">{s.intro}</p>
+      <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
+    </div>
+    {cover && <div class="figure">{photos[0] ? <Photo photo={photos[0]} size="large" eager /> : <KioskArt />}</div>}
   </section>
 
   {s.benefits && (
@@ -42,21 +49,23 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
     </article>
   )}
 
-  <section class="section alt">
-    <div class="container">
-      <h2>Önerilen Modeller</h2>
-      <div class="grid">
-        {recs.map((p) => (
-          <a class="card" href={`/urunler/${p.slug}/`}>
-            <ProductCover slug={p.slug} alt={p.name} />
-            <h3>{p.name}</h3>
-            <p>{p.tags.join(' · ')}</p>
-          </a>
-        ))}
+  {recs.length > 0 && (
+    <section class="section alt">
+      <div class="container">
+        <h2>Önerilen Modeller</h2>
+        <div class="grid">
+          {recs.map((p) => (
+            <a class="card" href={`/urunler/${p.slug}/`}>
+              <ProductCover slug={p.slug} alt={p.name} />
+              <h3>{p.name}</h3>
+              <p>{p.tags.join(' · ')}</p>
+            </a>
+          ))}
+        </div>
+        <p style="margin-top:1.2rem">Konya ve çevresinde hizmet veriyoruz: <a href="/konya-kiosk/">Konya kiosk</a>.</p>
       </div>
-      <p style="margin-top:1.2rem">Konya ve çevresinde hizmet veriyoruz: <a href="/konya-kiosk/">Konya kiosk</a>.</p>
-    </div>
-  </section>
+    </section>
+  )}
 
   {photos.length > 0 && (
     <section class="section">
