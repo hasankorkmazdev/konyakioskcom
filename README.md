@@ -20,8 +20,8 @@ uygulama yoktur. Tek istisna iletişim formudur (bkz. [İletişim formu](#ileti�
 | [Astro 5](https://astro.build) | Statik site üretir, hızlıdır                |
 | TypeScript                     | Veri dosyalarını tiplerle denetler            |
 | sharp                          | Fotoğrafları web için küçültür           |
-| Cloudflare Pages               | Yayın ve iletişim formu fonksiyonu            |
-| Resend / Telegram              | Form taleplerini e-posta ve mesaj olarak iletir |
+| Cloudflare Workers             | Yayın (statik dosyalar) ve iletişim formu     |
+| Cloudflare Email Routing       | Form taleplerini e-posta olarak iletir          |
 
 ## Kurulum ve komutlar
 
@@ -53,7 +53,8 @@ konyakiosk/
 │   ├── favicon.svg
 │   ├── robots.txt
 │   └── _headers          Güvenlik ve önbellek başlıkları
-├── functions/api/iletisim.js   İletişim formunu karşılayan Cloudflare fonksiyonu
+├── worker/               Cloudflare Worker: index.js (/api/* yönlendirme), iletisim.js (form)
+├── wrangler.jsonc        Cloudflare Workers yapılandırması (Worker adı, dist/, /api/*)
 ├── gorsel-kaynak/        Orijinal (büyük) fotoğraflar, yayınlanmaz
 ├── scripts/gorselleri-isle.mjs Fotoğraf işleme betiği
 └── astro.config.mjs      Site adresi, sitemap ve adres biçimi ayarları
@@ -129,27 +130,27 @@ Bir sayfa `Base` bileşenini çağırırken `title`, `description`, `path` verir
 
 ## İletişim formu
 
-`/iletisim/` sayfasındaki form `functions/api/iletisim.js` fonksiyonuna gönderilir (Cloudflare Pages Function).
-Fonksiyon gelen talebi **e-posta (Resend)** ve isteğe bağlı **Telegram** ile iletir. Boş bırakılan gizli
-`website` alanı spam botlarını ayıklar.
+`/iletisim/` ve `/bayilik/` sayfalarındaki formlar `POST /api/iletisim` adresine gönderilir. Bu isteği
+`worker/index.js` karşılar ve `worker/iletisim.js` dosyasına iletir (diğer tüm adresler statik siteden sunulur).
+Talep, **Cloudflare Email Routing** ile e-posta olarak gönderilir (`wrangler.jsonc` içindeki `MAIL` bağlantısı).
+Gönderen `form@konyakiosk.com`, alıcı varsayılan olarak `hasankorkmazdev@gmail.com` adresidir; e-postada
+"Yanıtla" denince formu dolduran kişiye yazılır. Boş bırakılan gizli `website` alanı spam botlarını ayıklar.
 
-Cloudflare Pages > Settings > Environment variables içinde şunlar tanımlanır:
+Cloudflare panelinde gerekenler:
 
+1. konyakiosk.com > Email > Email Routing açık olmalı.
+2. Alıcı adres, Email Routing > Destination addresses altında eklenip doğrulanmış olmalı.
+3. Alıcıyı değiştirmek için Workers & Pages > konyakioskcom > Settings > Variables and Secrets içine
+   `MAIL_TO` değişkeni eklenir (yeni adres de doğrulanmış olmalı).
 
-| Değişken                               | Zorunlu | Anlamı                                                  |
-| ------------------------------------------ | --------- | ---------------------------------------------------------- |
-| `RESEND_API_KEY`                         | Evet    | E-posta gönderimi için Resend anahtarı                |
-| `MAIL_TO`                                | Hayır  | Taleplerin gideceği adres                               |
-| `MAIL_FROM`                              | Hayır  | Gönderen adı/adresi (alan adı doğrulandıktan sonra) |
-| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Hayır  | Telegram bildirimi                                       |
-
-Yerelde denemek için `.dev.vars` dosyasına aynı değişkenleri yazın (repoya girmez).
-`npm run dev` formu çalıştırmaz, fonksiyon için `npx wrangler pages dev dist` kullanılır.
+`npm run dev` formu çalıştırmaz, form için `npx wrangler dev` kullanılır (siteyi derleyip http://localhost:8787 adresinde açar).
+Yerelde e-posta gönderilmez; oluşan e-posta `.wrangler/tmp/` altına dosya olarak yazılır.
 
 ## Yayın
 
-Cloudflare Pages üzerinde yayınlanır (hangi dalın yayına gittiği Cloudflare panelindeki proje ayarlarından görülür).
-Derleme ayarları: komut `npm run build`, çıktı klasörü `dist`.
+Cloudflare Workers üzerinde yayınlanır (Workers Builds, GitHub'a push edilince derler; hangi dalın yayına gittiği
+Cloudflare panelindeki proje ayarlarından görülür). Dağıtım `wrangler.jsonc` ile yapılır: `npm run build` çalışır,
+`dist/` statik dosya olarak, `worker/index.js` de `/api/*` için yüklenir.
 Sayfa ziyaretleri Cloudflare Web Analytics ile ölçülür (`components/layout/Analytics.astro`).
 
 ## Kodlama kuralları

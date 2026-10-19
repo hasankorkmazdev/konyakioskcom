@@ -1,0 +1,21 @@
+// Cloudflare Workers yapılandırması (Workers Builds bu dosyayla dağıtır).
+// Site dist/ klasöründen statik olarak sunulur; worker/index.js yalnızca /api/* isteklerini karşılar.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "konyakioskcom", // Cloudflare'deki Worker adıyla aynı olmalı
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "build": { "command": "npm run build" },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  // Form e-postası: Cloudflare Email Routing (alıcı, Destination addresses altında doğrulanmış olmalı)
+  "send_email": [{ "name": "MAIL" }],
+  // Panelden eklenen değişkenler (MAIL_TO) dağıtımda silinmesin
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}
