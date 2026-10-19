@@ -26,7 +26,13 @@ const words: Record<string, string> = {
   kirmizi: 'kırmızı', mavi: 'mavi', ekran: 'ekran', yazicili: 'yazıcılı', barkod: 'barkod', okuyuculu: 'okuyuculu',
 };
 
+/** Dosya adından üretilemeyen alt metinler (fotoğraf id'si -> alt). */
+const altOverrides: Record<string, string> = {
+  'self-servis-kiosk-sesli-siparis-teknik-ozellikler': 'Sesli sipariş kiosku teknik özellikleri ve ölçüleri',
+};
+
 function altFor(title: string, id: string): string {
+  if (altOverrides[id]) return altOverrides[id];
   const tokens = id.split('-');
   const tail: string[] = [];
   for (let i = tokens.length - 1; i >= 0; i--) {

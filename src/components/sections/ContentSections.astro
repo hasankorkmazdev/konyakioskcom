@@ -1,0 +1,39 @@
+---
+// Veri dosyalarındaki başlıklı metin bölümlerini (ContentSection) yazar: paragraf, liste, tablo.
+import type { ContentSection, ContentListItem } from '../../types';
+
+interface Props {
+  sections: ContentSection[];
+}
+const { sections } = Astro.props;
+const item = (x: string | ContentListItem) => (typeof x === 'string' ? { text: x } : x);
+---
+
+{sections.map((s) => {
+  const List = s.ordered ? 'ol' : 'ul';
+  return (
+    <>
+      <h2>{s.heading}</h2>
+      {s.paragraphs?.map((t) => <p>{t}</p>)}
+      {s.list && (
+        <List class={s.ordered ? 'steps' : 'ticks'}>
+          {s.list.map(item).map((x) => (
+            <li>
+              {x.label && <><strong>{x.label}:</strong>{' '}</>}
+              {x.href ? <a href={x.href}>{x.text}</a> : x.text}
+            </li>
+          ))}
+        </List>
+      )}
+      {s.table && (
+        <div class="table-wrap">
+          <table class="spec">
+            <thead><tr><th scope="col">{s.table.head[0]}</th><th scope="col">{s.table.head[1]}</th></tr></thead>
+            <tbody>{s.table.rows.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
+          </table>
+        </div>
+      )}
+      {s.after?.map((t) => <p>{t}</p>)}
+    </>
+  );
+})}

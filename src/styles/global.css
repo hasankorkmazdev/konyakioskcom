@@ -87,6 +87,17 @@ p { margin: 0 0 1em; }
 .ticks li::before { content: "✓"; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
 .prose h2 { margin-top: 1.6em; }
 .prose ul { padding-left: 1.2rem; }
+/* adım adım numaralı liste */
+.steps { padding-left: 1.4rem; margin: 0 0 1.2rem; }
+.steps li { margin-bottom: .5rem; padding-left: .3rem; }
+.steps li::marker { color: var(--brand); font-weight: 700; }
+/* iki sütunlu teknik özellik tablosu; dar ekranda yatay kaydırılır */
+.table-wrap { overflow-x: auto; margin: 0 0 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.spec { width: 100%; border-collapse: collapse; font-size: .97rem; }
+.spec th, .spec td { padding: .6rem .9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.spec thead th { background: var(--brand-soft); color: var(--brand-dark); }
+.spec tbody th { font-weight: 600; color: var(--brand-dark); width: 38%; }
+.spec tbody tr:last-child th, .spec tbody tr:last-child td { border-bottom: 0; }
 
 /* faq */
 .faq { border: 1px solid var(--line); border-radius: 10px; padding: .9rem 1.1rem; margin-bottom: .7rem; background: #fff; }

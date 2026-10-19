@@ -1,4 +1,5 @@
 import type { UseCase } from '../types';
+import { siparisEntegrasyonlari, siparisEntegrasyonlariMetni } from './products';
 export type { UseCase } from '../types';
 
 /**
@@ -10,23 +11,122 @@ export const useCases: UseCase[] = [
   {
     slug: 'self-servis-siparis-kiosku',
     name: 'Self Servis Sipariş Kioskları',
-    title: 'Self Servis Sipariş Kiosku: Restoran, Kafe ve Fast Food',
-    description: 'Restoran, kafe, fast food işletmeleri ve yemek katları için self servis sipariş kiosku. Müşteri menüyü inceler, siparişini hızlıca verir. Konya ve çevresi.',
-    h1: 'Self Servis Sipariş Kiosku: Restoran, Kafe ve Fast Food İçin',
-    intro: 'Self servis sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini hızlıca oluşturmasını sağlar. Yoğun saatlerde sıra bekleme süresini azaltır; kasadaki personel siparişi almak yerine hazırlığa ve servise odaklanır. Restoran, kafe, fast food işletmeleri ve yemek katları için Konya ve çevresinde self servis kiosk çözümleri sunuyoruz.',
-    benefits: [
-      'Yoğun saatlerde kuyruk azalır, sipariş hızlanır',
-      'Ürün görselleri ve ek ürün önerileriyle sepet tutarı artabilir',
-      'Müşteri ne seçtiğini kendisi gördüğü için sipariş hataları azalır',
-      'Menü ve kampanyalar kioskta anında güncellenir',
-      'Sesli sipariş, POS ve QR ödeme, yazıcı seçenekleri',
+    title: 'Restoran Self Servis Sipariş Kiosku (Self Order Kiosk)',
+    description: 'Restoran, kafe ve fast food için self servis sipariş kiosku: sesli sipariş, kart, yemek kartı ve nakit ödeme, adisyon entegrasyonu, 2 yıl garanti.',
+    h1: 'Self Servis Sipariş Kiosku (Self Order Kiosk): Restoran, Kafe ve Fast Food İçin',
+    intro: 'Self servis sipariş kiosku (self order kiosk), müşterinin dokunmatik ekrandan menüyü inceleyip siparişini ve ödemesini kasaya uğramadan tamamladığı cihazdır. Yoğun saatlerde kuyruğu kısaltır, kasadaki personeli hazırlık ve servise kaydırır. Vectanom self servis sipariş kioskları sesli sipariş, kart, yemek kartı ve nakit dahil farklı ödeme seçenekleri ve mevcut adisyon programınızla entegrasyonla gelir; Konya merkezli ekibimiz Türkiye geneline gönderir ve kurar.',
+    sections: [
+      {
+        heading: 'Self servis sipariş kiosku nasıl çalışır?',
+        ordered: true,
+        list: [
+          'Müşteri ekrana dokunur ya da konuşarak siparişe başlar.',
+          'Kategorilerden ürünlerini seçer; boyut, ekstra malzeme ve menü seçeneklerini belirler.',
+          'Sepetini kontrol eder; ekranda önerilen yan ürün ya da içecekleri ekleyebilir.',
+          'Seçtiği yöntemle ödemesini yapar: kart, temassız, QR, yemek kartı veya nakit.',
+          'Fişini ve sipariş numarasını alır.',
+          'Sipariş adisyon programınıza ve mutfağa iletilir; personelin tekrar girmesi gerekmez.',
+        ],
+      },
+      {
+        heading: 'Restoranınıza ne kazandırır?',
+        list: [
+          { label: 'Daha kısa kuyruk', text: 'Birden fazla müşteri aynı anda sipariş verebilir; kasa tek darboğaz olmaktan çıkar.' },
+          { label: 'Daha az sipariş hatası', text: 'Müşteri ne seçtiğini ekranda kendisi gördüğü için yanlış anlama azalır.' },
+          { label: 'Daha yüksek sepet tutarı', text: 'Ürün görselleri ve ek ürün önerileri, müşterinin sepetine bir şey daha eklemesini kolaylaştırır.' },
+          { label: 'Personel verimliliği', text: 'Kasada sipariş alan çalışan, hazırlık ve servise geçebilir.' },
+          { label: 'Güncel menü', text: 'Menü, fiyat ve kampanyalar kioskta anında güncellenir.' },
+        ],
+      },
+      {
+        heading: 'Sesli sipariş: müşteri konuşarak sipariş verir',
+        paragraphs: [
+          'Vectanom kiosklarda sesli sipariş özelliği bulunur. Müşteri ekrana dokunmadan, konuşarak siparişini oluşturabilir. Sesli sipariş her dilde çalışır; yabancı turistlerin geldiği restoranlarda ve ekran kullanmakta zorlanan müşteriler için ciddi kolaylık sağlar.',
+          'Kioskta çift mikrofon, gürültü azaltma ve yakın alan ses algılama bulunur; bu sayede kalabalık bir salonda da ekranın önündeki müşterinin sesi anlaşılır. 2 x 5W hoparlör ile kiosk müşteriye sesli yanıt verir.',
+        ],
+      },
+      {
+        heading: 'Adisyon ve POS programınızla entegre çalışır',
+        paragraphs: ['Kiosk almak için mevcut sisteminizi değiştirmeniz gerekmez. Vectanom self servis sipariş kiosku şu adisyon ve POS sistemleriyle entegre çalışır:'],
+        list: siparisEntegrasyonlari,
+        after: ['Kioskta verilen sipariş, kasada açılan sipariş gibi programınıza aktarılır. Listede olmayan bir program kullanıyorsanız entegrasyon imkânını birlikte değerlendiririz.'],
+      },
+      {
+        heading: 'Ödeme seçenekleri',
+        paragraphs: ['Ödeme yöntemleri işletmenizin tercihine göre belirlenir ve çeşitlendirilebilir:'],
+        list: [
+          { label: 'Kartlı ödeme', text: 'EMV uyumlu fiziksel POS (Pavo, Ingenico)' },
+          { label: 'Temassız ödeme', text: 'NFC ile' },
+          'QR ödeme ve sanal POS',
+          { label: 'Yemek kartları', text: 'Pluxee (Sodexo), Metropolcard ve benzerleri' },
+          'Nakit ödeme',
+          { label: 'Fiş ve sipariş numarası', text: 'Fiş yazıcısı ile' },
+        ],
+      },
+      {
+        heading: 'Teknik özellikler (ayaklı model)',
+        table: {
+          head: ['Özellik', 'Değer'],
+          rows: [
+            ['Ekran', '21.5 inç IPS, 1920 x 1080 Full HD, 16:9'],
+            ['Parlaklık', '450–500 nit, yansımayı azaltan (anti-glare) ön cam'],
+            ['Dokunmatik', 'Kapasitif (PCAP), 10 noktalı, temperli ve çizilmeye dayanıklı cam'],
+            ['Eldiven ile kullanım', 'İsteğe bağlı'],
+            ['Ses', 'Çift mikrofon, gürültü azaltma, yakın alan ses algılama, 2 x 5W hoparlör'],
+            ['Ödeme (tercihe göre)', 'EMV uyumlu fiziksel POS (Pavo, Ingenico), NFC temassız, QR / sanal POS, yemek kartları, nakit'],
+            ['Bilgisayar', 'Endüstriyel mini PC veya Android Box'],
+            ['Gövde', 'Metal'],
+            ['Çalışma', '7/24 kullanıma uygun'],
+            ['Toplam yükseklik', '1550–1650 mm'],
+            ['Genişlik / derinlik', '480–520 mm / 120–160 mm'],
+            ['Ekran merkezi yerden', '1300–1400 mm'],
+            ['Kart okuyucu yüksekliği', '900–1050 mm'],
+          ],
+        },
+        after: ['Ölçüler kurulum yerine göre uyarlanabilir. 24 ve 32 inç ekran seçenekleri de sunulur.'],
+      },
+      {
+        heading: 'Ayaklı mı, masa üstü mü?',
+        list: [
+          { label: 'Ayaklı model', text: 'Girişte ya da kasa önünde tek başına duran sipariş noktası. Fast food restoranları ve yemek katları için en yaygın tercih.' },
+          { label: 'Masa üstü model', text: 'Tezgâh veya masa üzerine yerleştirilir, az yer kaplar. Kafe, pastane, kahve dükkânı ve dar alanlı işletmelere uygundur.' },
+        ],
+        after: ['Gövde rengi ve giydirmesi markanıza göre hazırlanır.'],
+      },
+      {
+        heading: 'Hangi işletmeler için uygun?',
+        list: [
+          'Fast food ve hamburger restoranları',
+          'Kafe, kahve zincirleri ve pastaneler',
+          'Pizza, döner ve paket servis ağırlıklı restoranlar',
+          'AVM yemek katları',
+          { text: 'Okul, üniversite, hastane ve fabrika kantinleri', href: '/kantin-siparis-ve-satis-kiosku-nedir/' },
+        ],
+      },
+      {
+        heading: 'Kurulum, garanti ve destek',
+        list: [
+          { label: 'Kurulum', text: 'Sipariş onayından sonra yaklaşık 15 gün' },
+          { label: 'Garanti', text: '2 yıl' },
+          { label: 'Destek', text: 'Konya merkezli teknik destek; Türkiye geneline sevkiyat' },
+        ],
+      },
+      {
+        heading: 'Self servis sipariş kiosku fiyatı neye göre değişir?',
+        paragraphs: ['Fiyat; ekran boyutuna, ayaklı ya da masa üstü olmasına, ödeme seçeneklerine (POS, NFC, QR, yemek kartı, nakit), yazıcıya, sesli sipariş özelliğine ve adede göre değişir. İşletmenizi, günlük sipariş yoğunluğunuzu ve kullandığınız adisyon programını iletin, size özel teklif hazırlayalım.'],
+      },
     ],
     recommended: ['siparis-kiosk', 'self-kiosk', 'yatay-kiosk'],
     faq: [
       { q: 'Self servis sipariş kiosku nedir?', a: 'Müşterinin personele ihtiyaç duymadan menüden ürün seçip siparişini ve ödemesini kendisinin tamamladığı dokunmatik ekranlı cihazdır.' },
-      { q: 'Restoran, kafe ve fast food için aynı kiosk mu kullanılır?', a: 'Temel yapı aynıdır. Menü büyüklüğüne, ödeme yöntemine ve yazıcı ihtiyacına göre ekran boyutu ve donanım seçilir.' },
-      { q: 'Self servis kiosk siparişleri adisyon programımıza aktarılır mı?', a: 'Kullandığınız adisyon programının entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
-      { q: 'Self servis sipariş kiosku fiyatı nedir?', a: 'Fiyat; ekran boyutuna, donanıma (yazıcı, POS, QR okuyucu, sesli sipariş) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+      { q: 'Mevcut adisyon programımızla çalışır mı?', a: `${siparisEntegrasyonlariMetni} ile entegre çalışır. Farklı bir program kullanıyorsanız entegrasyon imkânını birlikte değerlendiririz.` },
+      { q: 'Sesli sipariş hangi dillerde çalışır?', a: 'Sesli sipariş her dilde çalışır; müşteri kendi dilinde konuşarak sipariş verebilir.' },
+      { q: 'Hangi ödeme yöntemleri kullanılabilir?', a: 'Tercihe göre EMV uyumlu POS (Pavo, Ingenico) ile kartlı ödeme, NFC ile temassız ödeme ve isteğe bağlı QR ödeme kullanılabilir. Nakit, yemek kartları, fiziksel POS ve sanal POS ile ödeme seçenekleri çeşitlendirilebilir.' },
+      { q: 'Yemek kartı ile ödeme alınabilir mi?', a: 'Evet. Pluxee (Sodexo), Metropolcard ve benzeri yemek kartlarıyla ödeme alınabilir.' },
+      { q: 'Kurulum ne kadar sürer?', a: 'Sipariş onayından sonra yaklaşık 15 gün içinde kiosk teslim edilir ve kurulur.' },
+      { q: 'Garanti süresi nedir?', a: 'Kiosklarımız 2 yıl garantilidir.' },
+      { q: 'Restoran, kafe ve fast food için aynı kiosk mu kullanılır?', a: 'Temel yapı aynıdır. Menü büyüklüğüne, alan durumuna ve ödeme ihtiyacına göre ayaklı veya masa üstü model ve ekran boyutu seçilir.' },
+      { q: 'Self servis sipariş kiosku fiyatı nedir?', a: 'Fiyat; ekran boyutu, model, ödeme seçenekleri ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
   },
   {

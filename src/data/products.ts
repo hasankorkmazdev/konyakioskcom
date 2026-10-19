@@ -1,6 +1,11 @@
 import type { Product } from '../types';
 export type { KioskType, Product } from '../types';
 
+/** Sipariş kioskunun entegre çalıştığı adisyon ve POS sistemleri (ürün ve kullanım alanı sayfalarında ortak). */
+export const siparisEntegrasyonlari = ['Akınsoft', 'Volvox', 'SambaPOS', 'Adisyo', 'Menulux', 'Dion', 'Pavo', 'GoPos', 'Beko'];
+/** "Akınsoft, Volvox, ... ve Beko" */
+export const siparisEntegrasyonlariMetni = `${siparisEntegrasyonlari.slice(0, -1).join(', ')} ve ${siparisEntegrasyonlari.at(-1)}`;
+
 /** Kiosk modelleri. Yeni model eklemek için listeye bir kayıt ekleyin. */
 export const products: Product[] = [
   {
@@ -338,7 +343,7 @@ export const products: Product[] = [
     faq: [
       {
         q: "Mevcut adisyon programımıza bağlanır mı?",
-        a: "Kullandığınız programın entegrasyon imkânlarına göre birlikte değerlendirme yapılır."
+        a: `Evet. ${siparisEntegrasyonlariMetni} ile entegre çalışır; farklı bir program için entegrasyon imkânını birlikte değerlendiririz.`
       }
     ],
     title: "Self Servis Sipariş Kiosku | Vectanom Kiosk Konya",

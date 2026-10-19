@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/sections/Cta.astro';
 import Faq from '../../components/sections/Faq.astro';
+import ContentSections from '../../components/sections/ContentSections.astro';
 import ProductCover from '../../components/ui/ProductCover.astro';
 import Gallery from '../../components/sections/Gallery.astro';
 import { photosOf, useCasePhotoGroups } from '../../data/galeri';
@@ -24,12 +25,22 @@ const recs = products.filter((p) => s.recommended.includes(p.slug));
     <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
   </section>
 
-  <section class="section">
-    <div class="container narrow">
-      <h2>Sağladığı Faydalar</h2>
-      <ul class="ticks">{s.benefits.map((b) => <li>{b}</li>)}</ul>
-    </div>
-  </section>
+  {s.benefits && (
+    <section class="section">
+      <div class="container narrow">
+        <h2>Sağladığı Faydalar</h2>
+        <ul class="ticks">{s.benefits.map((b) => <li>{b}</li>)}</ul>
+      </div>
+    </section>
+  )}
+
+  {s.sections && (
+    <article class="section">
+      <div class="container narrow prose">
+        <ContentSections sections={s.sections} />
+      </div>
+    </article>
+  )}
 
   <section class="section alt">
     <div class="container">

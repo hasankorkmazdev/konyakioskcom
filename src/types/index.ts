@@ -62,9 +62,26 @@ export interface UseCase {
   description: string;
   h1: string;
   intro: string;
-  benefits: string[];
+  benefits?: string[]; // "Sağladığı Faydalar" listesi; sections kullanan sayfada faydalar bir bölüm olarak yazılır
+  sections?: ContentSection[]; // girişten sonra gelen ayrıntılı bölümler
   recommended: string[];
   faq: { q: string; a: string }[];
+}
+
+export interface ContentListItem {
+  text: string;
+  label?: string; // verilirse maddenin başında kalın yazılır: "Etiket: metin"
+  href?: string; // verilirse madde bir iç bağlantı olur
+}
+
+/** Başlıklı metin bölümü (H2): paragraflar, liste veya iki sütunlu tablo, ardından isteğe bağlı kapanış paragrafları. */
+export interface ContentSection {
+  heading: string;
+  paragraphs?: string[];
+  list?: (string | ContentListItem)[];
+  ordered?: boolean; // liste adım adım numaralı mı
+  table?: { head: [string, string]; rows: [string, string][] };
+  after?: string[];
 }
 
 export interface NedirListItem {
