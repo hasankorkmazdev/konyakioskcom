@@ -53,7 +53,7 @@ export const useCases: UseCase[] = [
   },
   {
     slug: 'hastane-kiosk',
-    name: 'Hastane Kioskları',
+    name: 'Hastane Sıramatik ve Kiosk Sistemi',
     title: 'Hastane Kiosk ve Sıramatik Donanımı | Vectanom Kiosk Konya',
     description: 'Hastaneler için sıramatik ve hasta çağırma sistemlerine uygun kiosk donanımı. Poliklinik ve randevu noktalarında bekleme süresini azaltın.',
     h1: 'Hastane Kiosku: Sıramatik ve Hasta Çağırma Sistemleri İçin',
