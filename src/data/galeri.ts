@@ -13,6 +13,7 @@ const titles: Record<string, { title: string; blurb: string }> = {
   'urunler/ekonomik-kiosk': { title: 'Ekonomik Kiosk', blurb: 'Bütçe dostu, ayaklı kiosk modeli.' },
   'urunler/odeme-kiosku': { title: 'Ödeme Kioskları', blurb: 'Mifare, kredi kartı okuyuculu ve yazıcılı 24 inç ödeme kioskları.' },
   'urunler/tahsilat-kabini': { title: 'Tahsilat Kabinleri', blurb: 'Dış mekan tahsilat ve su ödeme noktası kabin tasarımları.' },
+  'urunler/doviz-altin-atm': { title: "Döviz ve Altın ATM'si", blurb: 'İki yönlü döviz bozdurma ve blisterli gram altın satışı yapan ATM.' },
   'referanslar/konya-buyuksehir-belediyesi': { title: 'Konya Büyükşehir Belediyesi', blurb: 'Kiosk tahsilat sistemi.' },
   'referanslar/koski': { title: 'KOSKİ', blurb: 'Kiosk tahsilat sistemi.' },
   'referanslar/kaski': { title: 'KASKİ', blurb: 'Kiosk tahsilat sistemi.' },
@@ -99,4 +100,6 @@ export const useCasePhotoGroups: Record<string, string[]> = {
   'otopark-odeme-kiosku': ['urunler/odeme-kiosku', 'urunler/tahsilat-kabini'],
   'fatura-odeme-kiosku': ['urunler/odeme-kiosku', 'referanslar/koski'],
   'yiyecek-icecek-otomati-kiosku': ['urunler/self-servis-kiosk', 'urunler/odeme-kiosku'],
+  // Görseller gorsel-kaynak/urunler/doviz-altin-atm/ klasörüne konup `npm run gorsel` çalıştırılınca kendiliğinden görünür
+  'doviz-altin-atm': ['urunler/doviz-altin-atm'],
 };

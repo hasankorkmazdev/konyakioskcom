@@ -289,6 +289,142 @@ export const useCases: UseCase[] = [
     ],
   },
   {
+    // Türkiye'de bu cihaz "ATM" diye aranıyor (döviz bozdurma atm, altın veren atm, atm makinesi); "kiosk" ikincil.
+    slug: 'doviz-altin-atm',
+    name: "Döviz ve Altın ATM'leri",
+    title: "Döviz ve Altın ATM'si | Döviz Bozdurma ve Gram Altın Kiosku",
+    description: "Döviz büroları, kuyumcular ve bankalar için 7/24 çalışan döviz ve altın ATM'si: iki yönlü döviz işlemi, 1 gram altın satışı, 2 yıl garanti.",
+    h1: "Döviz ve Altın ATM'si: Döviz Bozdurma ve Gram Altın Satış Kiosku",
+    intro: "Döviz ve altın ATM'si, müşterinin gişeye uğramadan döviz bozdurduğu, TL karşılığında döviz aldığı ve blisterli 1 gram altın satın aldığı self servis cihazdır. Personel gerektirmeden 7/24 çalışır. Vectanom döviz ve altın ATM'si; döviz büroları, kuyumcular, bankalar ve katılım bankaları ile otel, havalimanı ve AVM gibi yoğun noktalar için tasarlandı. GoldaEx yazılımıyla gelir, kuyumcu yazılımınız ve banka sistemleriyle entegre çalışır; iç mekan ve dış mekan versiyonları vardır.",
+    sections: [
+      {
+        heading: "Döviz ve altın ATM'si nasıl çalışır?",
+        ordered: true,
+        list: [
+          'Müşteri işlemini seçer: döviz bozdurma, döviz alma veya altın alma.',
+          'İşletmenin tercihine ve yasal yükümlülüklere göre pasaportunu ya da kimliğini okutur.',
+          'Döviz bozdururken banknotlarını yerleştirir; ATM banknotları tanır ve sahteliğini kontrol eder.',
+          'Ekranda kur ya da altın fiyatı ve işlem tutarı görünür; müşteri onaylar.',
+          'Döviz veya altın alırken ödemeyi nakit ya da kartla yapar.',
+          "ATM; TL'yi, dövizi ya da blisterli 1 gram altını verir ve işlem fişini yazdırır.",
+        ],
+      },
+      {
+        heading: 'Kimler kullanır?',
+        list: [
+          { label: 'Döviz büroları', text: 'Yeni bir şube açmadan ek döviz noktası' },
+          { label: 'Kuyumcular', text: 'Dükkân kapalıyken de gram altın satışı' },
+          { label: 'Bankalar ve katılım bankaları', text: 'Şube içinde veya dışında döviz ve altın noktası' },
+          { label: 'Otel, havalimanı ve AVM', text: 'Turistlerin ve ziyaretçilerin yoğun olduğu alanlarda döviz hizmeti' },
+        ],
+      },
+      {
+        heading: 'İşletmenize ne kazandırır?',
+        list: [
+          { label: '7/24 hizmet', text: 'ATM gece gündüz çalışır; büro veya dükkân kapalıyken de müşteri işlemini yapabilir.' },
+          { label: 'Personel ve mesai gideri yok', text: 'Gişe görevlisi, vardiya ve mesai saati gerektirmez; personel giderleri azalır.' },
+          { label: 'Daha kısa kuyruk', text: "Basit döviz ve altın işlemleri gişeden ATM'ye kayar." },
+          { label: 'Kayıtlı işlem', text: 'Her işlem kamera ve işlem fişiyle kayıt altına alınır.' },
+        ],
+      },
+      {
+        heading: 'Döviz bozdurma ve döviz satışı',
+        paragraphs: [
+          "ATM iki yönlü çalışır. Müşteri döviz banknotlarını yatırıp karşılığında TL alabilir (döviz bozdurma) ya da TL ödeyip döviz alabilir. Döviz alırken TL ödemesi nakit veya kartla yapılır; döviz banknotlarını ATM kendisi verir.",
+        ],
+      },
+      {
+        heading: 'Gram altın satışı',
+        paragraphs: [
+          'ATM, blisterli 1 gram külçe altın satar. Altın için ödeme kredi kartı, nakit TL veya nakit döviz ile yapılabilir. Altın verme ünitesinde yaklaşık 80 adet altın stoklanır.',
+          'ATM altın satın almaz; müşteriden altın alımı yapılmaz, yalnızca satış yapılır.',
+        ],
+      },
+      {
+        heading: 'Donanım',
+        list: [
+          { label: 'Banknot kabul ünitesi', text: 'Döviz ve TL banknotlarını tanır, sahteliğini kontrol eder' },
+          { label: 'Para verme ünitesi', text: 'TL ve döviz banknot verir' },
+          { label: 'Altın verme ünitesi', text: 'Blisterli 1 gram altın, yaklaşık 80 adet kapasite' },
+          { label: 'Kartlı ödeme', text: 'Döviz ve altın alımında kredi kartı' },
+          'Pasaport / kimlik okuyucu',
+          'Kamera ve fiş yazıcısı',
+          { label: 'Ekran', text: 'Boyutu tercihe göre' },
+        ],
+      },
+      {
+        heading: 'Yazılım ve entegrasyon',
+        paragraphs: [
+          "ATM, GoldaEx yazılımıyla birlikte gelir. GoldaEx dışında kuyumcu yazılımınız ve banka entegrasyonuyla da çalışır; işletme mevcut sistemini değiştirmek zorunda kalmaz. Döviz kurları ve altın fiyatı kullanılan yazılım üzerinden ATM'ye anlık olarak yansır.",
+        ],
+      },
+      {
+        heading: 'Güvenlik ve yasal uyum',
+        list: ['Titanyum alaşımlı kasa', 'Alarm ve uzaktan izleme', 'Vandalizme ve su baskınına karşı koruma', 'Kamera ve işlem fişiyle kayıt'],
+        after: [
+          "Döviz ve altın ATM'si, döviz ve altın alım satımına yetkili kurumların kullanımı için üretilir. Kimlik doğrulama, ATM'yi işletecek kurumun tercihine ve yasal yükümlülüklerine göre yapılandırılır.",
+        ],
+      },
+      {
+        heading: 'Nakit işleyen kiosklarda deneyimimiz',
+        paragraphs: [
+          "Vectanom; Konya Büyükşehir Belediyesi (Konya Kart), KOSKİ, KASKİ, Sivas Belediyesi ve Iğdır Belediyesi için tahsilat kioskları üretti. KOSKİ ve Sivas Belediyesi'ndeki kiosklar nakit ve kredi kartıyla ödeme alıyor.",
+        ],
+        list: [
+          { text: 'Tahsilat kiosku referanslarımız', href: '/referanslar/' },
+          { text: 'Fatura ödeme kiosku', href: '/kullanim-alanlari/fatura-odeme-kiosku/' },
+        ],
+      },
+      {
+        heading: 'Teknik özellikler',
+        table: {
+          head: ['Özellik', 'Değer'],
+          rows: [
+            ['İşlemler', 'Döviz bozdurma (döviz → TL), döviz satışı (TL → döviz), 1 gram altın satışı'],
+            ['Ödeme', 'Nakit TL, nakit döviz, kredi kartı'],
+            ['Altın', 'Blisterli 1 gram külçe altın, yaklaşık 80 adet kapasite'],
+            ['Kimlik', 'Pasaport / kimlik okuyucu'],
+            ['Kayıt', 'Kamera, fiş yazıcısı'],
+            ['Ekran', 'Boyutu tercihe göre'],
+            ['Kasa', 'Titanyum alaşımlı'],
+            ['Güvenlik', 'Alarm, uzaktan izleme, vandalizm ve su baskınına karşı koruma'],
+            ['Yazılım', 'GoldaEx; kuyumcu yazılımınız ve banka entegrasyonu'],
+            ['Versiyon', 'İç mekan ve dış mekan'],
+            ['Garanti', '2 yıl'],
+          ],
+        },
+      },
+      {
+        heading: 'Teslimat, kurulum, garanti ve destek',
+        list: [
+          { label: 'Kurulum', text: 'Sipariş onayından sonra yaklaşık 45 gün' },
+          { label: 'Garanti', text: '2 yıl' },
+          { label: 'Destek', text: 'Konya merkezli teknik destek; Türkiye geneline sevkiyat' },
+        ],
+      },
+      {
+        heading: "Döviz ve altın ATM'si fiyatı neye göre değişir?",
+        paragraphs: [
+          "Fiyat; iç veya dış mekan versiyonuna, ekran boyutuna, yapılacak işlemlere (döviz, altın), ödeme seçeneklerine, yazılım ve entegrasyon ihtiyacına ve adede göre değişir. Kurumunuzu, ATM'yi kuracağınız yeri ve kullandığınız yazılımı iletin, size özel teklif hazırlayalım.",
+        ],
+      },
+    ],
+    recommended: [], // bu ATM'ye uyan model kartı yok; "Önerilen Modeller" bölümü gizlenir
+    faq: [
+      { q: "Döviz ve altın ATM'si nedir?", a: 'Müşterinin gişeye uğramadan döviz bozdurduğu, TL karşılığında döviz aldığı ve gram altın satın aldığı self servis cihazdır.' },
+      { q: 'ATM 7/24 çalışır mı?', a: 'Evet. Personel gerektirmeden 7/24 çalışır; mesai saatine bağlı kalmadan döviz ve altın işlemi yapılır.' },
+      { q: "ATM'den döviz alınabilir mi?", a: "Evet. Müşteri TL'yi nakit veya kartla öder, ATM döviz banknotunu verir." },
+      { q: "ATM'den hangi altın satılır?", a: "Blisterli 1 gram külçe altın satılır. ATM'de yaklaşık 80 adet altın stoklanabilir." },
+      { q: 'ATM altın alımı yapar mı?', a: 'Hayır. ATM yalnızca altın satar; müşteriden altın almaz.' },
+      { q: 'Altın için ödeme nasıl yapılır?', a: 'Kredi kartı, nakit TL veya nakit döviz ile ödeme yapılabilir.' },
+      { q: 'ATM hangi yazılımla çalışır?', a: 'GoldaEx yazılımıyla gelir; kuyumcu yazılımınız ve banka entegrasyonuyla da çalışır.' },
+      { q: "ATM'de kimlik doğrulama yapılır mı?", a: "Kimlik doğrulama, ATM'yi işletecek kurumun tercihine ve yasal yükümlülüklerine göre pasaport / kimlik okuyucuyla yapılır." },
+      { q: 'ATM dış mekanda kullanılabilir mi?', a: 'Evet. İç mekan ve dış mekan versiyonları vardır. Titanyum alaşımlı kasa, alarm ve uzaktan izleme ile vandalizme ve su baskınına karşı korunur.' },
+      { q: "Döviz ve altın ATM'sinin kurulumu ne kadar sürer?", a: 'Sipariş onayından sonra yaklaşık 45 gün içinde kurulur. ATM 2 yıl garantilidir.' },
+      { q: "Döviz ve altın ATM'si fiyatı nedir?", a: 'Fiyat; versiyona, ekran boyutuna, işlemlere, ödeme seçeneklerine ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+    ],
+  },
+  {
     slug: 'yiyecek-icecek-otomati-kiosku',
     name: 'Yiyecek İçecek Otomatı Kioskları',
     title: 'Yiyecek İçecek Otomatı Kiosku | Vectanom Kiosk Konya',
