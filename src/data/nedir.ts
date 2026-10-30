@@ -56,7 +56,11 @@ export const nedirPages: Nedir[] = [
         paragraphs: [
           'Belediyelerde vatandaşlar su, vergi ve benzeri bedelleri gişede sıra beklemeden kiosktan ödeyebilir. Konya Büyükşehir Belediyesi, KOSKİ, KASKİ, Sivas ve Iğdır belediyeleri için tahsilat kioskları ürettik. Yerinde çekilmiş fotoğraflar ve proje notları için referanslar sayfamıza bakabilirsiniz.',
         ],
-        list: [{ text: 'Referanslarımızı inceleyin', href: '/referanslar/' }],
+        list: [
+          { text: 'Konya Kart dolum ve satış kioskları: 58 cihazlık proje', href: '/referanslar/konya-buyuksehir-belediyesi/' },
+          { text: 'Ulaşım kartı dolum kiosku', href: '/kullanim-alanlari/ulasim-karti-dolum-kiosku/' },
+          { text: 'Referanslarımızı inceleyin', href: '/referanslar/' },
+        ],
       },
       {
         heading: 'Self servis kiosk kullanmanın avantajları',

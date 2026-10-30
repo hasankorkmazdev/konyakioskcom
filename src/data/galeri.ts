@@ -14,7 +14,7 @@ const titles: Record<string, { title: string; blurb: string }> = {
   'urunler/odeme-kiosku': { title: 'Ödeme Kioskları', blurb: 'Mifare, kredi kartı okuyuculu ve yazıcılı 24 inç ödeme kioskları.' },
   'urunler/tahsilat-kabini': { title: 'Tahsilat Kabinleri', blurb: 'Dış mekan tahsilat ve su ödeme noktası kabin tasarımları.' },
   'urunler/doviz-altin-atm': { title: "Döviz ve Altın ATM'si", blurb: 'İki yönlü döviz bozdurma ve blisterli gram altın satışı yapan ATM.' },
-  'referanslar/konya-buyuksehir-belediyesi': { title: 'Konya Büyükşehir Belediyesi', blurb: 'Kiosk tahsilat sistemi.' },
+  'referanslar/konya-buyuksehir-belediyesi': { title: 'Konya Büyükşehir Belediyesi', blurb: 'Konya Kart (Elkart) dolum ve satış kioskları.' },
   'referanslar/koski': { title: 'KOSKİ', blurb: 'Kiosk tahsilat sistemi.' },
   'referanslar/kaski': { title: 'KASKİ', blurb: 'Kiosk tahsilat sistemi.' },
   'referanslar/sivas-belediyesi': { title: 'Sivas Belediyesi', blurb: 'Kiosk tahsilat sistemi.' },
@@ -30,6 +30,10 @@ const words: Record<string, string> = {
 /** Dosya adından üretilemeyen alt metinler (fotoğraf id'si -> alt). */
 const altOverrides: Record<string, string> = {
   'self-servis-kiosk-sesli-siparis-teknik-ozellikler': 'Sesli sipariş kiosku teknik özellikleri ve ölçüleri',
+  'konya-buyuksehir-belediyesi-tahsilat-kiosku-1': 'Durakta ortak sundurma altında iki Konya Kart dolum kiosku',
+  'konya-buyuksehir-belediyesi-tahsilat-kiosku-2': 'Gece aydınlatmasıyla Elkart dolum ve satış noktası kiosku',
+  'konya-buyuksehir-belediyesi-tahsilat-kiosku-3': 'Konya Kart dolum kioskunun ön yüzü: ekran, kart haznesi ve kredi kartı POS birimi',
+  'konya-buyuksehir-belediyesi-tahsilat-kiosku-4': 'Konya Kart dolum kiosku, yan görünüm',
 };
 
 function altFor(title: string, id: string): string {
@@ -99,6 +103,7 @@ export const useCasePhotoGroups: Record<string, string[]> = {
   'bilgilendirme-kiosku': ['urunler/yatay-kiosk', 'urunler/standart-kiosk'],
   'otopark-odeme-kiosku': ['urunler/odeme-kiosku', 'urunler/tahsilat-kabini'],
   'fatura-odeme-kiosku': ['urunler/odeme-kiosku', 'referanslar/koski'],
+  'ulasim-karti-dolum-kiosku': ['referanslar/konya-buyuksehir-belediyesi'],
   'yiyecek-icecek-otomati-kiosku': ['urunler/self-servis-kiosk', 'urunler/odeme-kiosku'],
   // Görseller gorsel-kaynak/urunler/doviz-altin-atm/ klasörüne konup `npm run gorsel` çalıştırılınca kendiliğinden görünür
   'doviz-altin-atm': ['urunler/doviz-altin-atm'],

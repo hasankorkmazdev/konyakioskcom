@@ -421,6 +421,118 @@ export const useCases: UseCase[] = [
     ],
   },
   {
+    // Hedef: "kart dolum kiosku"; yan ifadeler: ulaşım kartı dolum kiosku, kent kart dolum makinesi, bakiye/abonman yükleme kiosku.
+    // Kanıt: Konya Kart (Elkart) projesi, references.ts içindeki konya-buyuksehir-belediyesi kaydı.
+    slug: 'ulasim-karti-dolum-kiosku',
+    name: 'Ulaşım Kartı Dolum Kiosku',
+    title: 'Ulaşım Kartı Dolum Kiosku | Bakiye ve Abonman – Vectanom',
+    description: "Belediye ve ulaşım şirketleri için kart dolum kiosku: nakit ve kredi kartıyla bakiye, abonman yükleme ve yeni kart satışı. Konya'da 58 cihazla çalışıyor.",
+    h1: 'Ulaşım Kartı Dolum ve Satış Kiosku',
+    intro: "Ulaşım kartı dolum kiosku, yolcunun toplu taşıma kartına gişeye uğramadan bakiye ve abonman yüklediği, bakiyesini sorguladığı ve yeni kart satın aldığı self servis cihazdır. Kâğıt para ve kredi kartıyla ödeme alır; bozuk para birimi isteğe bağlı olarak eklenir. Ürettiğimiz kart dolum kioskları, Konya Büyükşehir Belediyesi'nin Konya Kart (Elkart) sisteminde 58 cihazla 7/24 hizmet veriyor.",
+    sections: [
+      {
+        heading: 'Kart dolum kiosku hangi işlemleri yapar?',
+        list: [
+          { label: 'Bakiye yükleme', text: 'Yolcu kartını kioskun kart haznesine bırakır, tutarı seçer ve ödemesini yapar; tutar kartına yüklenir.' },
+          { label: 'Abonman yükleme', text: 'Abonman seçeneği vizeli kartlarda açılır; yolcunun ayrıca kimlik göstermesi gerekmez.' },
+          { label: 'Bakiye sorgulama', text: 'Yolcu kartını okutup kalan bakiyesini ekranda görür.' },
+          { label: 'Yeni kart satışı', text: 'Kartı olmayan yolcu kiosktan yeni kart satın alır; kart haznesi 500 kart alır.' },
+        ],
+      },
+      {
+        heading: 'Hangi ödeme yöntemleriyle çalışır?',
+        list: [
+          { label: 'Kâğıt para', text: 'Tüm Türk lirası banknotları kabul edilebilir. Kurum, hangi banknotların alınacağını ayarlardan seçer.' },
+          { label: 'Bozuk para', text: 'İsteğe bağlı birimdir. Konya Kart projesinde test cihazı bozuk para birimiyle, seri kurulumdaki 58 kiosk bu birim olmadan üretildi.' },
+          { label: 'Kredi kartı', text: 'POS birimi temassız, çipli ve manyetik şeritli kartlarla ödeme alır.' },
+          { label: 'Para üstü', text: "Kiosk para üstü verebilir. Kurum isterse bu özellik kapatılır; Konya'da belediye para üstünü kapalı tutuyor." },
+        ],
+      },
+      {
+        heading: 'Ulaşım kartı nasıl okunur?',
+        paragraphs: [
+          'Yolcu kartını motorsuz bir hazneye bırakır ve kart temassız olarak okunur. Hazne kartı içeri çekmediği için hareketli parça içermez. Kartla yapılan okuma ve yazma işlemleri, kioskun içindeki SAM (güvenli erişim modülü) ile korunur.',
+        ],
+      },
+      {
+        heading: 'Operatör ekranı: gün sonu, kasa boşaltma ve alarm',
+        paragraphs: [
+          'Kioskun arkasında kilitli bir operatör kapısı ve ayrı bir operatör ekranı bulunur. Operatör giriş yaptığında, süren bir yolcu işlemi yoksa ön ekran durur; servis sırasında yeni işlem başlamaz.',
+        ],
+        list: [
+          { label: 'Gün sonu', text: 'Operatör gün sonu raporunu kendi ekranından alır.' },
+          { label: 'Kasa boşaltma', text: 'Para kasaları boşaltılır ve sayım fişi yazdırılır.' },
+          { label: 'Alarm kurma', text: 'Kioskun alarmı operatör ekranından kurulur.' },
+        ],
+      },
+      {
+        heading: 'Güvenlik ve uzaktan izleme',
+        list: [
+          { label: 'Alarm', text: 'Vandalizm, su baskını, yüksek sıcaklık ve hırsızlık girişiminde devreye girer.' },
+          { label: 'Kamera', text: 'Karanlıkta da görüntü alan kameralar 7/24 çalışır.' },
+          { label: 'Arıza bildirimi', text: 'Arıza ve benzeri durumlar bildirim sistemiyle servis ekibine iletilir.' },
+          { label: 'Kapalı ağ', text: 'Kiosklar kart sistemine internet yerine kapalı bir yerel ağ üzerinden bağlanır.' },
+        ],
+      },
+      {
+        heading: 'Dış mekân kabini, aydınlatma ve reklam',
+        list: [
+          { label: 'Kabin', text: 'Kiosk ve kabin dış mekâna göre üretilir. Kabinin rengi ve görselleri kurumun kart markasına göre hazırlanır; bir durakta iki kiosk ortak bir sundurmanın altında yan yana kurulabilir.' },
+          { label: 'Aydınlatma', text: 'Kabin ışıklarının gece açılıp gündüz kapanma saatleri takvimden ayarlanır.' },
+          { label: 'Reklam', text: 'Ana ekranda reklam oynatılabilir.' },
+        ],
+      },
+      {
+        heading: 'Teknik özellikler',
+        table: {
+          head: ['Özellik', 'Değer'],
+          rows: [
+            ['İşlemler', 'Bakiye yükleme, abonman yükleme, bakiye sorgulama, yeni kart satışı'],
+            ['Nakit', 'Tüm TL banknotları (kabul edilecekler ayarlanır), bozuk para birimi isteğe bağlı'],
+            ['Kredi kartı', 'Temassız, çipli, manyetik şeritli'],
+            ['Para üstü', 'Var; kurumun tercihine göre açılır veya kapatılır'],
+            ['Ulaşım kartı okuma', 'Temassız okuyucu, motorsuz kart haznesi, SAM güvenlik modülü'],
+            ['Kart satışı', '500 kartlık hazne'],
+            ['Operatör', 'Arkadan kilitli kapı ve ayrı operatör ekranı: gün sonu, kasa boşaltma (sayım fişi), alarm kurma'],
+            ['Güvenlik', 'Vandalizm, su baskını, yüksek sıcaklık ve hırsızlık alarmı; karanlıkta görüntü alan kameralar'],
+            ['İzleme', 'Arıza bildirimi'],
+            ['Bağlantı', 'Kapalı yerel ağ'],
+            ['Aydınlatma', 'Takvimle ayarlanan gece/gündüz aydınlatması'],
+            ['Reklam', 'Ana ekranda reklam oynatma'],
+          ],
+        },
+      },
+      {
+        heading: 'Konya Kart deneyimimiz: 58 kiosk',
+        paragraphs: [
+          "Konya Büyükşehir Belediyesi'nin Konya Kart (Elkart) projesinde Nisan 2022'de bozuk para birimi dahil tam donanımlı bir test cihazı sahaya kondu; ardından Eylül 2023'te 30, Ekim 2024'te 28 kiosk kuruldu. Kiosklar başta Bosna Hersek, Eski Sanayi, Kültürpark ve Kayalı Park olmak üzere toplu taşıma duraklarında günde yaklaşık 60.000 işlem yapıyor.",
+        ],
+        list: [
+          { text: 'Konya Kart projesinin ayrıntıları ve fotoğrafları', href: '/referanslar/konya-buyuksehir-belediyesi/' },
+          { text: 'Tüm referanslarımız', href: '/referanslar/' },
+        ],
+      },
+      {
+        heading: 'Kart dolum kiosku fiyatı neye göre değişir?',
+        paragraphs: [
+          'Fiyat; ödeme birimlerine (kâğıt para, bozuk para, kredi kartı, para üstü), kart satış haznesine, kabin ve sundurma tasarımına, kart sisteminizle entegrasyona ve adede göre değişir. Kullandığınız kart sistemini, kurulum noktalarını ve cihaz sayısını iletin, size özel teklif hazırlayalım.',
+        ],
+      },
+    ],
+    recommended: [], // özel üretim; katalogdaki model kartlarına uymuyor, "Önerilen Modeller" bölümü gizlenir
+    faq: [
+      { q: 'Kart dolum kiosku nedir?', a: 'Yolcunun ulaşım kartına gişeye uğramadan bakiye ve abonman yüklediği, bakiyesini sorguladığı ve yeni kart aldığı self servis cihazdır.' },
+      { q: 'Kart dolum kiosku hangi ödeme yöntemlerini kabul eder?', a: 'Kâğıt para ve kredi kartı (temassız, çipli, manyetik şeritli). Bozuk para birimi isteğe bağlı olarak eklenir.' },
+      { q: 'Bozuk para birimi şart mı?', a: 'Hayır. Konya Kart projesindeki 58 seri kiosk bozuk para birimi olmadan kuruldu; ödeme kâğıt para ve kredi kartıyla alınıyor.' },
+      { q: 'Kiosk para üstü verir mi?', a: 'Verebilir. Para üstü kurumun tercihine göre açılır ya da kapatılır.' },
+      { q: 'Abonman yüklemek için kimlik doğrulaması gerekir mi?', a: 'Hayır. Abonman seçeneği vizeli kartlarda açılır; yolcunun ayrıca kimlik göstermesi gerekmez.' },
+      { q: 'Kiosk yeni ulaşım kartı satabilir mi?', a: 'Evet. Kiosk 500 kartlık haznesinden yeni kart verir.' },
+      { q: 'Kiosk internete bağlı mı çalışır?', a: 'Kiosk, kart sistemine kapalı bir yerel ağ üzerinden bağlanacak şekilde kurulabilir; Konya Kart kioskları bu şekilde çalışıyor.' },
+      { q: 'Kart dolum kiosku dış mekâna kurulabilir mi?', a: 'Evet. Kiosk ve kabin dış mekâna göre üretilir; vandalizm, su baskını, yüksek sıcaklık ve hırsızlığa karşı alarm verir, kameraları karanlıkta da görüntü alır.' },
+      { q: 'Kart dolum kiosku fiyatı nedir?', a: 'Fiyat; ödeme birimlerine, kart haznesine, kabin tasarımına, entegrasyon ihtiyacına ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+    ],
+  },
+  {
     // Türkiye'de bu cihaz "ATM" diye aranıyor (döviz bozdurma atm, altın veren atm, atm makinesi); "kiosk" ikincil.
     slug: 'doviz-altin-atm',
     name: "Döviz ve Altın ATM'leri",
@@ -504,6 +616,7 @@ export const useCases: UseCase[] = [
         ],
         list: [
           { text: 'Tahsilat kiosku referanslarımız', href: '/referanslar/' },
+          { text: 'Ulaşım kartı dolum kiosku: Konya Kart projesinde 58 cihaz', href: '/kullanim-alanlari/ulasim-karti-dolum-kiosku/' },
           { text: 'Fatura ödeme kiosku', href: '/kullanim-alanlari/fatura-odeme-kiosku/' },
         ],
       },

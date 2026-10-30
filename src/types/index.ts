@@ -53,6 +53,15 @@ export interface Reference {
   group: string;
   note: string;
   logoBg?: 'dark'; // logo beyaz öğeler içeriyorsa koyu zemin kullan
+  useCases?: string[]; // useCases.ts slug'ları: referans sayfasında "İlgili Kullanım Alanları" olarak listelenir
+  // Ayrıntılı proje sayfası (isteğe bağlı): verilmezse sayfa name ve note alanlarından üretilir
+  title?: string;
+  description?: string;
+  h1?: string;
+  intro?: string;
+  facts?: { value: string; label: string }[]; // başlığın altındaki rakam şeridi, örn. { value: '58', label: 'kiosk' }
+  sections?: ContentSection[];
+  faq?: { q: string; a: string }[];
 }
 
 export interface UseCase {
