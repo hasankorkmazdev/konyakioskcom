@@ -1,0 +1,20 @@
+---
+// Sayfa bölümü: tam genişlik şerit, ortalanmış kapsayıcı ve isteğe bağlı H2 başlık.
+// `split` verilirse içerik iki sütuna bölünür (her sütun bir alt öğe).
+interface Props {
+  title?: string;
+  tone?: 'default' | 'alt';
+  width?: 'default' | 'narrow';
+  split?: boolean;
+  as?: 'section' | 'article';
+  class?: string;
+}
+const { title, tone = 'default', width = 'default', split = false, as: Tag = 'section', class: cls } = Astro.props;
+---
+
+<Tag class:list={['section', { alt: tone === 'alt' }, cls]}>
+  <div class:list={['container', { narrow: width === 'narrow', split }]}>
+    {title && <h2>{title}</h2>}
+    <slot />
+  </div>
+</Tag>

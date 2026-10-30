@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import Cta from '../components/sections/Cta.astro';
+import Button from '../components/ui/Button.astro';
+import PageHead from '../components/ui/PageHead.astro';
 import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
 
 const faq = [
   { q: 'Ucuz kiosk almak mantıklı mı?', a: 'Kiosk sürekli çalışan bir cihazdır. Yalnızca başlangıç maliyetine bakmak yerine ekran kalitesi, gövde dayanımı ve destek süresini birlikte değerlendirmek gerekir.' },
@@ -16,9 +18,7 @@ const faq = [
   crumbs={[{ name: 'Uygun Maliyetli Kiosk', path: '/uygun-maliyetli-kiosk/' }]}
   faq={faq}
 >
-  <section class="page-head container narrow prose">
-    <h1>Uygun Maliyetli Kiosk Nasıl Seçilir?</h1>
-    <p class="lead">Bütçenize uygun kiosk, en ucuz kiosk demek değildir; ihtiyacınıza tam uyan, gereksiz donanım içermeyen ve uzun süre sorunsuz çalışan kiosktur.</p>
+  <PageHead title="Uygun Maliyetli Kiosk Nasıl Seçilir?" lead="Bütçenize uygun kiosk, en ucuz kiosk demek değildir; ihtiyacınıza tam uyan, gereksiz donanım içermeyen ve uzun süre sorunsuz çalışan kiosktur." width="narrow" class="prose">
     <h2>Maliyeti belirleyen unsurlar</h2>
     <ul class="ticks">
       <li>Ekran boyutu: 21, 24 veya 32 inç</li>
@@ -29,8 +29,11 @@ const faq = [
     </ul>
     <h2>Doğru başlangıç</h2>
     <p>Kullanım alanınızı, günlük kullanıcı sayınızı ve ihtiyaç duyduğunuz çevre birimlerini bize iletin; gereksiz özellikler için ödeme yapmadan size uygun yapılandırmayı birlikte belirleyelim.</p>
-    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a><a class="btn btn-outline" href="/urunler/">Modelleri İnceleyin</a></div>
-  </section>
+    <Fragment slot="actions">
+      <Button href="/iletisim/">İletişime Geçin</Button>
+      <Button href="/urunler/" variant="secondary">Modelleri İnceleyin</Button>
+    </Fragment>
+  </PageHead>
   <Faq items={faq} />
   <Cta />
 </Base>

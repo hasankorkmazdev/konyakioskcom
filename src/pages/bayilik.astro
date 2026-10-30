@@ -1,7 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import Section from '../components/ui/Section.astro';
+import PageHead from '../components/ui/PageHead.astro';
+import Card from '../components/ui/Card.astro';
+import DealerForm from '../components/forms/DealerForm.astro';
 import Faq from '../components/sections/Faq.astro';
-import DealerForm from '../components/sections/DealerForm.astro';
+import Cta from '../components/sections/Cta.astro';
 import { generalInformation, waLink } from '../data/generalInformation';
 
 const benefits = [
@@ -31,52 +36,38 @@ const faq = [
   crumbs={[{ name: 'Bayilik', path: '/bayilik/' }]}
   faq={faq}
 >
-  <section class="page-head container">
-    <h1>Vectanom Kiosk Bayisi Olun</h1>
-    <p class="lead">IT sektöründe faaliyet gösteren firmalarla, şehir bazında tek bayi modeliyle çalışıyoruz.</p>
-  </section>
+  <PageHead title="Vectanom Kiosk Bayisi Olun" lead="IT sektöründe faaliyet gösteren firmalarla, şehir bazında tek bayi modeliyle çalışıyoruz." />
 
-  <section class="section">
-    <div class="container">
-      <h2>Bayilere Sunduklarımız</h2>
-      <div class="grid">
-        {benefits.map((b) => <div class="card"><h3>{b.t}</h3><p>{b.d}</p></div>)}
-      </div>
+  <Section title="Bayilere Sunduklarımız">
+    <div class="grid">
+      {benefits.map((b) => <Card title={b.t} text={b.d} />)}
     </div>
-  </section>
+  </Section>
 
-  <section class="section alt">
-    <div class="container split">
-      <div>
-        <h2>Bayilik Şartları</h2>
-        <ul class="ticks">
-          <li>IT sektöründe faaliyet gösteriyor olmak</li>
-          <li>Başvurulan şehirde başka bir bayinin bulunmaması</li>
-        </ul>
-        <h2>Süreç Nasıl İşler?</h2>
-        <ol>
-          {steps.map((s) => <li><strong>{s.t}:</strong> {s.d}</li>)}
-        </ol>
-      </div>
-      <div>
-        <h2>Bayilik Başvurusu</h2>
-        <DealerForm />
-      </div>
+  <Section tone="alt" split>
+    <div>
+      <h2>Bayilik Şartları</h2>
+      <ul class="ticks">
+        <li>IT sektöründe faaliyet gösteriyor olmak</li>
+        <li>Başvurulan şehirde başka bir bayinin bulunmaması</li>
+      </ul>
+      <h2>Süreç Nasıl İşler?</h2>
+      <ol>
+        {steps.map((s) => <li><strong>{s.t}:</strong> {s.d}</li>)}
+      </ol>
     </div>
-  </section>
+    <div>
+      <h2>Bayilik Başvurusu</h2>
+      <DealerForm />
+    </div>
+  </Section>
 
   <Faq items={faq} title="Bayilik hakkında sık sorulanlar" />
 
-  <section class="cta">
-    <div class="container cta-in">
-      <div>
-        <h2>Bayilik hakkında görüşelim</h2>
-        <p>Sorularınız için e-posta veya WhatsApp üzerinden bize ulaşın.</p>
-      </div>
-      <div class="cta-btns">
-        <a class="btn btn-white" href={`mailto:${generalInformation.email}?subject=Bayilik`}>E-posta Gönderin</a>
-        <a class="btn btn-ghost" href={waLink('Merhaba, Vectanom Kiosk bayiliği hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </section>
+  <Cta title="Bayilik hakkında görüşelim" text="Sorularınız için e-posta veya WhatsApp üzerinden bize ulaşın.">
+    <Fragment slot="actions">
+      <Button href={`mailto:${generalInformation.email}?subject=Bayilik`}>E-posta Gönderin</Button>
+      <Button href={waLink('Merhaba, Vectanom Kiosk bayiliği hakkında bilgi almak istiyorum.')} external variant="secondary">WhatsApp</Button>
+    </Fragment>
+  </Cta>
 </Base>

@@ -1,0 +1,25 @@
+---
+// Kurum logoları şeridi: her logo kendi referans sayfasına gider; logosu olmayan kurumun adı yazılır.
+import type { Reference } from '../../types';
+import { logos } from '../../data/galeri';
+
+interface Props {
+  refs: Reference[];
+}
+const { refs } = Astro.props;
+---
+
+<div class="logo-strip">
+  {refs.map((r) => (
+    <a href={`/referanslar/${r.slug}/`} title={r.name} class={r.logoBg ? 'dark' : ''}>
+      {logos[r.slug] ? <img src={logos[r.slug].src} alt={r.name} width={logos[r.slug].w} height={logos[r.slug].h} loading="lazy" /> : <span>{r.name}</span>}
+    </a>
+  ))}
+</div>
+
+<style>
+  .logo-strip { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: center; justify-content: center; }
+  a, span { display: inline-flex; align-items: center; min-height: 48px; color: var(--muted); font-weight: 700; text-decoration: none; }
+  img { max-height: 64px; width: auto; max-width: 170px; object-fit: contain; }
+  a.dark { padding: .4rem .9rem; background: var(--brand-dark); border-radius: var(--radius-sm); }
+</style>

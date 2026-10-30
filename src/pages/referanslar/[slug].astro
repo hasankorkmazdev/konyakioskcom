@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import Button from '../../components/ui/Button.astro';
+import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import TagList from '../../components/ui/TagList.astro';
+import MoreLink from '../../components/ui/MoreLink.astro';
+import Photo from '../../components/ui/Photo.astro';
+import ContentSections from '../../components/kiosk/ContentSections.astro';
+import Gallery from '../../components/kiosk/Gallery.astro';
+import LogoStrip from '../../components/kiosk/LogoStrip.astro';
+import Faq from '../../components/sections/Faq.astro';
+import Cta from '../../components/sections/Cta.astro';
+import { references } from '../../data/references';
+import { getGroup, logos } from '../../data/galeri';
+import { useCases } from '../../data/useCases';
+
+export function getStaticPaths() {
+  return references.map((r) => ({ params: { slug: r.slug }, props: { r } }));
+}
+const { r } = Astro.props;
+const photos = getGroup(r.group).photos;
+const logo = logos[r.slug];
+const related = useCases.filter((u) => r.useCases?.includes(u.slug));
+const others = references.filter((x) => x.slug !== r.slug);
+const description = r.description ?? `${r.name} kiosk projesi: ${r.note}.${photos.length ? ' Yerinde çekilmiş proje fotoğrafları' : ' Projede kullanılan kiosk çözümleri'} – Vectanom.`;
+const faq = r.faq ?? [];
+---
+
+<Base
+  title={r.title ?? `${r.name} Kiosk Projesi | Referanslar – Vectanom`}
+  description={description}
+  path={`/referanslar/${r.slug}/`}
+  image={photos[0]?.download}
+  crumbs={[{ name: 'Referanslar', path: '/referanslar/' }, { name: r.name, path: `/referanslar/${r.slug}/` }]}
+  faq={faq}
+>
+  <PageHead title={r.h1 ?? `${r.name} Kiosk Projesi`} lead={r.intro ?? `${r.note}.`}>
+    {logo && <div slot="top" class:list={['ref-badge', { dark: r.logoBg }]}><img src={logo.src} alt={`${r.name} logosu`} width={logo.w} height={logo.h} /></div>}
+    <Button slot="actions" href="/iletisim/">Benzer Proje İçin İletişime Geçin</Button>
+    {photos[0] && <Photo slot="figure" photo={photos[0]} size="large" eager />}
+  </PageHead>
+
+  {(r.facts || r.sections) && (
+    <Section as="article" width="narrow" class="prose">
+      {r.facts && (
+        <dl class="facts">
+          {r.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+        </dl>
+      )}
+      {r.sections && <ContentSections sections={r.sections} />}
+    </Section>
+  )}
+
+  {photos.length > 1 && (
+    <Section title="Proje Fotoğrafları" tone="alt">
+      <Gallery photos={photos} />
+    </Section>
+  )}
+
+  {related.length > 0 && (
+    <Section title="İlgili Kullanım Alanları">
+      <TagList items={related.map((u) => ({ label: u.name, href: `/kullanim-alanlari/${u.slug}/` }))} />
+    </Section>
+  )}
+
+  {faq.length > 0 && <Faq items={faq} />}
+
+  <Section title="Diğer Referanslar">
+    <LogoStrip refs={others} />
+    <MoreLink href="/referanslar/" center>Tüm referanslar</MoreLink>
+  </Section>
+
+  <Cta text="Kurumunuz için kiosk tahsilat veya bilgilendirme çözümü mü arıyorsunuz? Projenizi anlatın." />
+</Base>
+
+<style>
+  /* başlığın üstündeki kurum logosu */
+  .ref-badge { display: inline-grid; place-items: center; min-height: 84px; margin-bottom: 1rem; padding: .7rem 1.1rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+  .ref-badge img { max-height: 64px; max-width: 200px; width: auto; height: auto; object-fit: contain; }
+  .ref-badge.dark { background: var(--brand-dark); border-color: var(--brand-dark); }
+  /* proje rakamları: değer üstte büyük, etiket altta */
+  .facts { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin: 0 0 2rem; }
+  .facts div { display: flex; flex-direction: column-reverse; padding: .9rem 1rem; text-align: center; background: var(--brand-soft); border-radius: var(--radius); }
+  .facts dt { color: var(--muted); font-size: .93rem; }
+  .facts dd { margin: 0; color: var(--brand-dark); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+</style>

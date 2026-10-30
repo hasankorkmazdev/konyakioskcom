@@ -1,6 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import Photo from '../../components/ui/Photo.astro';
+import KioskArt from '../../components/kiosk/KioskArt.astro';
 import Cta from '../../components/sections/Cta.astro';
+import { useCaseCover } from '../../data/galeri';
 import { useCases } from '../../data/useCases';
 ---
 
@@ -10,23 +15,51 @@ import { useCases } from '../../data/useCases';
   path="/kullanim-alanlari/"
   crumbs={[{ name: 'Kullanım Alanları', path: '/kullanim-alanlari/' }]}
 >
-  <section class="page-head container">
-    <h1>Kiosk Kullanım Alanları</h1>
-    <p class="lead">Self servis sipariş, sıramatik, kitap iade ve bilgilendirme gibi ihtiyacınıza uygun kiosk çözümlerini inceleyin.</p>
-  </section>
+  <PageHead title="Kiosk Kullanım Alanları" lead="Self servis sipariş, sıramatik, kitap iade ve bilgilendirme gibi ihtiyacınıza uygun kiosk çözümlerini inceleyin." />
 
-  <section class="section">
-    <div class="container">
-      <div class="grid">
-        {useCases.map((u) => (
-          <a class="card" href={`/kullanim-alanlari/${u.slug}/`}>
-            <h2 style="font-size:1.15rem">{u.name}</h2>
-            <p>{u.description}</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Section>
+    <ul class="uc-list">
+      {useCases.map((u, i) => {
+        const photo = useCaseCover(u.slug);
+        return (
+          <li>
+            <a class="uc-card" href={`/kullanim-alanlari/${u.slug}/`}>
+              <div class="uc-media">{photo ? <Photo photo={photo} eager={i < 4} /> : <KioskArt />}</div>
+              <div class="uc-body">
+                <h2>{u.name}</h2>
+                <p>{u.description}</p>
+                <span class="uc-more">İncele <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </Section>
 
   <Cta />
 </Base>
+
+<style>
+  /* solda kapak görseli, sağda metin olan kartlar */
+  .uc-list { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); margin: 0; padding: 0; list-style: none; }
+  .uc-card { display: grid; grid-template-columns: 40% 1fr; height: 100%; overflow: hidden; color: var(--ink); text-decoration: none; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); transition: box-shadow .15s, transform .15s; }
+  .uc-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .uc-media { position: relative; min-height: 240px; background: #fff; border-right: 1px solid var(--line); }
+  .uc-media :global(.photo) { position: absolute; inset: 0; width: 100%; height: 100%; padding: 1rem; object-fit: contain; object-position: center; transition: transform .25s; }
+  .uc-card:hover .uc-media :global(.photo) { transform: scale(1.04); }
+  .uc-media :global(.photo-ph svg) { width: 46%; }
+  .uc-body { display: flex; flex-direction: column; padding: 1.3rem 1.3rem 1.2rem; }
+  .uc-body h2 { margin-bottom: .45em; font-size: 1.15rem; }
+  .uc-body p { margin: 0 0 1rem; color: var(--muted); font-size: .95rem; }
+  .uc-more { margin-top: auto; color: var(--brand); font-weight: 600; font-size: .95rem; }
+  .uc-card:hover .uc-more { color: var(--brand-dark); }
+  @media (max-width: 560px) {
+    .uc-card { grid-template-columns: 36% 1fr; }
+    .uc-media { min-height: 200px; }
+    .uc-media :global(.photo) { padding: .6rem; }
+    .uc-body { padding: 1rem 1rem .9rem; }
+    .uc-body h2 { font-size: 1.05rem; }
+    .uc-body p { margin-bottom: .7rem; font-size: .9rem; }
+  }
+</style>

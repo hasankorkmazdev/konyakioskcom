@@ -1,0 +1,35 @@
+---
+// Sayfa başlığı: H1, giriş metni ve butonlar; `figure` slot'u doluysa sağda görselle iki sütun olur.
+// Slot'lar: `top` (başlığın üstü, ör. logo), varsayılan (giriş metninin altı), `actions` (butonlar), `figure` (görsel).
+interface Props {
+  title: string;
+  lead?: string;
+  width?: 'default' | 'narrow';
+  class?: string;
+}
+const { title, lead, width = 'default', class: cls } = Astro.props;
+// Slot'lar koşullu verilebilir ({x && <img slot="figure" />}); Astro.slots.has bu durumda da true döner,
+// bu yüzden içerik gerçekten boş mu diye render edip bakılır.
+const render = async (name: string) => (Astro.slots.has(name) ? (await Astro.slots.render(name)).trim() : '');
+const actions = await render('actions');
+const figure = await render('figure');
+---
+
+<section class:list={['page-head container', { split: figure, narrow: width === 'narrow' }, cls]}>
+  <div>
+    <slot name="top" />
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+    {actions && <div class="btns"><Fragment set:html={actions} /></div>}
+  </div>
+  {figure && <div class="figure"><Fragment set:html={figure} /></div>}
+</section>
+
+<style>
+  .page-head { padding: 2rem 0 1rem; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 70ch; }
+  /* görsel kutusu: zemin beyaz, görsel 4:5 oranda ortalı */
+  .figure { display: grid; place-items: center; padding: 1rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); }
+  .figure :global(.photo) { aspect-ratio: 4 / 5; max-height: 520px; width: 100%; object-fit: contain; object-position: center; background: transparent; }
+</style>

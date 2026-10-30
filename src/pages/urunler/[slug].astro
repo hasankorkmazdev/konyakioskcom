@@ -1,10 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import ProductCover from '../../components/ui/ProductCover.astro';
-import Gallery from '../../components/sections/Gallery.astro';
-import { photosOf, productPhotoGroups } from '../../data/galeri';
-import Cta from '../../components/sections/Cta.astro';
+import Button from '../../components/ui/Button.astro';
+import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import TagList from '../../components/ui/TagList.astro';
+import MoreLink from '../../components/ui/MoreLink.astro';
+import ProductCard from '../../components/kiosk/ProductCard.astro';
+import ProductCover from '../../components/kiosk/ProductCover.astro';
+import Gallery from '../../components/kiosk/Gallery.astro';
 import Faq from '../../components/sections/Faq.astro';
+import Cta from '../../components/sections/Cta.astro';
+import { photosOf, productPhotoGroups } from '../../data/galeri';
 import { products } from '../../data/products';
 import { useCases } from '../../data/useCases';
 import { nedirPages } from '../../data/nedir';
@@ -20,63 +26,49 @@ const others = products.filter((x) => x.slug !== p.slug);
 ---
 
 <Base title={p.title} description={p.description} path={`/urunler/${p.slug}/`} image={photos[0]?.download} crumbs={[{ name: 'Ürünler', path: '/urunler/' }, { name: p.name, path: `/urunler/${p.slug}/` }]} faq={p.faq}>
-  <section class="page-head container split">
-    <div>
-      <h1>{p.h1}</h1>
-      <p class="lead">{p.intro}</p>
-      {p.tags.length > 0 && <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>}
-      <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a> <a class="btn btn-ghost-dark" href="/kendi-kioskunu-olustur/">Kendi Kioskunu Oluştur</a></div>
-    </div>
-    <div class="figure"><ProductCover slug={p.slug} size="large" eager /></div>
-  </section>
+  <PageHead title={p.h1} lead={p.intro}>
+    <TagList items={p.tags} />
+    <Fragment slot="actions">
+      <Button href="/iletisim/">İletişime Geçin</Button>
+      <Button href="/kendi-kioskunu-olustur/" variant="secondary">Kendi Kioskunu Oluştur</Button>
+    </Fragment>
+    <ProductCover slot="figure" slug={p.slug} size="large" eager />
+  </PageHead>
 
-  <section class="section">
-    <div class="container split">
-      <div>
-        <h2>Özellikler</h2>
-        <ul class="ticks">{p.features.map((f) => <li>{f}</li>)}</ul>
-      </div>
-      <div>
-        <h2>Kullanım Alanları</h2>
-        <ul class="ticks">{p.uses.map((u) => <li>{u}</li>)}</ul>
-        {related.length > 0 && (
-          <>
-            <h3>Kullanım alanları</h3>
-            <ul class="tags">{related.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
-          </>
-        )}
-      </div>
+  <Section split>
+    <div>
+      <h2>Özellikler</h2>
+      <ul class="ticks">{p.features.map((f) => <li>{f}</li>)}</ul>
     </div>
-  </section>
+    <div>
+      <h2>Kullanım Alanları</h2>
+      <ul class="ticks">{p.uses.map((u) => <li>{u}</li>)}</ul>
+      {related.length > 0 && (
+        <>
+          <h3>Kullanım alanları</h3>
+          <TagList items={related.map((s) => ({ label: s.name, href: `/kullanim-alanlari/${s.slug}/` }))} />
+        </>
+      )}
+    </div>
+  </Section>
 
   {photos.length > 1 && (
-    <section class="section alt">
-      <div class="container">
-        <h2>{p.name} Fotoğrafları</h2>
-        <Gallery photos={photos} />
-        <p style="margin-top:1rem"><a href="/urunler/">Tüm kiosk modelleri →</a></p>
-      </div>
-    </section>
+    <Section title={`${p.name} Fotoğrafları`} tone="alt">
+      <Gallery photos={photos} />
+      <MoreLink href="/urunler/">Tüm kiosk modelleri</MoreLink>
+    </Section>
   )}
 
-  <section class="section">
-    <div class="container">
-      <h2>Diğer Modeller</h2>
-      <div class="grid">
-        {others.map((o) => (
-          <a class="card" href={`/urunler/${o.slug}/`}><h3>{o.name}</h3><p>{o.tags.join(' · ')}</p></a>
-        ))}
-      </div>
+  <Section title="Diğer Modeller">
+    <div class="grid">
+      {others.map((o) => <ProductCard product={o} text={o.tags.join(' · ')} cover={false} />)}
     </div>
-  </section>
+  </Section>
 
   {guides.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <h2>Rehberler</h2>
-        <ul class="tags">{guides.map((g) => <li><a href={`/${g.slug}/`}>{g.h1}</a></li>)}</ul>
-      </div>
-    </section>
+    <Section title="Rehberler">
+      <TagList items={guides.map((g) => ({ label: g.h1, href: `/${g.slug}/` }))} />
+    </Section>
   )}
 
   <Faq items={p.faq} />

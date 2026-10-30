@@ -1,6 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import ProductCover from '../../components/ui/ProductCover.astro';
+import Button from '../../components/ui/Button.astro';
+import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import TagList from '../../components/ui/TagList.astro';
+import ProductCard from '../../components/kiosk/ProductCard.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { products } from '../../data/products';
 ---
@@ -11,22 +15,19 @@ import { products } from '../../data/products';
   path="/urunler/"
   crumbs={[{ name: 'Ürünler', path: '/urunler/' }]}
 >
-  <section class="page-head container">
-    <h1>Kiosk Modelleri</h1>
-    <p class="lead">Kullanım alanınıza uygun kiosk modelleri; ekran, RAM ve disk seçeneklerini de kendiniz belirleyebilirsiniz.</p>
-  </section>
-  <section class="section">
-    <div class="container grid">
+  <PageHead title="Kiosk Modelleri" lead="Kullanım alanınıza uygun kiosk modelleri; ekran, RAM ve disk seçeneklerini de kendiniz belirleyebilirsiniz." />
+  <Section>
+    <div class="grid">
       {products.map((p) => (
-        <a class="card" href={`/urunler/${p.slug}/`}>
-          <ProductCover slug={p.slug} alt={p.name} />
-          <h3>{p.name}</h3>
-          <p>{p.description}</p>
-          {p.tags.length > 0 && <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>}
-        </a>
+        <ProductCard product={p} text={p.description}>
+          <TagList items={p.tags} />
+        </ProductCard>
       ))}
     </div>
-  </section>
-  <section class="section alt"><div class="container"><h2>Kendi kioskunu oluştur</h2><p>Model, ekran, RAM, disk ve ek donanımı seçin; varsayılan 4 GB RAM, 256 GB SSD, 21.5 inç ekran.</p><a class="btn" href="/kendi-kioskunu-olustur/">Kendi Kioskunu Oluştur</a></div></section>
+  </Section>
+  <Section title="Kendi kioskunu oluştur" tone="alt">
+    <p>Model, ekran, RAM, disk ve ek donanımı seçin; varsayılan 4 GB RAM, 256 GB SSD, 21.5 inç ekran.</p>
+    <Button href="/kendi-kioskunu-olustur/">Kendi Kioskunu Oluştur</Button>
+  </Section>
   <Cta />
 </Base>

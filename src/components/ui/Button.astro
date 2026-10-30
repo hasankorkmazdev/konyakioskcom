@@ -1,0 +1,52 @@
+---
+// Ortak buton. `href` verilirse <a>, verilmezse <button type="button"> basar.
+// Renkler CSS değişkenlerinden gelir; koyu zeminde (.hero, .cta) kendiliğinden beyaza döner.
+import type { HTMLAttributes } from 'astro/types';
+
+interface Common {
+  variant?: 'primary' | 'secondary';
+  size?: 'md' | 'sm';
+}
+type LinkProps = Common & HTMLAttributes<'a'> & { href: string; external?: boolean };
+type ButtonProps = Common & HTMLAttributes<'button'> & { href?: never; external?: never };
+type Props = LinkProps | ButtonProps;
+
+const { href, external = false, variant = 'primary', size = 'md', type, class: cls, ...attrs } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class:list={['btn', { 'btn-secondary': variant === 'secondary', 'btn-sm': size === 'sm' }, cls]}
+  href={href}
+  type={href ? undefined : ((type as ButtonProps['type']) ?? 'button')}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+  {...attrs}
+><slot /></Tag>
+
+<style>
+  .btn {
+    --btn-bg: var(--brand); --btn-fg: #fff; --btn-bd: var(--brand);
+    --btn-bg-h: var(--brand-dark); --btn-fg-h: #fff; --btn-bd-h: var(--brand-dark);
+    --btn-ring: rgba(42, 51, 133, .45);
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 48px; padding: .8rem 1.4rem; border: 2px solid var(--btn-bd); border-radius: var(--radius-pill);
+    background: var(--btn-bg); color: var(--btn-fg);
+    font: inherit; font-weight: 600; line-height: 1.2; text-align: center; text-decoration: none;
+    cursor: pointer; transition: background-color .15s, border-color .15s, color .15s;
+  }
+  @media (hover: hover) {
+    .btn:hover:not(:disabled, [aria-disabled="true"]) { background: var(--btn-bg-h); border-color: var(--btn-bd-h); color: var(--btn-fg-h); }
+  }
+  .btn:focus-visible { outline: 3px solid var(--btn-ring); outline-offset: 2px; }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: .6; cursor: not-allowed; }
+  .btn[aria-busy="true"] { cursor: progress; }
+  .btn[aria-busy="true"]::after { content: ""; width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: btn-spin .7s linear infinite; }
+  .btn-secondary { --btn-bg: transparent; --btn-fg: var(--brand); --btn-bg-h: var(--brand-soft); --btn-fg-h: var(--brand-dark); --btn-bd-h: var(--brand); }
+  .btn-sm { min-height: 40px; padding: .35rem 1rem; font-size: .95rem; }
+  /* koyu zemin: birincil beyaz dolgu, ikincil beyaz çerçeve */
+  :global(.hero) .btn, :global(.cta) .btn { --btn-bg: #fff; --btn-fg: var(--brand); --btn-bd: #fff; --btn-bg-h: var(--brand-soft); --btn-fg-h: var(--brand-dark); --btn-bd-h: var(--brand-soft); --btn-ring: #fff; }
+  :global(.hero) .btn-secondary, :global(.cta) .btn-secondary { --btn-bg: transparent; --btn-fg: #fff; --btn-bg-h: rgba(255, 255, 255, .15); --btn-fg-h: #fff; --btn-bd-h: #fff; }
+  @keyframes btn-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn[aria-busy="true"]::after { animation-duration: 2s; } }
+</style>

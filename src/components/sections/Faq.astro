@@ -1,19 +1,31 @@
 ---
+// Açılır soru-cevap listesi. Cevabın sonuna isteğe bağlı bir bağlantı (`link`) eklenebilir.
+// Not: Google için işaretleme (JSON-LD) burada değil, Base'e verilen `faq` ile yapılır.
+import Section from '../ui/Section.astro';
+
+interface Item {
+  q: string;
+  a: string;
+  link?: { href: string; label: string };
+}
 interface Props {
-  items: { q: string; a: string }[];
+  items: Item[];
   title?: string;
 }
 const { items, title = 'Sık Sorulan Sorular' } = Astro.props;
 ---
 
-<section class="section">
-  <div class="container narrow">
-    <h2>{title}</h2>
-    {items.map((f) => (
-      <details class="faq">
-        <summary>{f.q}</summary>
-        <p>{f.a}</p>
-      </details>
-    ))}
-  </div>
-</section>
+<Section title={title} width="narrow">
+  {items.map((f) => (
+    <details class="faq">
+      <summary>{f.q}</summary>
+      <p>{f.a}{f.link && <> <a href={f.link.href}>{f.link.label} <span aria-hidden="true">→</span></a></>}</p>
+    </details>
+  ))}
+</Section>
+
+<style>
+  .faq { margin-bottom: .7rem; padding: .9rem 1.1rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+  summary { font-weight: 600; color: var(--brand-dark); cursor: pointer; }
+  p { margin: .7rem 0 0; color: var(--muted); }
+</style>

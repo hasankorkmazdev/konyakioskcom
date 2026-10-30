@@ -1,0 +1,20 @@
+---
+// Hap şeklinde etiket listesi; öğe `href` içeriyorsa link olur. Boş listede hiçbir şey basmaz.
+interface Tag {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: (string | Tag)[];
+}
+const items = Astro.props.items.map((t) => (typeof t === 'string' ? { label: t } : t));
+---
+
+{items.length > 0 && (
+  <ul class="tags">{items.map((t) => <li>{t.href ? <a href={t.href}>{t.label}</a> : t.label}</li>)}</ul>
+)}
+
+<style>
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0 0; padding: 0; list-style: none; }
+  li { padding: .2rem .7rem; background: var(--brand-soft); color: var(--brand-dark); border-radius: var(--radius-pill); font-size: .88rem; font-weight: 600; }
+</style>

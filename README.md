@@ -40,14 +40,18 @@ konyakiosk/
 ├── src/
 │   ├── pages/            Sayfalar (dosya adı = adres)
 │   ├── layouts/          Base.astro: tüm sayfaların ortak iskeleti
-│   ├── components/
-│   │   ├── layout/       Header, Footer, SeoHead, Breadcrumbs, Analytics
-│   │   ├── sections/     Cta, Faq, Gallery, RefStrip, ContactForm
-│   │   └── ui/           Photo, WhatsAppButton
+│   ├── components/       import'lar yalnızca aşağı akar: pages → sections → kiosk → ui
+│   │   ├── layout/       Base'in parçaları: Header, Footer, Breadcrumbs, SeoHead, Analytics, WhatsAppButton
+│   │   ├── ui/           Veri bilmeyen yapı taşları (data/ import etmez): Button, Section, PageHead, Card, TagList, MoreLink, Photo, Dropdown
+│   │   ├── kiosk/        Site verisini bilen parçalar: ProductCard, ProductCover, KioskArt, Gallery, LogoStrip, ContentSections
+│   │   ├── sections/     Sayfaya olduğu gibi konan bölümler: Cta, Faq, RefStrip, UseCases
+│   │   └── forms/        ContactForm, DealerForm (+ ortak form.css)
 │   ├── data/             Sitenin tüm içeriği (aşağıya bakın)
-│   ├── lib/seo.ts        Google için sayfa bilgisi üreten fonksiyonlar
+│   ├── lib/              seo.ts (Google için sayfa bilgisi), text.ts (firstSentence, formatDate), tr.ts (Türkçe ekler)
+│   ├── scripts/form.ts   Formların ortak gönderimi (doğrulama, çift gönderim engeli, WhatsApp yedeği)
 │   ├── types/index.ts    Veri tipleri (Product, UseCase, Post, ...)
-│   └── styles/global.css Tüm stiller
+│   └── styles/global.css Token'lar (renk, köşe, gölge), temel stiller ve yerleşim yardımcıları;
+│                         component'e ait stil o component'in kendi <style> bloğundadır
 ├── public/               Olduğu gibi yayınlanan dosyalar (_redirects: eski adres yönlendirmeleri)
 │   ├── images/           İşlenmiş fotoğraflar (otomatik üretilir)
 │   ├── favicon.svg

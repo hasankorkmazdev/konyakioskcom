@@ -1,7 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
-import Cta from '../components/sections/Cta.astro';
+import Button from '../components/ui/Button.astro';
+import Section from '../components/ui/Section.astro';
+import PageHead from '../components/ui/PageHead.astro';
+import Card from '../components/ui/Card.astro';
+import TagList from '../components/ui/TagList.astro';
 import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
 import { locations } from '../data/locations';
 import { useCases } from '../data/useCases';
 
@@ -18,29 +23,19 @@ const faq = [
   crumbs={[{ name: 'Konya Kiosk', path: '/konya-kiosk/' }]}
   faq={faq}
 >
-  <section class="page-head container">
-    <h1>Konya Kiosk Çözümleri</h1>
-    <p class="lead">Konya'daki işletme, belediye ve kurumlara dokunmatik kiosk temin ediyoruz. Ürün seçiminden kuruluma ve destek sürecine kadar yanınızdayız.</p>
-    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
-  </section>
+  <PageHead title="Konya Kiosk Çözümleri" lead="Konya'daki işletme, belediye ve kurumlara dokunmatik kiosk temin ediyoruz. Ürün seçiminden kuruluma ve destek sürecine kadar yanınızdayız.">
+    <Button slot="actions" href="/iletisim/">İletişime Geçin</Button>
+  </PageHead>
 
-  <section class="section">
-    <div class="container">
-      <h2>Konya İlçeleri</h2>
-      <div class="grid">
-        {locations.map((l) => (
-          <a class="card" href={`/hizmet-bolgeleri/${l.slug}/`}><h3>{l.name} Kiosk</h3><p>{l.text.split(';')[0]} için kiosk çözümleri.</p></a>
-        ))}
-      </div>
+  <Section title="Konya İlçeleri">
+    <div class="grid">
+      {locations.map((l) => <Card href={`/hizmet-bolgeleri/${l.slug}/`} title={`${l.name} Kiosk`} text={`${l.text.split(';')[0]} için kiosk çözümleri.`} />)}
     </div>
-  </section>
+  </Section>
 
-  <section class="section alt">
-    <div class="container">
-      <h2>Konya'da Kullanım Alanına Göre Kiosk</h2>
-      <ul class="tags">{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
-    </div>
-  </section>
+  <Section title="Konya'da Kullanım Alanına Göre Kiosk" tone="alt">
+    <TagList items={useCases.map((s) => ({ label: s.name, href: `/kullanim-alanlari/${s.slug}/` }))} />
+  </Section>
 
   <Faq items={faq} />
   <Cta />

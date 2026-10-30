@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "gorsel": "node scripts/gorselleri-isle.mjs"
+    "gorsel": "node scripts/gorselleri-isle.mjs",
+    "seo-kontrol": "node scripts/seo-kontrol.mjs",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
@@ -15,6 +17,8 @@
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^5.9.3",
     "wrangler": "^4.147.0"
   }
 }

@@ -1,13 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import Section from '../components/ui/Section.astro';
+import TagList from '../components/ui/TagList.astro';
+import MoreLink from '../components/ui/MoreLink.astro';
 import Photo from '../components/ui/Photo.astro';
-import RefStrip from '../components/sections/RefStrip.astro';
-import ProductCover from '../components/ui/ProductCover.astro';
-import { cover } from '../data/galeri';
-import Cta from '../components/sections/Cta.astro';
-import Faq from '../components/sections/Faq.astro';
-import { products } from '../data/products';
+import ProductCard from '../components/kiosk/ProductCard.astro';
 import UseCases from '../components/sections/UseCases.astro';
+import RefStrip from '../components/sections/RefStrip.astro';
+import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
+import { cover } from '../data/galeri';
+import { products } from '../data/products';
 import { locations } from '../data/locations';
 import { waLink } from '../data/generalInformation';
 
@@ -31,57 +35,54 @@ const faq = [
         <h1>Konya Kiosk: Sıramatik, Sipariş ve Self Servis Kiosk Çözümleri</h1>
         <p>Sıramatik kiosk, sipariş kiosk, totem, haritalama ve klavyeli kiosk modelleri. Kafe, restoran, belediye ve kütüphane için; ekranı, RAM ve diski kendiniz seçerek kendi kioskunuzu oluşturun.</p>
         <div class="btns">
-          <a class="btn btn-white" href="/iletisim/">İletişime Geçin</a>
-          <a class="btn btn-ghost" href={waLink()} target="_blank" rel="noopener">WhatsApp ile Yazın</a>
+          <Button href="/iletisim/">İletişime Geçin</Button>
+          <Button href={waLink()} external variant="secondary">WhatsApp ile Yazın</Button>
         </div>
       </div>
       <div class="hero-photo"><Photo photo={cover("urunler/klavyeli-kiosk")} size="large" eager alt="Klavyeli dokunmatik kiosk 24 inç" /></div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <h2>Kiosk Modellerimiz</h2>
-      <p class="muted">Her model 21, 24 ve 32 inç ekran seçenekleriyle sunulur.</p>
-      <div class="grid">
-        {products.map((p) => (
-          <a class="card" href={`/urunler/${p.slug}/`}>
-            <ProductCover slug={p.slug} alt={p.name} />
-            <h3>{p.name}</h3>
-            <p>{p.description.split('.')[0]}.</p>
-          </a>
-        ))}
-      </div>
+  <Section title="Kiosk Modellerimiz">
+    <p class="muted">Her model 21, 24 ve 32 inç ekran seçenekleriyle sunulur.</p>
+    <div class="grid">
+      {products.map((p) => <ProductCard product={p} />)}
     </div>
-  </section>
+  </Section>
 
   <UseCases />
 
-  <section class="section">
-    <div class="container split">
-      <div>
-        <h2>Neden Vectanom Kiosk?</h2>
-        <ul class="ticks">
-          <li>Express Bilgisayar güvencesi ve Konya merkezli destek</li>
-          <li>Kullanım alanınıza göre model ve donanım danışmanlığı</li>
-          <li>Yazıcı, barkod/QR okuyucu ve kamera entegrasyonu</li>
-          <li>Kendi yazılımınızı veya web uygulamanızı kiosk modunda çalıştırma</li>
-          <li>Türkiye genelinde sevkiyat</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Konya ve İlçelerinde</h2>
-        <p>Selçuklu, Meram, Karatay başta olmak üzere Konya'nın tüm ilçelerine kiosk kurulum ve teslimat hizmeti veriyoruz.</p>
-        <ul class="tags">
-          {locations.map((l) => <li><a href={`/hizmet-bolgeleri/${l.slug}/`}>{l.name}</a></li>)}
-        </ul>
-        <p style="margin-top:1rem"><a href="/konya-kiosk/">Konya kiosk hizmetleri →</a></p>
-      </div>
+  <Section split>
+    <div>
+      <h2>Neden Vectanom Kiosk?</h2>
+      <ul class="ticks">
+        <li>Express Bilgisayar güvencesi ve Konya merkezli destek</li>
+        <li>Kullanım alanınıza göre model ve donanım danışmanlığı</li>
+        <li>Yazıcı, barkod/QR okuyucu ve kamera entegrasyonu</li>
+        <li>Kendi yazılımınızı veya web uygulamanızı kiosk modunda çalıştırma</li>
+        <li>Türkiye genelinde sevkiyat</li>
+      </ul>
     </div>
-  </section>
+    <div>
+      <h2>Konya ve İlçelerinde</h2>
+      <p>Selçuklu, Meram, Karatay başta olmak üzere Konya'nın tüm ilçelerine kiosk kurulum ve teslimat hizmeti veriyoruz.</p>
+      <TagList items={locations.map((l) => ({ label: l.name, href: `/hizmet-bolgeleri/${l.slug}/` }))} />
+      <MoreLink href="/konya-kiosk/">Konya kiosk hizmetleri</MoreLink>
+    </div>
+  </Section>
 
   <RefStrip />
 
   <Faq items={faq} />
   <Cta />
 </Base>
+
+<style>
+  .hero { padding: 4rem 0; background: linear-gradient(135deg, #0b1f5c 0%, #1a46a8 60%, #2f7fd6 100%); color: #fff; }
+  .hero h1 { color: #fff; }
+  .hero p { max-width: 60ch; font-size: 1.15rem; opacity: .95; }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
+  .hero-photo { max-width: 380px; margin-inline: auto; padding: .8rem; background: #fff; border-radius: var(--radius-xl); box-shadow: 0 20px 50px rgba(0, 0, 0, .3); }
+  .hero-photo :global(.photo) { aspect-ratio: 4 / 5; max-height: 440px; width: 100%; object-fit: contain; object-position: center; }
+  @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } }
+</style>

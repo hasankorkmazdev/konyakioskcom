@@ -3,6 +3,7 @@ export type { Reference } from '../types';
 
 // Yeni kurum eklemek: gorsel-kaynak/referanslar/<slug>/ klasörüne fotoğrafları,
 // gorsel-kaynak/referanslar/logolar/<slug>.svg|png dosyasına logoyu koyup `npm run gorsel` çalıştırın.
+// Her kurumun kendi sayfası /referanslar/<slug>/ adresinde otomatik oluşur.
 // Ayrıntılı proje sayfası için title, description, h1, intro, facts, sections ve faq alanları eklenir (Konya Büyükşehir örneği).
 export const references: Reference[] = [
   {
@@ -110,10 +111,10 @@ export const references: Reference[] = [
       { q: 'Konya Kart kiosklarının bulunduğu yerler nereler?', a: 'Kioskların çoğu toplu taşıma duraklarında; Bosna Hersek, Eski Sanayi, Kültürpark ve Kayalı Park durakları en yoğun noktalar arasında.' },
     ],
   },
-  { slug: 'koski', name: 'KOSKİ', group: 'referanslar/koski', note: 'Nakit ve kredi kartlı su bedeli tahsilat kioskları' },
-  { slug: 'kaski', name: 'KASKİ', group: 'referanslar/kaski', note: 'Kahramanmaraş tahsilat kiosku' },
-  { slug: 'sivas-belediyesi', name: 'Sivas Belediyesi', group: 'referanslar/sivas-belediyesi', note: 'Nakit ve kredi kartlı tahsilat kioskları' },
-  { slug: 'igdir-belediyesi', name: 'Iğdır Belediyesi', group: 'referanslar/igdir-belediyesi', note: 'Kiosk tahsilat sistemi', logoBg: 'dark' },
+  { slug: 'koski', name: 'KOSKİ', group: 'referanslar/koski', note: 'Nakit ve kredi kartlı su bedeli tahsilat kioskları', useCases: ['fatura-odeme-kiosku'] },
+  { slug: 'kaski', name: 'KASKİ', group: 'referanslar/kaski', note: 'Kahramanmaraş tahsilat kiosku', useCases: ['fatura-odeme-kiosku'] },
+  { slug: 'sivas-belediyesi', name: 'Sivas Belediyesi', group: 'referanslar/sivas-belediyesi', note: 'Nakit ve kredi kartlı tahsilat kioskları', useCases: ['belediye-siramatik-kiosku', 'fatura-odeme-kiosku'] },
+  { slug: 'igdir-belediyesi', name: 'Iğdır Belediyesi', group: 'referanslar/igdir-belediyesi', note: 'Kiosk tahsilat sistemi', logoBg: 'dark', useCases: ['belediye-siramatik-kiosku', 'fatura-odeme-kiosku'] },
   {
     // Belediye cihazları "Akıllı Vezne" adıyla duyurdu; ilk etaptaki 3 cihaz bizim. Sonraki noktalar başka firmanın olabilir, yazılmaz.
     // Logo: adiyaman.bel.tr/assets/img/logo.svg. Fotoğraf yok; gorsel-kaynak/referanslar/adiyaman-belediyesi/ klasörüne konunca görünür.
@@ -212,5 +213,5 @@ export const references: Reference[] = [
     ],
   },
   { slug: 'necmettin-erbakan-universitesi', name: 'Necmettin Erbakan Üniversitesi', group: 'referanslar/necmettin-erbakan-universitesi', note: 'Üniversite kiosk projesi' },
-  { slug: 'cukurova-havalimani', name: 'Çukurova Uluslararası Havalimanı', group: 'referanslar/cukurova-havalimani', note: 'Havalimanı kiosk projesi' },
+  { slug: 'cukurova-havalimani', name: 'Çukurova Uluslararası Havalimanı', group: 'referanslar/cukurova-havalimani', note: 'Havalimanı kiosk projesi', useCases: ['havalimani-check-in-kiosku'] },
 ];

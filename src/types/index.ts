@@ -93,17 +93,6 @@ export interface ContentSection {
   after?: string[];
 }
 
-export interface NedirListItem {
-  text: string;
-  href?: string; // verilirse madde bir iç bağlantı olur
-}
-
-export interface NedirSection {
-  heading: string;
-  paragraphs?: string[];
-  list?: (string | NedirListItem)[];
-}
-
 export interface Nedir {
   slug: string; // /<slug>/ adresinde yayınlanır, örn. "self-servis-kiosk-nedir"
   title: string;
@@ -114,7 +103,7 @@ export interface Nedir {
   published: string; // YYYY-AA-GG
   modified: string; // içerik güncellendikçe değiştirin
   photoAlt: string;
-  sections: NedirSection[];
+  sections: ContentSection[]; // ContentSections ile yazılır
   product: string; // products.ts slug'ı: sayfada referans verilen bizim ürünümüz
   useCases: string[]; // useCases.ts slug'ları
   related: string[]; // başka nedir sayfalarının slug'ları

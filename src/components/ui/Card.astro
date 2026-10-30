@@ -1,0 +1,26 @@
+---
+// Kart: başlık ve kısa metin; üstte isteğe bağlı görsel (`media` slot'u). `href` verilirse kartın tamamı link olur.
+interface Props {
+  title: string;
+  text?: string;
+  href?: string;
+}
+const { title, text, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag class="card" href={href}>
+  <slot name="media" />
+  <h3>{title}</h3>
+  {text && <p>{text}</p>}
+  <slot />
+</Tag>
+
+<style>
+  .card { display: block; padding: 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); text-decoration: none; transition: box-shadow .15s, transform .15s; }
+  a.card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  h3 { margin-bottom: .4em; }
+  p { margin: 0; color: var(--muted); font-size: .97rem; }
+  /* kapak görseli (Photo veya KioskArt): beyaz zeminli 4:5 kutu */
+  .card :global(.photo) { aspect-ratio: 4 / 5; width: 100%; height: auto; margin-bottom: .8rem; padding: .6rem; object-fit: contain; object-position: center; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); }
+</style>

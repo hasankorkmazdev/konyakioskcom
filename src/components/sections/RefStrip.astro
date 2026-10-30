@@ -1,18 +1,17 @@
 ---
+// Ana sayfadaki "Çalıştığımız Kurumlar" bölümü: tüm referansların logoları.
+import Section from '../ui/Section.astro';
+import MoreLink from '../ui/MoreLink.astro';
+import LogoStrip from '../kiosk/LogoStrip.astro';
 import { references } from '../../data/references';
-import { logos } from '../../data/galeri';
 ---
 
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center">Çalıştığımız Kurumlar</h2>
-    <div class="logo-strip">
-      {references.map((r) => (
-        <a href={`/referanslar/#${r.slug}`} title={r.name} class={r.logoBg ? "dark" : ""}>
-          {logos[r.slug] ? <img src={logos[r.slug].src} alt={r.name} width={logos[r.slug].w} height={logos[r.slug].h} loading="lazy" /> : <span>{r.name}</span>}
-        </a>
-      ))}
-    </div>
-    <p style="text-align:center;margin-top:1.2rem"><a href="/referanslar/">Tüm referanslar →</a></p>
-  </div>
-</section>
+<Section>
+  <h2>Çalıştığımız Kurumlar</h2>
+  <LogoStrip refs={references} />
+  <MoreLink href="/referanslar/" center>Tüm referanslar</MoreLink>
+</Section>
+
+<style>
+  h2 { text-align: center; }
+</style>

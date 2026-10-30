@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import Cta from '../components/sections/Cta.astro';
+import Button from '../components/ui/Button.astro';
+import PageHead from '../components/ui/PageHead.astro';
 import Dropdown from '../components/ui/Dropdown.astro';
+import Cta from '../components/sections/Cta.astro';
 import { configurator as config } from '../data/configurator';
 import { generalInformation } from '../data/generalInformation';
 
@@ -25,10 +27,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
   path="/kendi-kioskunu-olustur/"
   crumbs={[{ name: 'Kendi Kioskunu Oluştur', path: '/kendi-kioskunu-olustur/' }]}
 >
-  <section class="page-head container">
-    <h1>Kendi Kioskunu Oluştur</h1>
-    <p class="lead">Modeli seçin, donanımı ayarlayın. Sağdaki özet seçtikçe güncellenir; hazır olunca teklifi WhatsApp'tan isteyin.</p>
-  </section>
+  <PageHead title="Kendi Kioskunu Oluştur" lead="Modeli seçin, donanımı ayarlayın. Sağdaki özet seçtikçe güncellenir; hazır olunca teklifi WhatsApp'tan isteyin." />
 
   <section class="section">
     <div class="container builder" data-wa={generalInformation.whatsapp} data-rules={JSON.stringify(config.rules)}>
@@ -71,7 +70,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
                 ) : (
                   <div class="field">
                     <span class="lbl" id={`lbl-${grp.id}`}>{grp.label}</span>
-                    <Dropdown name={grp.id} options={grp.options} value={grp.default} labelledby={`lbl-${grp.id}`} />
+                    <Dropdown name={grp.id} options={grp.options} value={typeof grp.default === 'string' ? grp.default : undefined} labelledby={`lbl-${grp.id}`} />
                   </div>
                 );
               })}
@@ -98,8 +97,10 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
         <div class="preview" id="preview" aria-hidden="true"></div>
         <h2 id="sum-title">Standart</h2>
         <ul id="summary-list"></ul>
-        <a id="wa-btn" class="btn" href="#" target="_blank" rel="noopener">WhatsApp ile Teklif İste</a>
-        <a id="contact-btn" class="btn btn-outline" href="/iletisim/">İletişim Formu</a>
+        <div class="sum-actions">
+          <Button id="wa-btn" href="#" external>WhatsApp ile Teklif İste</Button>
+          <Button id="contact-btn" href="/iletisim/" variant="secondary">İletişim Formu</Button>
+        </div>
         <p class="muted">Fiyat, seçiminize göre size özel hazırlanır.</p>
       </aside>
     </div>
@@ -141,7 +142,7 @@ const swatch: Record<string, string> = { Beyaz: '#f4f5f8', Siyah: '#1b1c22', 'Ö
   .summary ul { list-style: none; padding: 0; margin: 0 0 1rem; }
   .summary li { display: flex; justify-content: space-between; gap: 1rem; padding: .35rem 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
   .summary li span:last-child { font-weight: 600; text-align: right; }
-  .summary .btn { display: block; text-align: center; margin-bottom: .5rem; }
+  .sum-actions { display: grid; gap: .5rem; margin-bottom: .5rem; }
 </style>
 
 <script>

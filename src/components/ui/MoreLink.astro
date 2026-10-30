@@ -1,0 +1,15 @@
+---
+// "Tüm … →" bağlantısı: bölümün sonunda kendi satırında durur; ok işareti ekran okuyucuya okunmaz.
+interface Props {
+  href: string;
+  center?: boolean;
+}
+const { href, center = false } = Astro.props;
+---
+
+<p class:list={['more', { center }]}><a href={href}><slot /> <span aria-hidden="true">→</span></a></p>
+
+<style>
+  .more { margin-top: 1.2rem; }
+  .center { text-align: center; }
+</style>

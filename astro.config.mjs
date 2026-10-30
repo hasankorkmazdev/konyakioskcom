@@ -13,6 +13,9 @@ export default defineConfig({
   site: 'https://konyakiosk.com',
   trailingSlash: 'always',
   build: { format: 'directory' },
+  // Geliştirme sunucusu hep 4321'de açılır; port doluysa başka porta kaymak yerine hata verir.
+  server: { port: 4321 },
+  vite: { server: { strictPort: true } },
   integrations: [
     sitemap({
       serialize(item) {

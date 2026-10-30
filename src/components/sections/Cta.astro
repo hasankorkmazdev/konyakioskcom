@@ -1,21 +1,34 @@
 ---
+// Sayfa sonundaki iletişim şeridi: başlık, kısa metin ve butonlar; butonlar `actions` slot'uyla değiştirilebilir.
+import Button from '../ui/Button.astro';
 import { waLink, generalInformation } from '../../data/generalInformation';
 interface Props {
+  title?: string;
   text?: string;
 }
-const { text = 'Projenizi anlatın, size uygun kiosk modelini birlikte belirleyelim.' } = Astro.props;
+const { title = 'Kiosk için bizimle iletişime geçin', text = 'Projenizi anlatın, size uygun kiosk modelini birlikte belirleyelim.' } = Astro.props;
 ---
 
 <section class="cta">
   <div class="container cta-in">
     <div>
-      <h2>Kiosk için bizimle iletişime geçin</h2>
+      <h2>{title}</h2>
       <p>{text}</p>
     </div>
     <div class="cta-btns">
-      <a class="btn btn-white" href="/iletisim/">İletişim Formu</a>
-      <a class="btn btn-ghost" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn-ghost" href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a>
+      <slot name="actions">
+        <Button href="/iletisim/">İletişim Formu</Button>
+        <Button href={waLink()} external variant="secondary">WhatsApp</Button>
+        <Button href={`tel:${generalInformation.phoneTel}`} variant="secondary">{generalInformation.phoneDisplay}</Button>
+      </slot>
     </div>
   </div>
 </section>
+
+<style>
+  .cta { padding: 2.8rem 0; background: var(--brand); color: #fff; }
+  h2 { margin-bottom: .3em; color: #fff; }
+  p { margin: 0; opacity: .9; }
+  .cta-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: .7rem; }
+</style>

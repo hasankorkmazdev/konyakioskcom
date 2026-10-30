@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/ui/PageHead.astro';
 import Faq from '../components/sections/Faq.astro';
 import Cta from '../components/sections/Cta.astro';
 import { products } from '../data/products';
@@ -14,7 +15,9 @@ const faq = [
 
 // Ürün soruları kendi ürün sayfasında SSS olarak işaretlidir. Burada yalnızca gösterilir ve ürün sayfasına bağlanır;
 // Google aynı soru-cevabın sitede tek bir yerde işaretlenmesini ister.
-const productFaq = products.filter((p) => p.faq.length).map((p) => ({ ...p.faq[0], product: p }));
+const productFaq = products
+  .filter((p) => p.faq.length)
+  .map((p) => ({ ...p.faq[0], link: { href: `/urunler/${p.slug}/`, label: `${p.name} sayfasına git` } }));
 ---
 
 <Base
@@ -24,19 +27,8 @@ const productFaq = products.filter((p) => p.faq.length).map((p) => ({ ...p.faq[0
   crumbs={[{ name: 'Sık Sorulan Sorular', path: '/sss/' }]}
   faq={faq}
 >
-  <section class="page-head container"><h1>Sık Sorulan Sorular</h1></section>
+  <PageHead title="Sık Sorulan Sorular" />
   <Faq items={faq} title="Kiosk hakkında merak edilenler" />
-
-  <section class="section">
-    <div class="container narrow">
-      <h2>Modellere göre sorular</h2>
-      {productFaq.map((f) => (
-        <details class="faq">
-          <summary>{f.q}</summary>
-          <p>{f.a} <a href={`/urunler/${f.product.slug}/`}>{f.product.name} sayfasına git →</a></p>
-        </details>
-      ))}
-    </div>
-  </section>
+  <Faq items={productFaq} title="Modellere göre sorular" />
   <Cta />
 </Base>

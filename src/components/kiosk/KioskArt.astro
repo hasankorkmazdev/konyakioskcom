@@ -1,6 +1,6 @@
 ---
 // Fotoğrafı olmayan kiosk için sade çizim (yer tutucu). Süs amaçlıdır (aria-hidden);
-// başka bir modelin fotoğrafını göstermekten iyidir. Stil: global.css > .photo-ph
+// başka bir modelin fotoğrafını göstermekten iyidir. Kutu ölçüleri `.photo` sınıfından (global.css) gelir.
 interface Props {
   art?: 'standart' | 'totem' | 'desk';
 }
@@ -14,3 +14,8 @@ const { art = 'standart' } = Astro.props;
     {art === 'desk' && <><rect x="10" y="22" width="60" height="38" rx="4" fill="currentColor"/><rect x="14" y="26" width="52" height="30" rx="2" fill="#fff"/><rect x="30" y="60" width="20" height="10" fill="currentColor"/><rect x="18" y="70" width="44" height="6" rx="3" fill="currentColor"/></>}
   </svg>
 </div>
+
+<style>
+  .photo-ph { display: grid; place-items: center; color: #c5cbea; }
+  svg { width: 42%; height: auto; }
+</style>

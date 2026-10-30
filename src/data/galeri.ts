@@ -108,3 +108,21 @@ export const useCasePhotoGroups: Record<string, string[]> = {
   // Görseller gorsel-kaynak/urunler/doviz-altin-atm/ klasörüne konup `npm run gorsel` çalıştırılınca kendiliğinden görünür
   'doviz-altin-atm': ['urunler/doviz-altin-atm'],
 };
+
+/**
+ * Kullanım alanı kapağı (liste kartı, sayfa başı ve paylaşım görseli): kendi gruplarından seçilen fotoğrafın id'si.
+ * Verilmezse ilk fotoğraf kullanılır. Listede iki alan aynı görselle görünmesin diye ilk fotoğrafı ortak olanlar burada ayrılır.
+ */
+const useCaseCoverIds: Record<string, string> = {
+  'self-servis-siparis-kiosku': 'self-servis-kiosk-capraz', // ön görünümün içinde gri zemin kutusu var
+  'havalimani-check-in-kiosku': 'standart-kiosk-beyaz-yan', // ilk fotoğraf hastane ile ortak
+  'bilgilendirme-kiosku': 'yatay-masa-tipi-kiosk-perspektif',
+  'otopark-odeme-kiosku': 'mifare-odeme-kiosku-24-inc-siyah-1', // ilk fotoğrafın içinde gri zemin kutusu var
+  'fatura-odeme-kiosku': 'koski-tahsilat-kiosku-2', // ilk fotoğraf otopark ile ortak; KOSKİ'deki gerçek kurulum
+  'yiyecek-icecek-otomati-kiosku': 'self-servis-kiosk-on-2', // ilk fotoğraf self servis sipariş ile ortak
+};
+
+export function useCaseCover(slug: string): Photo | undefined {
+  const photos = photosOf(...(useCasePhotoGroups[slug] ?? []));
+  return photos.find((p) => p.id === useCaseCoverIds[slug]) ?? photos[0];
+}

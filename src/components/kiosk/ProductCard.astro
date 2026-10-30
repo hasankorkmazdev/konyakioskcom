@@ -1,0 +1,19 @@
+---
+// Ürün kartı: kapak görseli, ürün adı ve kısa metin; metin verilmezse açıklamanın ilk cümlesi yazılır.
+import type { Product } from '../../types';
+import Card from '../ui/Card.astro';
+import ProductCover from './ProductCover.astro';
+import { firstSentence } from '../../lib/text';
+
+interface Props {
+  product: Product;
+  text?: string;
+  cover?: boolean;
+}
+const { product, text = firstSentence(product.description), cover = true } = Astro.props;
+---
+
+<Card href={`/urunler/${product.slug}/`} title={product.name} text={text}>
+  {cover && <ProductCover slot="media" slug={product.slug} alt={product.name} />}
+  <slot />
+</Card>

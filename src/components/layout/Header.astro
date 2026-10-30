@@ -1,5 +1,9 @@
 ---
+// Üst menü: logo, sayfa bağlantıları, Bilgi alt menüsü ve İletişim butonu; dar ekranda hamburger menüye döner (JS'siz, checkbox ile).
+// Bilgi alt menüsü masaüstünde üzerine gelince veya klavyeyle odaklanınca açılır; hamburger menüde hep açık listelenir.
+import Button from '../ui/Button.astro';
 import { generalInformation } from '../../data/generalInformation';
+import { nedirPages } from '../../data/nedir';
 ---
 
 <header class="hdr">
@@ -16,8 +20,68 @@ import { generalInformation } from '../../data/generalInformation';
       <a href="/kullanim-alanlari/">Kullanım Alanları</a>
       <a href="/referanslar/">Referanslar</a>
       <a href="/konya-kiosk/">Konya</a>
+      <div class="sub">
+        <button type="button" class="sub-btn">Bilgi<span class="chev" aria-hidden="true"></span></button>
+        <ul class="sub-menu">
+          {nedirPages.map((n) => <li><a href={`/${n.slug}/`}>{n.h1}</a></li>)}
+          <li><a href="/sss/">Sık Sorulan Sorular</a></li>
+        </ul>
+      </div>
       <a href="/blog/">Blog</a>
-      <a href="/iletisim/" class="btn btn-sm">İletişim</a>
+      <Button href="/iletisim/" size="sm">İletişim</Button>
     </nav>
   </div>
 </header>
+
+<style>
+  .hdr { --hdr-h: 64px; position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--line); }
+  .hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--hdr-h); }
+  .logo { display: flex; align-items: center; gap: .6rem; color: var(--brand-dark); line-height: 1.1; text-decoration: none; }
+  .logo span { display: block; font-size: 1.05rem; }
+  .logo small { display: block; font-size: .68rem; color: var(--muted); }
+  .nav { display: flex; align-items: center; gap: 1.2rem; }
+  .nav a:not(.btn) { color: var(--ink); font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .nav a:not(.btn):hover { color: var(--brand); }
+  .sub { position: relative; }
+  .sub-btn { display: flex; align-items: center; gap: .4rem; padding: 0; font: inherit; font-weight: 500; color: var(--ink); background: none; border: 0; cursor: pointer; }
+  .sub:hover .sub-btn, .sub:focus-within .sub-btn { color: var(--brand); }
+  .chev { width: .45rem; height: .45rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .sub-menu { position: absolute; top: calc(100% + .6rem); right: -.7rem; z-index: 60; display: none; margin: 0; padding: .35rem; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-pop); }
+  .sub-menu::before { content: ""; position: absolute; top: -.7rem; left: 0; right: 0; height: .7rem; }
+  .sub:hover .sub-menu, .sub:focus-within .sub-menu { display: block; }
+  .nav .sub-menu a { display: block; padding: .55rem .7rem; border-radius: var(--radius-xs); white-space: nowrap; }
+  .nav .sub-menu a:hover { background: var(--brand-soft); }
+  .nav-toggle, .burger { display: none; }
+  /* Menü tek satıra yaklaşık 1050px'te sığıyor; altında hamburgere geçer.
+     Açık menü başlığın altındaki tüm ekranı kaplar, sayfa kaymaz; Bilgi grubu ve İletişim butonu sona dizilir. */
+  @media (max-width: 1060px) {
+    .hdr:has(.nav-toggle:checked) { z-index: 70; }
+    :global(html:has(.nav-toggle:checked)) { overflow: hidden; }
+    .hdr-in { position: relative; }
+    .burger { position: relative; display: block; width: 44px; height: 44px; margin-left: auto; cursor: pointer; }
+    .burger span, .burger span::before, .burger span::after { content: ""; position: absolute; left: 10px; width: 24px; height: 3px; background: var(--brand); border-radius: 2px; transition: top .2s, transform .2s, background-color .2s; }
+    .burger span { top: 20px; }
+    .burger span::before { top: -8px; left: 0; }
+    .burger span::after { top: 8px; left: 0; }
+    .nav-toggle:checked + .burger span { background-color: transparent; }
+    .nav-toggle:checked + .burger span::before { top: 0; transform: rotate(45deg); }
+    .nav-toggle:checked + .burger span::after { top: 0; transform: rotate(-45deg); }
+    .nav { position: fixed; inset: calc(var(--hdr-h) + 1px) 0 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: .5rem 1rem 2rem; overflow-y: auto; overscroll-behavior: contain; background: #fff; }
+    .nav-toggle:checked ~ .nav { display: flex; }
+    .nav > a:not(.btn) { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem .25rem; font-size: 1.05rem; white-space: normal; border-bottom: 1px solid var(--line); }
+    .nav > a:not(.btn)::after { content: ""; flex: none; width: .45rem; height: .45rem; border-top: 2px solid var(--muted); border-right: 2px solid var(--muted); transform: rotate(45deg); }
+    .sub { order: 1; margin-top: 1.5rem; }
+    .sub-btn, .sub:hover .sub-btn, .sub:focus-within .sub-btn { padding: 0 .25rem .6rem; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); cursor: default; }
+    .chev { display: none; }
+    .sub-menu { position: static; display: block; padding: 0 1rem; background: var(--brand-soft); border: 0; border-radius: var(--radius-md); box-shadow: none; }
+    .sub-menu::before { display: none; }
+    .sub-menu li + li { border-top: 1px solid var(--line); }
+    .nav .sub-menu a { padding: .85rem 0; white-space: normal; border-radius: 0; }
+    .nav .sub-menu a:hover { background: none; }
+    .nav :global(.btn) { order: 2; width: 100%; min-height: 48px; margin-top: 1.5rem; font-size: 1rem; }
+    .nav-toggle { position: absolute; right: 0; z-index: 2; display: block; width: 44px; height: 44px; margin: 0; opacity: 0; cursor: pointer; }
+  }
+  @media (max-width: 1060px) and (prefers-reduced-motion: reduce) {
+    .burger span, .burger span::before, .burger span::after { transition: none; }
+  }
+</style>

@@ -37,3 +37,17 @@ const item = (x: string | ContentListItem) => (typeof x === 'string' ? { text: x
     </>
   );
 })}
+
+<style>
+  /* adım adım numaralı liste */
+  .steps { margin: 0 0 1.2rem; padding-left: 1.4rem; }
+  .steps li { margin-bottom: .5rem; padding-left: .3rem; }
+  .steps li::marker { color: var(--brand); font-weight: 700; }
+  /* iki sütunlu teknik özellik tablosu; dar ekranda yatay kaydırılır */
+  .table-wrap { overflow-x: auto; margin: 0 0 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); }
+  .spec { width: 100%; border-collapse: collapse; font-size: .97rem; }
+  .spec th, .spec td { padding: .6rem .9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  .spec thead th { background: var(--brand-soft); color: var(--brand-dark); }
+  .spec tbody th { width: 38%; font-weight: 600; color: var(--brand-dark); }
+  .spec tbody tr:last-child th, .spec tbody tr:last-child td { border-bottom: 0; }
+</style>

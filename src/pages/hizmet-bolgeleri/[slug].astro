@@ -1,5 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Button from '../../components/ui/Button.astro';
+import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import TagList from '../../components/ui/TagList.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { locations } from '../../data/locations';
 import { products } from '../../data/products';
@@ -19,30 +23,23 @@ const others = locations.filter((x) => x.slug !== l.slug);
   path={`/hizmet-bolgeleri/${l.slug}/`}
   crumbs={[{ name: 'Konya Kiosk', path: '/konya-kiosk/' }, { name: `${l.name} Kiosk`, path: `/hizmet-bolgeleri/${l.slug}/` }]}
 >
-  <section class="page-head container narrow">
-    <h1>{l.name} Kiosk</h1>
-    <p class="lead">{l.text}</p>
-    <div class="btns"><a class="btn" href="/iletisim/">İletişime Geçin</a></div>
-  </section>
+  <PageHead title={`${l.name} Kiosk`} lead={l.text} width="narrow">
+    <Button slot="actions" href="/iletisim/">İletişime Geçin</Button>
+  </PageHead>
 
-  <section class="section">
-    <div class="container split">
-      <div>
-        <h2>{locative(l.name)} Sunduğumuz Modeller</h2>
-        <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
-      </div>
-      <div>
-        <h2>Kullanım Alanları</h2>
-        <ul class="ticks">{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
-      </div>
+  <Section split>
+    <div>
+      <h2>{locative(l.name)} Sunduğumuz Modeller</h2>
+      <ul class="ticks">{products.map((p) => <li><a href={`/urunler/${p.slug}/`}>{p.name}</a></li>)}</ul>
     </div>
-  </section>
+    <div>
+      <h2>Kullanım Alanları</h2>
+      <ul class="ticks">{useCases.map((s) => <li><a href={`/kullanim-alanlari/${s.slug}/`}>{s.name}</a></li>)}</ul>
+    </div>
+  </Section>
 
-  <section class="section alt">
-    <div class="container">
-      <h2>Diğer Konya İlçeleri</h2>
-      <ul class="tags">{others.map((o) => <li><a href={`/hizmet-bolgeleri/${o.slug}/`}>{o.name}</a></li>)}</ul>
-    </div>
-  </section>
+  <Section title="Diğer Konya İlçeleri" tone="alt">
+    <TagList items={others.map((o) => ({ label: o.name, href: `/hizmet-bolgeleri/${o.slug}/` }))} />
+  </Section>
   <Cta />
 </Base>
