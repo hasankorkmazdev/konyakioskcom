@@ -513,6 +513,13 @@ export const useCases: UseCase[] = [
         ],
       },
       {
+        heading: 'Adıyaman: Yaman Kart yükleme ve fatura ödeme tek cihazda',
+        paragraphs: [
+          "Adıyaman Belediyesi için Haziran 2026'da kurduğumuz 3 akıllı vezne, Yaman Kart yükleme ve tam kart satışını fatura ödemesi ve su kartı yüklemesiyle aynı cihazda topluyor. Tahsilat iki kuruma ait olduğu için her vezne iki ayrı POS cihazıyla çalışıyor: biri ASKİM'in, diğeri Adıyaman Ulaşım'ın.",
+        ],
+        list: [{ text: 'Adıyaman akıllı vezne projesinin ayrıntıları', href: '/referanslar/adiyaman-belediyesi/' }],
+      },
+      {
         heading: 'Kart dolum kiosku fiyatı neye göre değişir?',
         paragraphs: [
           'Fiyat; ödeme birimlerine (kâğıt para, bozuk para, kredi kartı, para üstü), kart satış haznesine, kabin ve sundurma tasarımına, kart sisteminizle entegrasyona ve adede göre değişir. Kullandığınız kart sistemini, kurulum noktalarını ve cihaz sayısını iletin, size özel teklif hazırlayalım.',
@@ -527,6 +534,7 @@ export const useCases: UseCase[] = [
       { q: 'Kiosk para üstü verir mi?', a: 'Verebilir. Para üstü kurumun tercihine göre açılır ya da kapatılır.' },
       { q: 'Abonman yüklemek için kimlik doğrulaması gerekir mi?', a: 'Hayır. Abonman seçeneği vizeli kartlarda açılır; yolcunun ayrıca kimlik göstermesi gerekmez.' },
       { q: 'Kiosk yeni ulaşım kartı satabilir mi?', a: 'Evet. Kiosk 500 kartlık haznesinden yeni kart verir.' },
+      { q: 'Kiosk ulaşım kartı dışında fatura da tahsil edebilir mi?', a: "Evet. Adıyaman'daki akıllı vezneler Yaman Kart yüklemenin yanında ASKİM'e ait fatura ve su kartı ödemesi de alıyor; iki kurumun tahsilatı ayrı POS cihazlarından geçiyor." },
       { q: 'Kiosk internete bağlı mı çalışır?', a: 'Kiosk, kart sistemine kapalı bir yerel ağ üzerinden bağlanacak şekilde kurulabilir; Konya Kart kioskları bu şekilde çalışıyor.' },
       { q: 'Kart dolum kiosku dış mekâna kurulabilir mi?', a: 'Evet. Kiosk ve kabin dış mekâna göre üretilir; vandalizm, su baskını, yüksek sıcaklık ve hırsızlığa karşı alarm verir, kameraları karanlıkta da görüntü alır.' },
       { q: 'Kart dolum kiosku fiyatı nedir?', a: 'Fiyat; ödeme birimlerine, kart haznesine, kabin tasarımına, entegrasyon ihtiyacına ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },

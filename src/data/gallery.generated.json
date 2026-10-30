@@ -340,6 +340,11 @@
   ]
  },
  "logos": {
+  "adiyaman-belediyesi": {
+   "src": "/images/referanslar/logolar/adiyaman-belediyesi.svg",
+   "w": 160,
+   "h": 65
+  },
   "cukurova-havalimani": {
    "src": "/images/referanslar/logolar/cukurova-havalimani.webp",
    "w": 400,
