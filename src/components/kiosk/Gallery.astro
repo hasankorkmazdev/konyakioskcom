@@ -1,32 +1,46 @@
 ---
-// Fotoğraf galerisi: küçük resme tıklayınca büyük hali açılır; isteğe bağlı indir/paylaş bağlantıları.
+// Fotoğraf slider'ı: ortadaki fotoğraf büyük, yanlar küçük ve soluk; 4 saniyede bir sıradaki ortaya gelir
+// (etkin nokta dolarak süreyi gösterir). Yan karta tıklayınca ortaya gelir, ortadakine tıklayınca sıradaki gelir;
+// ortadaki kartın köşesindeki ⤢ düğmesi büyük halini açar.
+// Fare ortadaki kartın üzerindeyken, klavye odağı içindeyken, ekran dışındayken, sekme gizliyken, büyük hali açıkken
+// ya da ziyaretçi durdurduysa dönmez. Telefonda yana kaydırılır. "Hareketi azalt" açıksa kendiliğinden dönmez.
+// Tek fotoğrafta ok ve noktalar çıkmaz. JS yoksa yalnız ilk fotoğraf görünür.
 import type { Photo } from '../../data/galeri';
-import { generalInformation } from '../../data/generalInformation';
 
 interface Props {
   photos: Photo[];
-  actions?: boolean;
-  eager?: boolean;
 }
-const { photos, actions = true, eager = false } = Astro.props;
-const shareUrl = (p: Photo) => `https://wa.me/?text=${encodeURIComponent(`${p.alt} – ${generalInformation.url}${p.download}`)}`;
+const { photos } = Astro.props;
+const count = photos.length;
 ---
 
-<ul class="gallery" data-gallery>
-  {photos.map((p) => (
-    <li>
-      <a class="g-thumb" href={p.large} data-full={p.large} data-alt={p.alt} aria-label={`${p.alt} – büyüt`}>
-        <img src={p.thumb} alt={p.alt} width={Math.round(p.w / 2)} height={Math.round(p.h / 2)} loading={eager ? 'eager' : 'lazy'} decoding="async" />
-      </a>
-      {actions && (
-        <div class="g-actions">
-          <a href={p.download} download={`${p.id}.jpg`}>İndir</a>
-          <a href={shareUrl(p)} target="_blank" rel="noopener">WhatsApp'ta paylaş</a>
-        </div>
-      )}
-    </li>
-  ))}
-</ul>
+<div class="cf" data-coverflow role="region" aria-roledescription="carousel" aria-label="Fotoğraflar">
+  <div class="cf-stage">
+    {photos.map((p, i) => (
+      <figure class:list={['cf-card', { 'is-active': i === 0 }]} data-cf-card data-full={p.large} data-alt={p.alt} aria-roledescription="slide" aria-label={`${i + 1} / ${count}`} aria-hidden={i === 0 ? 'false' : 'true'}>
+        <button type="button" class="cf-media" aria-label={`${p.alt}: sıradaki fotoğrafa geç`} tabindex={i === 0 ? 0 : -1}>
+          <img src={p.thumb} srcset={`${p.thumb} ${Math.round(p.w / 2)}w, ${p.large} ${p.w}w`} sizes="(min-width: 960px) 420px, 80vw" alt={p.alt} width={Math.round(p.w / 2)} height={Math.round(p.h / 2)} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+        </button>
+        <button type="button" class="cf-zoom" data-cf-open aria-label={`${p.alt}: büyüt`} tabindex={i === 0 ? 0 : -1}>⤢</button>
+      </figure>
+    ))}
+  </div>
+
+  <div class="cf-captions">
+    {photos.map((p, i) => <p class:list={['cf-cap', { 'is-active': i === 0 }]} data-cf-caption aria-hidden={i === 0 ? 'false' : 'true'}>{p.alt}</p>)}
+  </div>
+
+  {count > 1 && (
+    <div class="cf-nav">
+      <button type="button" class="cf-btn" data-cf-prev aria-label="Önceki fotoğraf">←</button>
+      <div class="cf-dots">
+        {photos.map((_, i) => <button type="button" class:list={['cf-dot', { 'is-active': i === 0 }]} data-cf-to={i} aria-label={`${i + 1}. fotoğraf`} aria-current={i === 0 ? 'true' : 'false'}><span></span></button>)}
+      </div>
+      <button type="button" class="cf-btn" data-cf-next aria-label="Sonraki fotoğraf">→</button>
+      <button type="button" class="cf-btn cf-toggle" data-cf-toggle aria-label="Dönmeyi durdur"><span aria-hidden="true"></span></button>
+    </div>
+  )}
+</div>
 
 <dialog class="lightbox" id="lightbox" aria-label="Görsel önizleme">
   <button class="lb-close" type="button" aria-label="Kapat">×</button>
@@ -36,32 +50,218 @@ const shareUrl = (p: Photo) => `https://wa.me/?text=${encodeURIComponent(`${p.al
 
 <script>
   const box = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const boxImg = box?.querySelector('img') as HTMLImageElement | null;
+  const boxCap = box?.querySelector('.lb-cap') as HTMLElement | null;
+  const openBox = (full: string, alt: string) => {
+    if (!box || !boxImg || !boxCap || typeof box.showModal !== 'function') return false;
+    boxImg.src = full;
+    boxImg.alt = alt;
+    boxCap.textContent = alt;
+    box.showModal();
+    return true;
+  };
   if (box && !box.dataset.ready) {
     box.dataset.ready = '1';
-    const img = box.querySelector('img') as HTMLImageElement;
-    const cap = box.querySelector('.lb-cap') as HTMLElement;
-    document.addEventListener('click', (e) => {
-      const a = (e.target as HTMLElement).closest('a.g-thumb') as HTMLAnchorElement | null;
-      if (a && typeof box.showModal === 'function') {
-        e.preventDefault();
-        img.src = a.dataset.full!;
-        img.alt = a.dataset.alt || '';
-        cap.textContent = a.dataset.alt || '';
-        box.showModal();
-      } else if (e.target === box || (e.target as HTMLElement).classList.contains('lb-close')) {
-        box.close();
-      }
+    box.addEventListener('click', (e) => {
+      if (e.target === box || (e.target as HTMLElement).classList.contains('lb-close')) box.close();
     });
   }
+
+  document.querySelectorAll<HTMLElement>('[data-coverflow]').forEach((root) => {
+    if (root.dataset.ready) return;
+    root.dataset.ready = '1';
+    const stage = root.querySelector<HTMLElement>('.cf-stage')!;
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-cf-card]')];
+    const captions = [...root.querySelectorAll<HTMLElement>('[data-cf-caption]')];
+    const dots = [...root.querySelectorAll<HTMLElement>('[data-cf-to]')];
+    const toggle = root.querySelector<HTMLElement>('[data-cf-toggle]');
+    const count = cards.length;
+    let current = 0;
+    const state = { stopped: false, hover: false, focus: false, offscreen: true, dialog: false };
+    let mouse = false;
+
+    // Ortadaki kart değişince fare artık onun üzerinde olmayabilir (ya da yeni ortadakinin üzerindedir)
+    const sync = () => {
+      const paused = state.stopped || state.hover || state.focus || state.offscreen || state.dialog || document.hidden;
+      root.classList.toggle('is-paused', paused);
+      if (toggle) {
+        toggle.classList.toggle('is-stopped', state.stopped);
+        toggle.setAttribute('aria-label', state.stopped ? 'Dönmeyi başlat' : 'Dönmeyi durdur');
+      }
+    };
+    const syncHover = () => {
+      state.hover = mouse && cards[current].matches(':hover');
+      sync();
+    };
+
+    // Kartların yeri: ortadaki tam boy, yanındakiler küçük ve soluk, ikinci sıradakiler iyice silik, gerisi görünmez
+    const layout = () => {
+      const wide = stage.clientWidth >= 900;
+      cards.forEach((card, i) => {
+        let offset = i - current;
+        if (offset > count / 2) offset -= count;
+        if (offset < -count / 2) offset += count;
+        const distance = Math.abs(offset);
+        const shift = offset * (wide ? 58 : 66);
+        const scale = distance === 0 ? 1 : distance === 1 ? 0.8 : 0.64;
+        card.style.transform = `translateX(calc(-50% + ${shift}%)) scale(${scale})`;
+        card.style.opacity = distance === 0 ? '1' : distance === 1 ? '.6' : distance === 2 ? '.25' : '0';
+        card.style.filter = distance === 0 ? 'none' : 'grayscale(.3) brightness(.9)';
+        card.style.zIndex = String(10 - distance);
+        card.style.pointerEvents = distance > 1 ? 'none' : 'auto';
+      });
+    };
+
+    const go = (index: number) => {
+      current = (index + count) % count;
+      cards.forEach((card, i) => {
+        const active = i === current;
+        card.classList.toggle('is-active', active);
+        card.setAttribute('aria-hidden', active ? 'false' : 'true');
+        card.querySelectorAll<HTMLElement>('button').forEach((b) => { b.tabIndex = active ? 0 : -1; });
+      });
+      captions.forEach((caption, i) => {
+        caption.classList.toggle('is-active', i === current);
+        caption.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+      });
+      dots.forEach((dot) => {
+        dot.classList.remove('is-active');
+        dot.setAttribute('aria-current', 'false');
+      });
+      if (dots.length) {
+        void root.offsetWidth; // etkin noktanın dolma animasyonu baştan başlasın
+        dots[current].classList.add('is-active');
+        dots[current].setAttribute('aria-current', 'true');
+      }
+      layout();
+      syncHover();
+    };
+
+    layout();
+    window.addEventListener('resize', layout);
+
+    // Yan karta tıklamak onu ortaya getirir, ortadakine tıklamak sıradakini; ⤢ düğmesi büyük halini açar.
+    // Kaydırmadan sonra gelen tıklama yok sayılır.
+    let startX: number | null = null;
+    let startY = 0;
+    let swiped = false;
+    stage.addEventListener('pointerdown', (e) => {
+      startX = e.clientX;
+      startY = e.clientY;
+      swiped = false;
+    });
+    stage.addEventListener('pointerup', (e) => {
+      if (startX === null) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      startX = null;
+      if (count > 1 && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        swiped = true;
+        go(current + (dx < 0 ? 1 : -1));
+      }
+    });
+    stage.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const card = target.closest<HTMLElement>('[data-cf-card]');
+      if (swiped) {
+        swiped = false;
+        return;
+      }
+      if (!card) return;
+      if (target.closest('[data-cf-open]')) {
+        if (openBox(card.dataset.full!, card.dataset.alt || '')) {
+          state.dialog = true;
+          sync();
+        }
+        return;
+      }
+      go(card.classList.contains('is-active') ? current + 1 : cards.indexOf(card));
+    });
+    box?.addEventListener('close', () => {
+      state.dialog = false;
+      sync();
+    });
+
+    if (count < 2) return;
+
+    root.addEventListener('animationend', (e) => {
+      if (e.animationName.includes('cf-fill') && dots[current]?.contains(e.target as Node)) go(current + 1);
+    });
+    dots.forEach((dot) => dot.addEventListener('click', () => go(parseInt(dot.dataset.cfTo!, 10))));
+    root.querySelector('[data-cf-prev]')?.addEventListener('click', () => go(current - 1));
+    root.querySelector('[data-cf-next]')?.addEventListener('click', () => go(current + 1));
+    toggle?.addEventListener('click', () => {
+      state.stopped = !state.stopped;
+      sync();
+    });
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { go(current + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { go(current - 1); e.preventDefault(); }
+    });
+
+    // Yalnız fare ortadaki kartın üzerindeyken dur (fotoğrafa bakılıyor); dokunmatikte "hover" kalıcı olmasın diye yalnız fare
+    stage.addEventListener('pointerover', (e) => { mouse = e.pointerType === 'mouse'; syncHover(); });
+    stage.addEventListener('pointerleave', () => { mouse = false; syncHover(); });
+    // Klavyeyle içinde gezinirken dur (fareyle tıklanan düğme odak alsa da döner)
+    const syncFocus = () => {
+      const focused = document.activeElement;
+      state.focus = !!focused && root.contains(focused) && focused.matches(':focus-visible');
+      sync();
+    };
+    root.addEventListener('focusin', syncFocus);
+    root.addEventListener('focusout', () => setTimeout(syncFocus, 0));
+    document.addEventListener('visibilitychange', sync);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { state.offscreen = !entries[0].isIntersecting; sync(); }, { threshold: 0.35 }).observe(stage);
+    } else {
+      state.offscreen = false;
+    }
+    sync();
+  });
 </script>
 
 <style>
-  .gallery { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin: 0; padding: 0; list-style: none; }
-  li { display: flex; flex-direction: column; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
-  /* küçük resim kutusu: oran kesin 4:5, görsel kutunun içinde mutlak konumlu ve ortalı */
-  .g-thumb { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #fff; cursor: zoom-in; }
-  .g-thumb img { position: absolute; inset: .6rem; display: block; width: calc(100% - 1.2rem); height: calc(100% - 1.2rem); object-fit: contain; object-position: center; }
-  .g-actions { display: flex; flex-wrap: wrap; gap: .3rem .9rem; padding: .5rem .8rem .7rem; font-size: .85rem; background: var(--brand-soft); border-top: 1px solid var(--line); }
+  .cf { --slide-duration: 4s; display: grid; gap: 1rem; overflow-x: clip; }
+  .cf-stage { position: relative; height: min(96vw, 400px); touch-action: pan-y; }
+  /* Kartlar ortada üst üste durur; JS her birine konum, ölçek ve saydamlık verir. JS yoksa yalnız etkin kart görünür. */
+  .cf-card { position: absolute; top: 0; left: 50%; height: 100%; aspect-ratio: 4 / 5; margin: 0; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); transform: translateX(-50%); opacity: 0; transition: transform .7s cubic-bezier(.16, 1, .3, 1), opacity .7s, filter .7s, box-shadow .7s; }
+  .cf-card.is-active { opacity: 1; z-index: 10; box-shadow: var(--shadow-pop); }
+  .cf-media { display: block; width: 100%; height: 100%; padding: .6rem; border: 0; background: none; cursor: pointer; }
+  .cf-media:focus-visible { outline: 2px solid var(--brand); outline-offset: -4px; border-radius: var(--radius); }
+  .cf-media img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+  /* büyütme düğmesi yalnız ortadaki kartta görünür ve tıklanır */
+  .cf-zoom { position: absolute; right: .7rem; bottom: .7rem; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: var(--brand); color: #fff; font-size: 16px; cursor: zoom-in; opacity: 0; pointer-events: none; transition: opacity .4s, background-color .15s; }
+  .cf-card.is-active .cf-zoom { opacity: 1; pointer-events: auto; }
+  .cf-zoom:hover { background: var(--brand-dark); }
+  .cf-zoom:focus-visible { outline: 2px solid var(--brand-dark); outline-offset: 2px; }
+
+  /* Alt yazılar üst üste durur (yükseklik en uzununa göre), etkin olan belirir */
+  .cf-captions { display: grid; }
+  .cf-cap { grid-area: 1 / 1; margin: 0; color: var(--muted); font-size: .95rem; text-align: center; opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s .4s; }
+  .cf-cap.is-active { opacity: 1; visibility: visible; transition: opacity .5s .15s, visibility 0s; }
+
+  /* Noktalar: etkin nokta uzar ve süre boyunca marka rengiyle dolar; dolunca sıradakine geçilir (animationend) */
+  .cf-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem; }
+  .cf-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--brand-dark); font-size: 1.1rem; cursor: pointer; }
+  .cf-btn:hover { background: var(--brand-soft); }
+  .cf-dots { display: flex; align-items: center; }
+  .cf-dot { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 4px; border: 0; background: none; cursor: pointer; }
+  .cf-dot span { position: relative; display: block; width: 8px; height: 8px; overflow: hidden; border-radius: 4px; background: var(--line-strong); transition: width .35s; }
+  .cf-dot:hover span { background: var(--muted); }
+  .cf-dot.is-active span { width: 34px; background: var(--line); }
+  .cf-dot.is-active span::after { content: ""; position: absolute; inset: 0; background: var(--brand); transform: scaleX(0); transform-origin: left; animation: cf-fill var(--slide-duration) linear forwards; }
+  .cf.is-paused .cf-dot.is-active span::after { animation-play-state: paused; }
+  @keyframes cf-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .cf-toggle span { display: block; width: 10px; height: 12px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+  .cf-toggle.is-stopped span { width: 0; height: 0; margin-left: 3px; border-style: solid; border-width: 7px 0 7px 12px; border-color: transparent transparent transparent currentColor; }
+
+  @media (min-width: 640px) { .cf-stage { height: min(60vw, 480px); } }
+  @media (min-width: 960px) { .cf-stage { height: 520px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cf-card { transition: none; }
+    .cf-dot.is-active span::after { transform: scaleX(1); animation: none; }
+    .cf-toggle { display: none; }
+  }
 
   .lightbox { max-width: 96vw; max-height: 96vh; padding: 0; overflow: visible; background: transparent; border: 0; }
   .lightbox::backdrop { background: rgba(10, 12, 40, .82); }
