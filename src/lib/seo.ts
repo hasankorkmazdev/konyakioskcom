@@ -2,7 +2,7 @@
 // Dört iş yapar: tam adres üretmek, paylaşım görselini seçmek, işletme bilgisini vermek,
 // ve sayfaya göre yol (breadcrumb) ile soru-cevap (SSS) bilgisini hazırlamak.
 
-import { generalInformation } from '../data/generalInformation';
+import { generalInformation, mapUrl } from '../data/generalInformation';
 
 export interface Crumb {
   name: string;
@@ -22,14 +22,25 @@ const DEFAULT_OG_IMAGE = '/images/urunler/klavyeli-kiosk/klavyeli-kiosk-24-inc-o
 
 export const ogImageUrl = (image?: string) => absoluteUrl(image ?? DEFAULT_OG_IMAGE);
 
-/** Google'a "bu bir yerel işletme" diyen bilgi. Her sayfada bulunur. */
+/** Google'a "bu bir yerel işletme" diyen bilgi. Her sayfada bulunur; adres ve telefonlar alt bilgide görünür. */
 const businessSchema = () => ({
   '@type': 'LocalBusiness',
   '@id': `${generalInformation.url}/#business`,
   name: generalInformation.name,
   url: generalInformation.url,
-  telephone: generalInformation.phoneTel,
+  telephone: [generalInformation.phoneTel, generalInformation.landlineTel],
   email: generalInformation.email,
+  image: ogImageUrl(),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: generalInformation.address.street,
+    addressLocality: generalInformation.address.district,
+    addressRegion: generalInformation.address.city,
+    postalCode: generalInformation.address.postalCode,
+    addressCountry: generalInformation.address.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: generalInformation.geo.lat, longitude: generalInformation.geo.lng },
+  hasMap: mapUrl,
   description: 'Kafe, büfe, restoran, belediye ve kütüphane için dokunmatik kiosk çözümleri. Klavyeli, yatay ve dikey kiosk; 21, 24 ve 32 inç.',
   areaServed: [{ '@type': 'AdministrativeArea', name: 'Konya' }, { '@type': 'Country', name: 'Türkiye' }],
   parentOrganization: { '@type': 'Organization', name: generalInformation.parent },
@@ -65,7 +76,7 @@ export function buildArticleJsonLd(a: { title: string; description: string; path
     dateModified: a.modified,
     image: ogImageUrl(a.image),
     mainEntityOfPage: absoluteUrl(a.path),
-    author: { '@type': 'Person', name: generalInformation.author },
+    author: { '@type': 'Person', name: generalInformation.author, jobTitle: generalInformation.authorTitle, description: generalInformation.authorBio, url: absoluteUrl(generalInformation.authorPath) },
     publisher: { '@type': 'Organization', name: generalInformation.name, url: generalInformation.url },
   });
 }

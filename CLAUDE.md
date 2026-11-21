@@ -3,7 +3,7 @@
 Vectanom Kiosk (Express Bilgisayar) tanıtım ve talep toplama sitesi. Yapı, komutlar ve veri dosyaları için [README.md](README.md) dosyasına bak.
 Kullanıcıyla konuşurken, içerikte ve commit mesajlarında Türkçe kullan.
 
-Şirket yapısı: Express Bilgisayar ana şirkettir. Gora Yazılım, Express Bilgisayar'ın yazılım şirketidir; kiosk yazılımı ve bakım-servis işlerini yürütür (örneğin Konya Kart kiosklarının bakım ve servisi). Vectanom, dijital pazarlama ve tanıtımda kullanılan kiosk markasıdır; sitede ve içerikte marka olarak Vectanom kullanılır, Gora Yazılım adı yalnızca yazılım ya da servisten söz ederken geçer.
+Şirket yapısı: Express Bilgisayar ana şirkettir. Gora Yazılım, Express Bilgisayar'ın yazılım şirketidir; kiosk yazılımı ve bakım-servis işlerini yürütür (örneğin Konya Kart kiosklarının bakım ve servisi). Vectanom Kiosk, Express Bilgisayar'ın satış ve pazarlama markasıdır; sitede ve içerikte marka olarak Vectanom kullanılır, Gora Yazılım adı yalnızca yazılım ya da servisten söz ederken geçer.
 
 ## Hedef
 

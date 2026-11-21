@@ -6,14 +6,14 @@ import Faq from '../components/sections/Faq.astro';
 import Cta from '../components/sections/Cta.astro';
 
 const faq = [
-  { q: 'Ucuz kiosk almak mantıklı mı?', a: 'Kiosk sürekli çalışan bir cihazdır. Yalnızca başlangıç maliyetine bakmak yerine ekran kalitesi, gövde dayanımı ve destek süresini birlikte değerlendirmek gerekir.' },
-  { q: 'Maliyeti nasıl düşürebilirim?', a: 'Gereksiz donanımı çıkararak (ör. kamera veya klavye), ekran boyutunu ihtiyaca göre seçerek ve yalnızca gerekli çevre birimlerini ekleyerek maliyet optimize edilebilir.' },
+  { q: 'Ucuz kiosk almak mantıklı mı?', a: 'Kiosk sürekli çalışan bir cihazdır. Yalnızca başlangıç maliyetine bakmak yerine ekran kalitesi, gövde dayanımı ve destek süresini birlikte değerlendirmek gerekir. Vectanom kiosklarında 2 yıl garanti vardır; uzatılmış garanti ve bakım-destek sözleşmesi isteğe bağlıdır.' },
+  { q: 'Maliyeti nasıl düşürebilirim?', a: 'Gereksiz donanımı çıkararak (ör. kamera veya klavye), ekran boyutunu ihtiyaca göre seçerek ve yalnızca gerekli çevre birimlerini ekleyerek maliyet optimize edilebilir.', link: { href: '/blog/kiosk-mu-tablet-mi/', label: 'Kiosk mu tablet mi?' } },
 ];
 ---
 
 <Base
   title="Uygun Maliyetli Kiosk | Bütçenize Uygun Kiosk – Vectanom"
-  description="Bütçenize uygun kiosk seçimi: doğru ekran boyutu, model ve donanımla maliyeti optimize edin. Vectanom Kiosk Konya."
+  description="Bütçenize uygun kiosk seçimi: doğru ekran boyutu, model ve donanımla maliyeti optimize edin. 2 yıl garanti, Türkiye geneline kurulum ve servis."
   path="/uygun-maliyetli-kiosk/"
   crumbs={[{ name: 'Uygun Maliyetli Kiosk', path: '/uygun-maliyetli-kiosk/' }]}
   faq={faq}

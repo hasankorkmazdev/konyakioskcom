@@ -3,12 +3,12 @@ import Base from '../layouts/Base.astro';
 import Section from '../components/ui/Section.astro';
 import PageHead from '../components/ui/PageHead.astro';
 import ContactForm from '../components/forms/ContactForm.astro';
-import { generalInformation, waLink } from '../data/generalInformation';
+import { generalInformation, waLink, addressLine, mapUrl } from '../data/generalInformation';
 ---
 
 <Base
   title="İletişim | Vectanom Kiosk Konya"
-  description="Vectanom Kiosk ile iletişime geçin. WhatsApp, telefon veya iletişim formu ile kiosk hakkında bilgi alın."
+  description="Vectanom Kiosk ile iletişime geçin: WhatsApp, telefon, e-posta ve iletişim formu. Merkezimiz Konya Selçuklu'da; kurulum ve servis Türkiye genelinde."
   path="/iletisim/"
   crumbs={[{ name: 'İletişim', path: '/iletisim/' }]}
 >
@@ -21,11 +21,13 @@ import { generalInformation, waLink } from '../data/generalInformation';
       <h2>Bize Ulaşın</h2>
       <ul class="ticks">
         <li>Telefon: <a href={`tel:${generalInformation.phoneTel}`}>{generalInformation.phoneDisplay}</a></li>
+        <li>Sabit hat: <a href={`tel:${generalInformation.landlineTel}`}>{generalInformation.landlineDisplay}</a></li>
         <li>E-posta: <a href={`mailto:${generalInformation.email}`}>{generalInformation.email}</a></li>
         <li>WhatsApp: <a href={waLink()} target="_blank" rel="noopener">Mesaj yazın</a></li>
-        <li>Hizmet bölgesi: Konya ve Türkiye geneli</li>
+        <li>Adres: {addressLine} · <a href={mapUrl} target="_blank" rel="noopener">Haritada aç</a></li>
+        <li>Hizmet bölgesi: Türkiye geneli kurulum ve servis; merkez Konya</li>
       </ul>
-      <p class="muted">Vectanom Kiosk, Express Bilgisayar markasıdır.</p>
+      <p class="muted">Vectanom Kiosk, Express Bilgisayar'ın satış ve pazarlama markasıdır. Garanti, teslimat ve fiyat hakkında kısa cevaplar için <a href="/sss/">sık sorulan sorular</a> sayfasına bakın.</p>
     </div>
   </Section>
 </Base>

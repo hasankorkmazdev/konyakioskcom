@@ -89,7 +89,6 @@ export const productPhotoGroups: Record<string, string[]> = {
   'yatay-kiosk': ['urunler/yatay-kiosk'],
   'dikey-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk', 'urunler/ekonomik-kiosk'],
   'kutuphane-kiosk': ['urunler/kutuphane-kiosk'],
-  'self-kiosk': ['urunler/self-servis-kiosk'],
   'siparis-kiosk': ['urunler/self-servis-kiosk'],
 };
 

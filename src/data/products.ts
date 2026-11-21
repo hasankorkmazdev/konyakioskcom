@@ -180,37 +180,6 @@ export const products: Product[] = [
     ]
   },
   {
-    slug: "self-kiosk",
-    type: "self",
-    name: "Self Kiosk",
-    description: "Self servis kiosk: müşterinin kendi işlemini yaptığı dokunmatik kiosk. Kafe, büfe, restoran ve kamu noktaları için.",
-    intro: "Self kiosk, müşterinin personele ihtiyaç duymadan kendi işlemini tamamlamasını sağlar. Bekleme süresini ve personel yükünü azaltır.",
-    tags: [
-      "Yazıcı",
-      "POS",
-      "QR Okuyucu"
-    ],
-    features: [
-      "Self servis işlem akışına uygun arayüz",
-      "Yazıcı, POS ve QR okuyucu seçeneği",
-      "Gün boyu çalışmaya uygun donanım",
-      "Marka renklerinize uygun tasarım"
-    ],
-    uses: [
-      "Kafe ve restoran",
-      "Büfe ve hızlı satış",
-      "Belediye ve kamu hizmetleri"
-    ],
-    faq: [
-      {
-        q: "Self kiosk hangi işletmelere uygun?",
-        a: "Yoğunlukta sıra oluşan, işlemi müşterinin kendisinin yapabileceği her işletmeye uygundur."
-      }
-    ],
-    title: "Self Kiosk | Vectanom Kiosk Konya",
-    h1: "Self Kiosk"
-  },
-  {
     slug: "totem-kiosk",
     type: "totem",
     name: "Totem Kiosk",
@@ -301,11 +270,12 @@ export const products: Product[] = [
     h1: "Haritalama & Navigasyon Kiosk"
   },
   {
+    // "Self kiosk" ile aynı ürün; eski /urunler/self-kiosk/ adresi buraya 301 ile gelir.
     slug: "siparis-kiosk",
     type: "siparis",
     name: "Self Servis Sipariş Kiosku",
-    description: "Restoran, kafe ve fast food için self servis sipariş kiosku. Müşteri menüyü inceler, ürününü seçer, siparişini hızlıca verir. Konya ve çevresi.",
-    intro: "Restoran, kafe, fast food işletmeleri ve yemek katları için tasarlanan self servis sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini hızlıca oluşturmasını sağlar. Dokunmatik sipariş kiosku, yoğun saatlerde sıra bekleme süresini azaltarak işletmelere daha hızlı ve pratik bir sipariş deneyimi sunar. Konya ve çevresinde restoran, kafe ve işletmeler için self servis kiosk çözümleri sunuyoruz.",
+    description: "Self servis sipariş kiosku (self kiosk): restoran, kafe, fast food için görsel menü, sesli sipariş, POS ve QR ödeme, fiş yazıcısı ve adisyon entegrasyonu.",
+    intro: "Restoran, kafe, fast food işletmeleri ve yemek katları için tasarlanan self servis sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini hızlıca oluşturmasını sağlar. Dokunmatik sipariş kiosku, yoğun saatlerde sıra bekleme süresini azaltarak işletmelere daha hızlı ve pratik bir sipariş deneyimi sunar. Kısaca self kiosk olarak da anılır; Türkiye genelinde kurulum ve servis sağlıyoruz.",
     tags: [
       "POS",
       "QR Ödeme",
@@ -317,20 +287,30 @@ export const products: Product[] = [
       "Sesli sipariş özelliği",
       "POS ve QR ödeme entegrasyonu seçeneği",
       "Fiş yazıcısı",
-      "Mutfak/adisyon sistemi ile entegrasyon"
+      "Mutfak/adisyon sistemi ile entegrasyon",
+      "Yerli üretim; marka renginde gövde ve reklam kaplama seçeneği"
     ],
     uses: [
       "Kafe ve restoran",
       "Fast-food ve büfe",
-      "Pastane ve kahve zincirleri"
+      "Pastane ve kahve zincirleri",
+      "Kantin ve yemek katları"
     ],
     faq: [
       {
         q: "Mevcut adisyon programımıza bağlanır mı?",
         a: `Evet. ${siparisEntegrasyonlariMetni} ile entegre çalışır; farklı bir program için entegrasyon imkânını birlikte değerlendiririz.`
+      },
+      {
+        q: "Self kiosk ile self servis sipariş kiosku aynı şey mi?",
+        a: "Evet. Self kiosk, müşterinin kendi işlemini yaptığı kioskun kısa adıdır; kafe ve restoranda bu işlem sipariş ve ödeme olduğu için sipariş kiosku olarak adlandırılır."
+      },
+      {
+        q: "Sipariş kiosku hangi işletmelere uygun?",
+        a: "Yoğun saatlerde kasada sıra oluşan kafe, restoran, fast food, büfe, pastane ve kantinlere uygundur."
       }
     ],
-    title: "Self Servis Sipariş Kiosku | Vectanom Kiosk Konya",
+    title: "Self Servis Sipariş Kiosku (Self Kiosk) – Vectanom",
     h1: "Self Servis Sipariş Kiosku"
   }
 ];

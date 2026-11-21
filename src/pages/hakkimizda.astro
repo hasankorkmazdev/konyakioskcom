@@ -3,18 +3,32 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/ui/Button.astro';
 import PageHead from '../components/ui/PageHead.astro';
 import Cta from '../components/sections/Cta.astro';
+import { generalInformation, addressLine } from '../data/generalInformation';
 ---
 
 <Base
   title="Hakkımızda | Vectanom Kiosk – Express Bilgisayar"
-  description="Vectanom Kiosk, Express Bilgisayar'ın kiosk markasıdır. Konya merkezli, Türkiye geneline dokunmatik kiosk çözümleri sunar."
+  description="Vectanom Kiosk, Express Bilgisayar'ın satış ve pazarlama markasıdır. Konya merkezli, Türkiye geneline dokunmatik kiosk çözümleri sunar."
   path="/hakkimizda/"
   crumbs={[{ name: 'Hakkımızda', path: '/hakkimizda/' }]}
 >
-  <PageHead title="Hakkımızda" lead="Vectanom Kiosk, Express Bilgisayar'ın kiosk markasıdır." width="narrow" class="prose">
-    <p>Kafe, büfe, restoran, belediye ve kütüphane gibi farklı alanlarda kullanılan dokunmatik kiosk çözümleri sunuyoruz. Klavyeli, yatay, dikey ve kütüphane modellerini 21, 24 ve 32 inç ekran seçenekleriyle temin ediyoruz.</p>
+  <PageHead title="Hakkımızda" lead="Vectanom Kiosk, Express Bilgisayar'ın satış ve pazarlama markasıdır." width="narrow" class="prose">
+    <p>Kafe, büfe, restoran, belediye ve kütüphane gibi farklı alanlarda kullanılan dokunmatik kiosk çözümleri sunuyoruz. Klavyeli, yatay, dikey ve kütüphane modellerini 21, 24 ve 32 inç ekran seçenekleriyle temin ediyoruz. Yerli üreticiyiz: kiosk gövdesini, dış mekân kabinini ve yazılımını kendimiz üretiyoruz; proje bazlı özel üretim ve reklam kaplama yapıyoruz.</p>
     <h2>Yaklaşımımız</h2>
     <p>Her işletmenin ihtiyacı farklıdır. Önce kullanım alanınızı dinler, ardından gereksiz donanım eklemeden size uygun modeli ve yapılandırmayı öneririz.</p>
+    <h2>Garanti, bakım, özel üretim ve proje ortaklığı</h2>
+    <ul class="ticks">
+      <li>Tüm kiosk modellerinde 2 yıl garanti</li>
+      <li>Proje bazlı özel üretim: gövde ölçüsü ve rengi, reklam kaplama, logo ve arayüz tasarımı</li>
+      <li>İsteğe bağlı uzatılmış garanti ile bakım ve destek sözleşmesi</li>
+      <li>Belediye, kurum ve işletme projelerinde <a href="/bayilik/">proje ortaklığı</a>: birlikte teklif hazırlar, birlikte uygularız</li>
+    </ul>
+    <p>Garanti, teslimat ve fiyat hakkında kısa cevaplar <a href="/sss/">sık sorulan sorular</a> sayfasında.</p>
+    <p>Kiosk yazılımını ve bakım-servis işlerini Express Bilgisayar'ın yazılım şirketi Gora Yazılım yürütür; Konya Kart dolum kiosklarının bakım ve servisi bunun örneğidir. Kurduğumuz sistemleri <a href="/referanslar/">referanslar</a> sayfasında görebilirsiniz.</p>
+    <h2 id="yazar">Sitedeki rehberleri kim yazıyor?</h2>
+    <p>{generalInformation.authorBio} Rehberler <a href="/kiosk-nedir/">kiosk nedir</a> sayfasından başlar; kısa yazılar <a href="/blog/">blogda</a>.</p>
+    <h2>Neredeyiz?</h2>
+    <p>Merkezimiz Konya Selçuklu'da: {addressLine}. Kurulum ve servisi Türkiye genelinde yapıyoruz; <a href="/iletisim/">iletişim</a> sayfasından bize ulaşın.</p>
     <Button slot="actions" href="/iletisim/">İletişime Geçin</Button>
   </PageHead>
   <Cta />

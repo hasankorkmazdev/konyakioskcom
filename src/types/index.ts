@@ -24,11 +24,20 @@ export interface Location {
 }
 
 export interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  body: string[];
+  slug: string; // /blog/<slug>/ adresinde yayınlanır
+  title: string; // <title>: en fazla 60 karakter, marka sonda
+  description: string; // 120–155 karakter
+  h1: string;
+  intro: string; // başlığın altındaki giriş
+  summary?: string; // girişin hemen altında kısa cevap
+  published: string; // YYYY-AA-GG
+  modified: string; // içerik esaslı değişince güncellenir
+  photos?: string[]; // galeri.ts grup anahtarları; ilk fotoğraf kapak ve paylaşım görseli olur
+  photoAlt?: string;
+  sections: ContentSection[]; // ContentSections ile yazılır
+  product?: string; // products.ts slug'ı: başlık altındaki ikinci düğme
+  related?: { label: string; href: string }[]; // "Bunlara da bakın" bağlantıları
+  faq?: { q: string; a: string; link?: { href: string; label: string } }[];
 }
 
 export type KioskType = string;
@@ -89,7 +98,7 @@ export interface ContentSection {
   paragraphs?: string[];
   list?: (string | ContentListItem)[];
   ordered?: boolean; // liste adım adım numaralı mı
-  table?: { head: [string, string]; rows: [string, string][] };
+  table?: { head: string[]; rows: string[][] }; // ilk sütun satır başlığıdır; 2 ya da daha çok sütun
   after?: string[];
 }
 

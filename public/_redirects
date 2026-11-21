@@ -11,6 +11,10 @@
 # Blog yazısı kiosk-nedir rehberine dönüştürüldü
 /blog/kiosk-nedir-nerelerde-kullanilir/ /kiosk-nedir/ 301
 /blog/belediyeler-icin-kiosk/ /kullanim-alanlari/belediye-siramatik-kiosku/ 301
+/blog/kafe-kiosk-nasil-secilir/ /restoran-siparis-kiosku-nedir/ 301
 
 # Desk kiosk ile yatay kiosk aynı ürün; tek sayfada birleştirildi
 /urunler/desk-kiosk/ /urunler/yatay-kiosk/ 301
+
+# Self kiosk ile self servis sipariş kiosku aynı ürün; tek sayfada birleştirildi
+/urunler/self-kiosk/ /urunler/siparis-kiosk/ 301

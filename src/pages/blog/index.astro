@@ -4,18 +4,20 @@ import Section from '../../components/ui/Section.astro';
 import PageHead from '../../components/ui/PageHead.astro';
 import Card from '../../components/ui/Card.astro';
 import { posts } from '../../data/posts';
+
+const sorted = [...posts].sort((a, b) => b.published.localeCompare(a.published));
 ---
 
 <Base
   title="Kiosk Blog | Rehberler ve İpuçları – Vectanom Kiosk"
-  description="Kafe için kiosk nasıl seçilir? Ekran yönü, boyut, yazıcı ve yazılım kriterleriyle kiosk seçimi ve kullanım alanları hakkında kısa, pratik rehberler."
+  description="Kiosk seçimi, kiosk ile tablet farkı, ekran boyutu ve kullanım alanları hakkında kısa ve pratik rehberler. İşletmeler ve kurumlar için seçim ipuçları."
   path="/blog/"
   crumbs={[{ name: 'Blog', path: '/blog/' }]}
 >
   <PageHead title="Blog" />
   <Section>
     <div class="grid">
-      {posts.map((p) => <Card href={`/blog/${p.slug}/`} title={p.title} text={p.description} />)}
+      {sorted.map((p) => <Card href={`/blog/${p.slug}/`} title={p.h1} text={p.description} />)}
     </div>
   </Section>
 </Base>

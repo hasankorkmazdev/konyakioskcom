@@ -1,9 +1,18 @@
 ---
+// Blog yazıları: içerik src/data/posts.ts içinde, adres /blog/<slug>/. "Nedir" sayfalarıyla aynı bölüm biçimini kullanır.
 import Base from '../../layouts/Base.astro';
+import Button from '../../components/ui/Button.astro';
 import Section from '../../components/ui/Section.astro';
+import PageHead from '../../components/ui/PageHead.astro';
+import TagList from '../../components/ui/TagList.astro';
+import Photo from '../../components/ui/Photo.astro';
+import ContentSections from '../../components/kiosk/ContentSections.astro';
+import Faq from '../../components/sections/Faq.astro';
+import AuthorBox from '../../components/sections/AuthorBox.astro';
 import Cta from '../../components/sections/Cta.astro';
 import { posts } from '../../data/posts';
-import { nedirPages } from '../../data/nedir';
+import { products } from '../../data/products';
+import { photosOf } from '../../data/galeri';
 import { generalInformation } from '../../data/generalInformation';
 import { buildArticleJsonLd } from '../../lib/seo';
 import { formatDate } from '../../lib/text';
@@ -12,31 +21,40 @@ export function getStaticPaths() {
   return posts.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
-
-// body satırlarını bloklara çevir
-const blocks: { t: 'h2' | 'p' | 'ul'; v: string | string[] }[] = [];
-for (const line of p.body) {
-  if (line.startsWith('## ')) blocks.push({ t: 'h2', v: line.slice(3) });
-  else if (line.startsWith('- ')) {
-    const last = blocks[blocks.length - 1];
-    if (last && last.t === 'ul') (last.v as string[]).push(line.slice(2));
-    else blocks.push({ t: 'ul', v: [line.slice(2)] });
-  } else blocks.push({ t: 'p', v: line });
-}
-
+const product = p.product ? products.find((x) => x.slug === p.product) : undefined;
+const photos = photosOf(...(p.photos ?? []));
+const cover = photos[0];
+const faq = p.faq ?? [];
+const related = p.related ?? [];
 const path = `/blog/${p.slug}/`;
 // "Nedir" sayfalarıyla aynı Article bilgisi: yazar kişi olarak (generalInformation.author) bildirilir.
-const articleLd = buildArticleJsonLd({ title: p.title, description: p.description, path, published: p.date, modified: p.date });
+const articleLd = buildArticleJsonLd({ title: p.h1, description: p.description, path, published: p.published, modified: p.modified, image: cover?.download });
 ---
 
-<Base title={`${p.title} | Vectanom Kiosk`} description={p.description} path={path} type="article" crumbs={[{ name: 'Blog', path: '/blog/' }, { name: p.title, path }]}>
+<Base title={p.title} description={p.description} path={path} type="article" image={cover?.download} crumbs={[{ name: 'Blog', path: '/blog/' }, { name: p.h1, path }]} faq={faq}>
   <script type="application/ld+json" set:html={articleLd} />
+  <PageHead title={p.h1} lead={p.intro}>
+    <p class="post-meta">Yazan: <strong>{generalInformation.author}</strong> · Yayın: <time datetime={p.published}>{formatDate(p.published)}</time>{p.modified !== p.published && <> · Güncelleme: <time datetime={p.modified}>{formatDate(p.modified)}</time></>}</p>
+    <Fragment slot="actions">
+      <Button href="/iletisim/">Teklif Alın</Button>
+      {product && <Button href={`/urunler/${product.slug}/`} variant="secondary">{product.name}</Button>}
+    </Fragment>
+    {cover && <Photo slot="figure" photo={cover} size="large" alt={p.photoAlt ?? p.h1} eager />}
+  </PageHead>
+
   <Section as="article" width="narrow" class="prose">
-    <h1>{p.title}</h1>
-    <p class="post-meta">Yazan: <strong>{generalInformation.author}</strong> · <time datetime={p.date}>{formatDate(p.date)}</time></p>
-    {blocks.map((b) => b.t === 'h2' ? <h2>{b.v}</h2> : b.t === 'ul' ? <ul>{(b.v as string[]).map((x) => <li>{x}</li>)}</ul> : <p>{b.v}</p>)}
-    <p>Daha fazla bilgi için: {nedirPages.map((n, i) => <>{i > 0 && ', '}<a href={`/${n.slug}/`}>{n.h1}</a></>)}.</p>
-    <p>Kiosk seçimi için <a href="/urunler/">modellerimizi</a> inceleyebilir ya da <a href="/iletisim/">bizimle iletişime geçebilirsiniz</a>.</p>
+    {p.summary && <p class="summary">{p.summary}</p>}
+    <ContentSections sections={p.sections} />
+    <AuthorBox />
   </Section>
+
+  {related.length > 0 && (
+    <Section>
+      <h2>Bunlara da Bakın</h2>
+      <TagList items={[...related, { label: 'Tüm yazılar: Blog', href: '/blog/' }]} />
+    </Section>
+  )}
+
+  {faq.length > 0 && <Faq items={faq} />}
   <Cta />
 </Base>

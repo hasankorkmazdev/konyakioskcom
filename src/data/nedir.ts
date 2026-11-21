@@ -169,6 +169,7 @@ export const nedirPages: Nedir[] = [
           { label: 'Kütüphane', text: 'barkod ve kart okuyuculu kütüphane kiosku' },
           { text: 'Seçim adımlarının ayrıntısı: doğru self servis kiosk nasıl seçilir?', href: '/self-servis-kiosk-nedir/' },
           { text: 'Gereksiz donanım eklemeden bütçe kurmak için: uygun maliyetli kiosk', href: '/uygun-maliyetli-kiosk/' },
+          { text: 'Tablet yeter mi? Kiosk mu tablet mi karşılaştırması', href: '/blog/kiosk-mu-tablet-mi/' },
         ],
       },
       {
@@ -180,6 +181,7 @@ export const nedirPages: Nedir[] = [
           'Çevre birimleri: yazıcı, POS, nakit kabul ünitesi, kart ve barkod okuyucu, kamera',
           'Yazılım: hazır kiosk arayüzü mü, mevcut sisteminize entegrasyon mu',
           'Adet, kurulum yeri ve teslimat',
+          'Garanti ve bakım: 2 yıl standart garanti dahildir; uzatılmış garanti ve bakım-destek sözleşmesi isteğe bağlıdır',
         ],
         after: ["İhtiyacınızı iletişim formundan ya da WhatsApp'tan iletin; kullanım alanınıza göre model ve donanım önerisiyle birlikte teklif hazırlayalım."],
       },
@@ -201,13 +203,13 @@ export const nedirPages: Nedir[] = [
   },
   {
     slug: 'self-servis-kiosk-nedir',
-    title: 'Self Servis Kiosk Nedir? Nasıl Çalışır?',
-    description: 'Self servis kiosk nedir, nasıl çalışır, hangi türleri vardır? Kullanım alanları, avantajları ve doğru self servis kiosk seçimi için rehber.',
+    title: 'Self Servis Kiosk Nedir? Fiyatı Neye Bağlı? – Vectanom',
+    description: 'Self servis kiosk nedir, nasıl çalışır, fiyatı neye göre değişir? Türleri, kullanım alanları, geçişte yapılan hatalar ve yerli üreticiden seçim rehberi.',
     h1: 'Self Servis Kiosk Nedir?',
     intro: 'Self servis kiosk, müşterinin personele ihtiyaç duymadan kendi işlemini dokunmatik ekran üzerinden tamamlamasını sağlayan cihazdır. Sipariş vermek, ödeme yapmak, sıra numarası almak ya da bilgi sorgulamak gibi işlemler müşterinin kendi kontrolünde ve kuyruğa girmeden yapılır.',
     summary: 'Kısaca: Self servis kiosk = dokunmatik ekranlı, personelsiz işlem noktası. Sipariş, tahsilat, sıramatik, bilgilendirme ve kitap iadesi gibi tekrarlayan işlemleri üstlenir; kuyruğu ve personel yükünü azaltır.',
     published: '2026-10-02',
-    modified: '2026-10-02',
+    modified: '2026-11-21',
     photoAlt: 'Self servis kiosk, ön görünüm',
     sections: [
       {
@@ -265,6 +267,7 @@ export const nedirPages: Nedir[] = [
         paragraphs: [
           'Tablet ya da bilgisayar, herkesin dokunacağı ve çoğu zaman gözetimsiz duracak bir ortam için tasarlanmamıştır. Kiosk ise sağlam metal gövdesi, sabit duruşu ve kilitli yazılımıyla bu işe göre hazırlanır; yazıcı, POS ve okuyucuları tek gövdede taşıyabilir.',
         ],
+        list: [{ text: 'Ayrıntılı karşılaştırma: kiosk mu tablet mi, hangi işe hangisi yeter?', href: '/blog/kiosk-mu-tablet-mi/' }],
       },
       {
         heading: 'Doğru self servis kiosk nasıl seçilir?',
@@ -276,8 +279,48 @@ export const nedirPages: Nedir[] = [
           'Marka renklerinize uygun tasarım ve satış sonrası destek seçeneklerini değerlendirin',
         ],
       },
+      {
+        heading: 'Self servis kiosk fiyatı neye göre değişir?',
+        paragraphs: [
+          'Self servis sipariş kioskunun fiyatı 2026 itibarıyla donanıma ve seçilen opsiyonlara göre yaklaşık 200.000–350.000 TL aralığındadır; nakit üniteli tahsilat kioskları ve dış mekân kabinli modeller proje bazında fiyatlanır. Aralıktaki yeri şu kalemler belirler:',
+        ],
+        list: [
+          { label: 'Ekran', text: '21, 24 ya da 32 inç; yatay ya da dikey' },
+          { label: 'Gövde', text: 'masa tipi, ayaklı ya da totem; özel ölçü, marka renginde boya ve reklam kaplama' },
+          { label: 'Ödeme birimleri', text: 'POS, temassız okuyucu, QR ödeme; projeye göre nakit kabul ünitesi' },
+          { label: 'Yazıcı ve okuyucular', text: 'fiş yazıcısı, barkod/QR ve kart okuyucu' },
+          { label: 'Yazılım ve entegrasyon', text: 'hazır kiosk arayüzü mü, adisyon, HBYS ya da tahsilat sistemine entegrasyon mu' },
+          { label: 'Adet ve kurulum yeri', text: 'birden çok cihazda birim fiyat düşer; kurulum yeri nakliye ve montajı belirler' },
+        ],
+        after: [
+          'Geri ödeme süresi işletmenin yoğunluğuna bağlıdır: kasada kuyruk oluşan saatler, siparişi alan personelin başka işe kayması ve görsel menünün sipariş tutarına etkisi birlikte değerlendirilir. Günlük sipariş adedinizi ve kasada geçen süreyi iletin; teklifle birlikte bunu da konuşalım.',
+        ],
+      },
+      {
+        heading: 'Self servis kioska geçişte sık yapılan hatalar',
+        paragraphs: ['Kurulumlarda gördüğümüz, cihazdan değil geçiş biçiminden kaynaklanan hatalar:'],
+        list: [
+          { label: 'Kioskun ilk günden yalnız bırakılması', text: 'ilk haftalarda bir personel müşteriyi ekrana yönlendirmeli; alışkanlık oturunca çekilir' },
+          { label: 'Menünün eksik ya da fotoğrafsız aktarılması', text: 'kiosk görsel menüyle satar; fotoğrafsız ürün seçilmez, seçenekleri tanımlanmamış ürün müşteriyi kasaya geri döndürür' },
+          { label: 'Entegrasyonu sona bırakmak', text: 'adisyon ve mutfak bağlantısı sipariş vermeden önce netleşmeli; aksi hâlde kiosk ayrı bir kasa gibi çalışır' },
+          { label: 'Yanlış yer seçimi', text: 'kiosk kasa kuyruğuyla kesişmemeli; giriş akışında, ayrı bir alanda durmalı' },
+          { label: 'Ödeme yöntemini eksik bırakmak', text: 'yemek kartı ve temassız ödeme yoksa müşteri yine kasaya gider' },
+          { label: 'Ekranı küçük seçmek', text: 'kalabalık ve görsel ağırlıklı menüde 21 inç dar kalabilir; 24 ya da 32 inç yatay ekran rahat çalışır' },
+          { label: 'Bakım planı yapmamak', text: 'kâğıt rulo, temizlik ve yazılım güncellemesi için sorumlu belirlenmeli' },
+        ],
+      },
+      {
+        heading: 'Yerli üreticiden almanın farkı',
+        paragraphs: [
+          "Vectanom kiosklarının gövdesi, dış mekân kabini ve yazılımı Türkiye'de, Express Bilgisayar bünyesinde üretilir. Bu, projeye göre özel üretim yapabilmek demektir: farklı ekran boyutu ve gövde ölçüsü, marka renginde boya, reklam kaplama, kurum logosu ve arayüz tasarımı. Yedek parça ve servis de aynı yerden sağlanır.",
+        ],
+        list: [
+          { text: 'Örnek: Konya Kart için 58 dış mekân kiosku, üç etapta', href: '/referanslar/konya-buyuksehir-belediyesi/' },
+          { text: 'Garanti, bakım, özel üretim ve proje ortaklığı', href: '/hakkimizda/' },
+        ],
+      },
     ],
-    product: 'self-kiosk',
+    product: 'siparis-kiosk',
     useCases: ['self-servis-siparis-kiosku', 'belediye-siramatik-kiosku'],
     related: ['kiosk-nedir', 'restoran-siparis-kiosku-nedir', 'kantin-siparis-ve-satis-kiosku-nedir'],
     faq: [
@@ -286,18 +329,19 @@ export const nedirPages: Nedir[] = [
       { q: 'Self servis kiosk hangi işletmelere uygundur?', a: 'Yoğunlukta sıra oluşan ve işlemi müşterinin kendisinin yapabileceği kafe, restoran, büfe, belediye, kütüphane gibi her işletmeye uygundur.' },
       { q: 'Self servis kiosk için internet bağlantısı gerekir mi?', a: 'Sipariş, ödeme ve sorgulama gibi işlemlerin çoğu bir sisteme bağlanmayı gerektirdiği için genellikle internet ya da ağ bağlantısı gerekir. Projenize göre ayrıntıyı birlikte netleştiririz.' },
       { q: 'Self servis kiosk hangi ödeme yöntemlerini destekler?', a: 'Kredi kartı POS, QR ödeme ve projeye göre nakit ödeme ünitesi eklenebilir. Hangi yöntemin kullanılacağı ihtiyaca ve işletmeye göre belirlenir.' },
-      { q: 'Self servis kiosk fiyatı neye göre değişir?', a: 'Ekran boyutuna, yazıcı, POS ve QR okuyucu gibi donanımlara ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+      { q: 'Self servis kiosk fiyatı neye göre değişir?', a: 'Sipariş kioskunda fiyat, donanıma ve opsiyonlara göre yaklaşık 200.000–350.000 TL aralığındadır; ekran boyutu, gövde, ödeme birimleri, yazıcı, yazılım ve adet belirler. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+      { q: 'Özel tasarım ya da reklam kaplama yapıyor musunuz?', a: 'Evet. Yerli üretici olarak proje bazlı özel üretim yapıyoruz: gövde ölçüsü ve rengi, reklam kaplama, logo ve arayüz tasarımı projeye göre hazırlanır.' },
     ],
   },
   {
     slug: 'restoran-siparis-kiosku-nedir',
-    title: 'Restoran Sipariş Kiosku Nedir? Avantajları',
+    title: 'Restoran Sipariş Kiosku Nedir, Nasıl Seçilir? – Vectanom',
     description: 'Restoran sipariş kiosku nedir, nasıl çalışır? Kafe, restoran ve fast food için self servis sipariş kioskunun avantajları ve seçim kriterleri.',
     h1: 'Restoran Sipariş Kiosku Nedir?',
     intro: 'Restoran sipariş kiosku, müşterilerin dokunmatik ekran üzerinden menüyü incelemesini, ürünlerini seçmesini ve siparişini kendi başına oluşturmasını sağlayan self servis cihazdır. Restoran, kafe, fast food işletmeleri ve yemek katlarında kasadaki yoğunluğu azaltmak için kullanılır.',
     summary: 'Kısaca: Restoran sipariş kiosku, kasa yerine müşterinin siparişi kendisinin girdiği dokunmatik ekrandır. Sipariş mutfağa iletilir; ödeme POS veya QR ile alınır, fiş yazıcıdan çıkar.',
     published: '2026-10-02',
-    modified: '2026-10-02',
+    modified: '2026-11-21',
     photoAlt: 'Restoran ve kafe için self servis sipariş kiosku',
     sections: [
       {
@@ -333,13 +377,16 @@ export const nedirPages: Nedir[] = [
         ],
       },
       {
-        heading: 'Hangi özellikler aranmalı?',
+        heading: 'Kafe ve restoran için sipariş kiosku nasıl seçilir?',
+        paragraphs: ['Kafe ya da restoran için sipariş kiosku seçerken dört şeye bakın: ekran yönü ve boyutu, çevre birimleri, yazılım ve mevcut adisyon programıyla entegrasyon.'],
         list: [
-          'Görsel menü ve kolay sipariş akışı',
-          'Sesli sipariş seçeneği',
-          'POS ve QR ödeme entegrasyonu',
-          'Fiş yazıcısı',
-          'Mutfak ve adisyon sistemiyle entegrasyon imkânı',
+          { label: 'Ekran yönü', text: 'ürün görseliyle çalışan menülerde yatay ekran daha çok alan verir; dar alanda dikey model daha az yer kaplar' },
+          { label: 'Ekran boyutu', text: '21 inç küçük ve orta ölçekli işletmeler, 24 inç standart kullanım, 32 inç uzaktan da görünmesi istenen alanlar için' },
+          { label: 'Sipariş akışı', text: 'görsel menü, kolay ürün seçimi ve isteğe bağlı sesli sipariş' },
+          { label: 'Çevre birimleri', text: 'POS ve QR ödeme entegrasyonu, fiş yazıcısı; yalnızca ihtiyaç duyulanlar eklenir' },
+          { label: 'Entegrasyon', text: 'mutfak ve adisyon sistemiyle uyumu baştan sorun' },
+          { label: 'Kilitli yazılım', text: 'kiosk arayüzü menü değişikliğini kolay yapmalı, kullanıcının cihazdan çıkıp başka uygulamaya geçmesini engellemeli' },
+          { text: 'Tabletle idare edilir mi? Kiosk mu tablet mi karşılaştırması', href: '/blog/kiosk-mu-tablet-mi/' },
         ],
       },
       {
@@ -370,6 +417,7 @@ export const nedirPages: Nedir[] = [
       { q: 'Sipariş kiosku sesli sipariş destekler mi?', a: 'Evet, sesli sipariş seçeneği sunulur. Kullanım ihtiyacınıza göre birlikte yapılandırırız.' },
       { q: 'Sipariş kiosku hangi ödeme yöntemlerini destekler?', a: 'POS ve QR ödeme entegrasyonu seçenek olarak sunulur; fiş yazıcısı eklenebilir.' },
       { q: 'Menüyü ve fiyatları kioskta nasıl güncellerim?', a: 'Menü ve kampanyalar kioskta anında güncellenebilir. Güncelleme yöntemi kullanılan yazılıma göre birlikte netleştirilir.' },
+      { q: 'Kafe için kiosk nasıl seçilir?', a: 'Menünüz görsel ağırlıklıysa yatay, alanınız darsa dikey model seçin; küçük ve orta ölçekli kafe için 21 ya da 24 inç ekran yeterlidir. Fiş yazıcısı, POS ve adisyon entegrasyonunu baştan belirleyin.', link: { href: '/urunler/yatay-kiosk/', label: 'Yatay desk kiosk' } },
     ],
   },
   {

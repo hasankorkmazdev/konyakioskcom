@@ -1,0 +1,16 @@
+---
+// Rehber ve blog yazılarının altındaki yazar kutusu. Article şemasındaki yazar bilgisiyle (seo.ts) aynı metni gösterir.
+import { generalInformation } from '../../data/generalInformation';
+---
+
+<aside class="author" aria-label="Yazar">
+  <p class="author-name">Yazan: <strong>{generalInformation.author}</strong> · {generalInformation.authorTitle}</p>
+  <p>{generalInformation.authorBio} <a href={generalInformation.authorPath}>Hakkımızda</a></p>
+</aside>
+
+<style>
+  .author { margin: 2rem 0 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); font-size: .95rem; color: var(--muted); }
+  .author p { margin: 0 0 .4rem; }
+  .author p:last-child { margin: 0; }
+  .author-name { color: var(--text); }
+</style>

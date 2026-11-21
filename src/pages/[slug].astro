@@ -10,6 +10,7 @@ import Photo from '../components/ui/Photo.astro';
 import ContentSections from '../components/kiosk/ContentSections.astro';
 import Gallery from '../components/kiosk/Gallery.astro';
 import Faq from '../components/sections/Faq.astro';
+import AuthorBox from '../components/sections/AuthorBox.astro';
 import Cta from '../components/sections/Cta.astro';
 import { nedirPages } from '../data/nedir';
 import { products } from '../data/products';
@@ -45,6 +46,7 @@ const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, 
   <Section as="article" width="narrow" class="prose">
     <p class="summary">{n.summary}</p>
     <ContentSections sections={n.sections} />
+    <AuthorBox />
   </Section>
 
   <Section title={`Bizim Çözümümüz: ${product.name}`} tone="alt">
@@ -65,7 +67,7 @@ const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, 
       {related.length > 0 && (
         <>
           <h2>Bunlara da Bakın</h2>
-          <TagList items={[...related.map((r) => ({ label: r.h1, href: `/${r.slug}/` })), { label: "Kısa rehberler: Blog", href: "/blog/" }]} />
+          <TagList items={[...related.map((r) => ({ label: r.h1, href: `/${r.slug}/` })), { label: "Kısa rehberler: Blog", href: "/blog/" }, { label: "Sık sorulan sorular", href: "/sss/" }]} />
         </>
       )}
     </Section>

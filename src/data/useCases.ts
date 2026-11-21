@@ -107,16 +107,16 @@ export const useCases: UseCase[] = [
         heading: 'Kurulum, garanti ve destek',
         list: [
           { label: 'Kurulum', text: 'Sipariş onayından sonra yaklaşık 15 gün' },
-          { label: 'Garanti', text: '2 yıl' },
+          { label: 'Garanti', text: '2 yıl; isteğe bağlı uzatılmış garanti ve bakım-destek sözleşmesi' },
           { label: 'Destek', text: 'Konya merkezli teknik destek; Türkiye geneline sevkiyat' },
         ],
       },
       {
         heading: 'Self servis sipariş kiosku fiyatı neye göre değişir?',
-        paragraphs: ['Fiyat; ekran boyutuna, ayaklı ya da masa üstü olmasına, ödeme seçeneklerine (POS, NFC, QR, yemek kartı, nakit), yazıcıya, sesli sipariş özelliğine ve adede göre değişir. İşletmenizi, günlük sipariş yoğunluğunuzu ve kullandığınız adisyon programını iletin, size özel teklif hazırlayalım.'],
+        paragraphs: ['2026 itibarıyla self servis sipariş kiosku, donanıma ve opsiyonlara göre yaklaşık 200.000–350.000 TL aralığındadır. Aralıktaki yeri ekran boyutuna, ayaklı ya da masa üstü olmasına, ödeme seçeneklerine (POS, NFC, QR, yemek kartı, nakit), yazıcıya, sesli sipariş özelliğine ve adede göre değişir. İşletmenizi, günlük sipariş yoğunluğunuzu ve kullandığınız adisyon programını iletin, size özel teklif hazırlayalım.'],
       },
     ],
-    recommended: ['siparis-kiosk', 'self-kiosk', 'yatay-kiosk'],
+    recommended: ['siparis-kiosk', 'yatay-kiosk', 'dikey-kiosk'],
     faq: [
       { q: 'Self servis sipariş kiosku nedir?', a: 'Müşterinin personele ihtiyaç duymadan menüden ürün seçip siparişini ve ödemesini kendisinin tamamladığı dokunmatik ekranlı cihazdır.' },
       { q: 'Mevcut adisyon programımızla çalışır mı?', a: `${siparisEntegrasyonlariMetni} ile entegre çalışır. Farklı bir program kullanıyorsanız entegrasyon imkânını birlikte değerlendiririz.` },
@@ -126,7 +126,7 @@ export const useCases: UseCase[] = [
       { q: 'Kurulum ne kadar sürer?', a: 'Sipariş onayından sonra yaklaşık 15 gün içinde kiosk teslim edilir ve kurulur.' },
       { q: 'Garanti süresi nedir?', a: 'Kiosklarımız 2 yıl garantilidir.' },
       { q: 'Restoran, kafe ve fast food için aynı kiosk mu kullanılır?', a: 'Temel yapı aynıdır. Menü büyüklüğüne, alan durumuna ve ödeme ihtiyacına göre ayaklı veya masa üstü model ve ekran boyutu seçilir.' },
-      { q: 'Self servis sipariş kiosku fiyatı nedir?', a: 'Fiyat; ekran boyutu, model, ödeme seçenekleri ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
+      { q: 'Self servis sipariş kiosku fiyatı nedir?', a: 'Donanıma ve opsiyonlara göre yaklaşık 200.000–350.000 TL. Ekran boyutu, model, ödeme seçenekleri ve adet fiyatı belirler; ihtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
   },
   {
@@ -820,7 +820,7 @@ export const useCases: UseCase[] = [
         heading: 'Teslimat, kurulum, garanti ve destek',
         list: [
           { label: 'Kurulum', text: 'Sipariş onayından sonra yaklaşık 45 gün' },
-          { label: 'Garanti', text: '2 yıl' },
+          { label: 'Garanti', text: '2 yıl; isteğe bağlı uzatılmış garanti ve bakım-destek sözleşmesi' },
           { label: 'Destek', text: 'Konya merkezli teknik destek; Türkiye geneline sevkiyat' },
         ],
       },
@@ -986,7 +986,7 @@ export const useCases: UseCase[] = [
         paragraphs: ['Fiyat; ekran boyutuna, ayaklı ya da masa üstü olmasına, ödeme seçeneklerine (POS, temassız, QR), yazıcıya ve adede göre değişir. Otomatlarınızın sayısını ve türünü, kioskun konacağı yeri ve kullandığınız otomat veya satış yazılımını iletin, size özel teklif hazırlayalım.'],
       },
     ],
-    recommended: ['self-kiosk', 'siparis-kiosk', 'dikey-kiosk'],
+    recommended: ['siparis-kiosk', 'dikey-kiosk'],
     faq: [
       { q: 'Yiyecek içecek otomatı nedir?', a: 'Personel olmadan paketli yiyecek, içecek ve atıştırmalık satan makinedir. Müşteri ürünü seçer, öder ve otomat ürünü verir.' },
       { q: 'Akıllı otomat nedir?', a: 'Dokunmatik ekranlı ve internete bağlı otomattır. Ürünler ekranda görselleriyle listelenir; kartlı, temassız ve QR ödeme alınır, satış ve stok bilgisi telemetriyle uzaktan izlenir.' },

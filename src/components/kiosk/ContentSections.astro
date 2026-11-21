@@ -27,9 +27,9 @@ const item = (x: string | ContentListItem) => (typeof x === 'string' ? { text: x
       )}
       {s.table && (
         <div class="table-wrap">
-          <table class="spec">
-            <thead><tr><th scope="col">{s.table.head[0]}</th><th scope="col">{s.table.head[1]}</th></tr></thead>
-            <tbody>{s.table.rows.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
+          <table class={`spec cols-${s.table.head.length}`}>
+            <thead><tr>{s.table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+            <tbody>{s.table.rows.map(([k, ...v]) => <tr><th scope="row">{k}</th>{v.map((c) => <td>{c}</td>)}</tr>)}</tbody>
           </table>
         </div>
       )}
@@ -43,11 +43,13 @@ const item = (x: string | ContentListItem) => (typeof x === 'string' ? { text: x
   .steps { margin: 0 0 1.2rem; padding-left: 1.4rem; }
   .steps li { margin-bottom: .5rem; padding-left: .3rem; }
   .steps li::marker { color: var(--brand); font-weight: 700; }
-  /* iki sütunlu teknik özellik tablosu; dar ekranda yatay kaydırılır */
+  /* teknik özellik tablosu: ilk sütun satır başlığı; dar ekranda yatay kaydırılır */
   .table-wrap { overflow-x: auto; margin: 0 0 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); }
   .spec { width: 100%; border-collapse: collapse; font-size: .97rem; }
   .spec th, .spec td { padding: .6rem .9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
   .spec thead th { background: var(--brand-soft); color: var(--brand-dark); }
   .spec tbody th { width: 38%; font-weight: 600; color: var(--brand-dark); }
+  .cols-3 tbody th { width: 22%; }
+  .cols-3 { min-width: 560px; }
   .spec tbody tr:last-child th, .spec tbody tr:last-child td { border-bottom: 0; }
 </style>
