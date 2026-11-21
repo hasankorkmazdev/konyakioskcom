@@ -83,7 +83,7 @@ export const nedirPages: Nedir[] = [
         list: [
           { label: 'Ayaklı (standart) kiosk', text: 'zemine sabitlenen dikey ya da yatay ekranlı model; en yaygın tip', href: '/urunler/dikey-kiosk/' },
           { label: 'Klavyeli kiosk', text: 'kimlik numarası ve form girişi gereken sorgulama ve kayıt işlemleri için', href: '/urunler/klavyeli-kiosk/' },
-          { label: 'Masa tipi (desk) kiosk', text: 'banko, resepsiyon ve tezgâh üstü için kompakt model', href: '/urunler/desk-kiosk/' },
+          { label: 'Yatay masa tipi (desk) kiosk', text: 'yatay ekranlı, masa biçimli ayaklı gövde; danışma, resepsiyon ve sipariş için', href: '/urunler/yatay-kiosk/' },
           { label: 'Totem kiosk', text: 'büyük dikey ekranlı, uzaktan görünen bilgilendirme ve tanıtım kiosku', href: '/urunler/totem-kiosk/' },
           { label: 'Duvar tipi kiosk', text: 'zeminde yer kaplamayan, duvara monte model', href: '/kendi-kioskunu-olustur/' },
           { label: 'Dış mekân kiosk ve kabin', text: 'hava koşullarına ve darbeye karşı korumalı gövde; Konya Kart dolum kioskları bu tipte', href: '/referanslar/konya-buyuksehir-belediyesi/' },

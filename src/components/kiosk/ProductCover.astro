@@ -12,7 +12,7 @@ interface Props {
 }
 const { slug, alt, size = 'thumb', eager = false } = Astro.props;
 const photo = photosOf(...(productPhotoGroups[slug] ?? []))[0];
-const art = slug === 'desk-kiosk' ? 'desk' : slug === 'totem-kiosk' || slug === 'haritalama-kiosk' ? 'totem' : 'standart';
+const art = slug === 'totem-kiosk' || slug === 'haritalama-kiosk' ? 'totem' : 'standart';
 ---
 
 {photo ? <Photo photo={photo} alt={alt} size={size} eager={eager} /> : <KioskArt art={art} />}

@@ -5,7 +5,7 @@ export type { Photo, Group } from '../types';
 
 const titles: Record<string, { title: string; blurb: string }> = {
   'urunler/klavyeli-kiosk': { title: 'Klavyeli Kiosk', blurb: '24 inç dokunmatik ekranlı, klavyeli kiosk. Sorgulama ve kayıt işlemleri için.' },
-  'urunler/yatay-kiosk': { title: 'Yatay (Masa Tipi) Kiosk', blurb: 'Yatay ekranlı, masa tipi kiosk. Bilgilendirme ve tanıtım uygulamaları için.' },
+  'urunler/yatay-kiosk': { title: 'Yatay Masa Tipi (Desk) Kiosk', blurb: 'Yatay ekranlı, masa biçimli ayaklı desk kiosk. Danışma, bilgilendirme ve sipariş için.' },
   'urunler/dikey-kiosk': { title: 'Dikey Kiosk', blurb: '32 inç dikey ekranlı kiosk.' },
   'urunler/kutuphane-kiosk': { title: 'Kütüphane Kiosk', blurb: '32 inç kütüphane kioskları.' },
   'urunler/self-servis-kiosk': { title: 'Self Servis Sipariş Kiosku', blurb: 'Kafe, restoran ve büfe için self-servis sipariş kioskları.' },

@@ -427,6 +427,17 @@ export const useCases: UseCase[] = [
         ],
       },
       {
+        heading: 'Hastanede bina içi yönlendirme ve danışma kiosku',
+        paragraphs: [
+          'Hastanede kiosk yalnızca sıra almaz. Giriş ve kat sahanlıklarındaki haritalama kiosku hastayı aradığı polikliniğe, laboratuvara ya da vezneye yönlendirir; danışma bankosunda yatay ekranlı masa tipi (desk) kiosk bilgilendirme ve kayıt için kullanılır.',
+        ],
+        list: [
+          { text: 'Haritalama ve navigasyon kiosk', href: '/urunler/haritalama-kiosk/' },
+          { text: 'Yatay masa tipi (desk) kiosk', href: '/urunler/yatay-kiosk/' },
+          { text: 'Bilgilendirme kiosku: harita ve yönlendirme', href: '/kullanim-alanlari/bilgilendirme-kiosku/' },
+        ],
+      },
+      {
         heading: 'Hastane sıramatik kiosku donanım seçenekleri',
         table: {
           head: ['Özellik', 'Seçenek'],
@@ -521,7 +532,7 @@ export const useCases: UseCase[] = [
       'Büyük dikey dokunmatik ekran',
       'Ayaklı, sağlam gövde',
     ],
-    recommended: ['haritalama-kiosk', 'totem-kiosk', 'dikey-kiosk'],
+    recommended: ['haritalama-kiosk', 'totem-kiosk', 'dikey-kiosk', 'yatay-kiosk'],
     faq: [
       { q: 'Bilgilendirme kiosku nedir?', a: 'Ziyaretçilere bilgi, duyuru ve yönlendirme sunan dokunmatik ekranlı cihazdır.' },
       { q: 'Mezarlık bilgi kiosku nedir?', a: 'Mezarlıklarda ziyaretçilerin vefat edenin adıyla mezar yeri sorgulayıp mezarı harita üzerinde bulduğu bilgilendirme kioskudur.' },

@@ -53,36 +53,47 @@ export const products: Product[] = [
     ]
   },
   {
+    // "Desk kiosk" ile aynı üründür: yatay ekran, masa biçimli ayaklı gövde. Eski /urunler/desk-kiosk/ adresi buraya 301 ile gelir.
     slug: "yatay-kiosk",
     type: "yatay",
-    name: "Yatay Kiosk",
-    title: "Yatay Kiosk 21, 24 ve 32 İnç | Vectanom Kiosk Konya",
-    description: "Yatay dokunmatik kiosk modelleri. Sipariş, hızlı satış, bilgilendirme ve tanıtım uygulamaları için 21, 24 ve 32 inç yatay ekranlı kiosk.",
-    h1: "Yatay (Landscape) Kiosk",
-    intro: "Yatay kiosk, menü ve ürün görsellerini geniş bir alanda gösterdiği için sipariş, hızlı satış ve tanıtım uygulamalarında en çok tercih edilen formdur. Kafe, büfe ve restoranlar için doğal seçimdir.",
+    name: "Yatay Desk Kiosk",
+    title: "Yatay Masa Tipi Desk Kiosk 21, 24 ve 32 İnç – Vectanom",
+    description: "Yatay ekranlı, masa biçimli ayaklı desk kiosk. Danışma, resepsiyon, bilgilendirme, haritalama ve sipariş için 21, 24 ve 32 inç masa tipi kiosk.",
+    h1: "Yatay Masa Tipi (Desk) Kiosk",
+    intro: "Yatay kiosk ya da desk kiosk, yatay dokunmatik ekranın masa biçimli ayaklı bir gövdeye yerleştiği modeldir. Ekran kullanıcıya doğru eğimli durduğu için menü, harita ve form gibi geniş içerikler rahat okunur; danışma bankosu, resepsiyon, sipariş noktası ve bilgilendirme için tercih edilir. Gövde zemine sabitlenebilir, masa üstü kurulum gerektirmez.",
     tags: [
       "Yazıcı",
       "POS",
-      "QR Okuyucu"
+      "Barkod/QR Okuyucu",
+      "Kart Okuyucu"
     ],
     features: [
-      "Geniş yatay dokunmatik ekran",
-      "Sipariş ve ödeme akışına uygun ergonomik yükseklik",
-      "Fiş yazıcısı, POS ve QR okuyucu entegrasyon seçeneği",
+      "Geniş yatay dokunmatik ekran: 21, 24 ve 32 inç",
+      "Masa biçimli, kullanıcıya eğimli ayaklı gövde; zemine sabitlenebilir",
+      "Sipariş, bilgilendirme ve kayıt akışına uygun ergonomik yükseklik",
+      "Fiş yazıcısı, POS, barkod/QR ve kart okuyucu seçeneği",
       "Gün boyu kesintisiz çalışmaya uygun donanım",
-      "Marka renklerinize uygun gövde ve arayüz tasarımı",
-      "Zemine sabit veya masaüstü model"
+      "Marka renklerinize uygun gövde ve arayüz tasarımı"
     ],
     uses: [
       "Kafe ve restoran self-servis sipariş",
       "Büfe ve hızlı satış noktaları",
-      "Alışveriş merkezi bilgilendirme",
+      "Hastane, AVM ve kampüs danışması: bina içi haritalama ve bilgilendirme",
+      "Resepsiyon ve ziyaretçi kayıt",
       "Etkinlik ve fuar kayıt"
     ],
     faq: [
       {
+        q: "Yatay kiosk ile desk kiosk aynı şey mi?",
+        a: "Evet. Desk kiosk, yatay ekranın masa biçimli ayaklı gövdeye yerleştiği modelin diğer adıdır; masa tipi kiosk olarak da anılır."
+      },
+      {
+        q: "Desk kiosk zemine sabitlenir mi?",
+        a: "Evet. Gövde ayaklıdır ve zemine sabitlenebilir; masa ya da tezgah üstüne konmaz."
+      },
+      {
         q: "Yatay kiosk hangi işletmeler için uygundur?",
-        a: "Menü ve ürün görselinin geniş gösterilmesi gereken kafe, restoran, büfe ve hızlı satış işletmeleri için uygundur."
+        a: "Menü ve ürün görselinin geniş gösterilmesi gereken kafe, restoran ve büfeler ile danışma bankosunda bilgilendirme ve haritalama sunan hastane, AVM ve kampüsler için uygundur."
       },
       {
         q: "Ödeme cihazı bağlanabilir mi?",
@@ -90,7 +101,7 @@ export const products: Product[] = [
       },
       {
         q: "Yatay kioskun boyutları nelerdir?",
-        a: "21, 24 ve 32 inç seçenekleri vardır."
+        a: "21, 24 ve 32 inç ekran seçenekleri vardır."
       }
     ]
   },
@@ -167,37 +178,6 @@ export const products: Product[] = [
         a: "Barkod/QR okuyucu seçenek olarak eklenir; ihtiyacınıza göre yapılandırılır."
       }
     ]
-  },
-  {
-    slug: "desk-kiosk",
-    type: "desk",
-    name: "Desk Kiosk",
-    description: "Masaüstü (desk) kiosk modelleri. Resepsiyon, danışma ve tezgah üstü kullanım için kompakt dokunmatik kiosk.",
-    intro: "Desk kiosk, tezgah veya masa üzerine yerleştirilen kompakt bir modeldir. Resepsiyon, danışma ve kasa yanı kullanımlar için az yer kaplar.",
-    tags: [
-      "Yazıcı",
-      "Barkod/QR Okuyucu",
-      "Kart Okuyucu"
-    ],
-    features: [
-      "Masa üstü, az yer kaplayan gövde",
-      "Dokunmatik ekran",
-      "Yazıcı, barkod/QR ve kart okuyucu seçeneği",
-      "Kolay taşınır, hızlı kurulur"
-    ],
-    uses: [
-      "Resepsiyon ve danışma",
-      "Tezgah üstü sipariş ve bilgilendirme",
-      "Ofis ve ziyaretçi kayıt"
-    ],
-    faq: [
-      {
-        q: "Desk kiosk zemine sabitlenir mi?",
-        a: "Hayır, masa üstü kullanım içindir. Zemin tipi için ayaklı modellerimize bakabilirsiniz."
-      }
-    ],
-    title: "Desk Kiosk – Masaüstü Dokunmatik Kiosk | Vectanom Konya",
-    h1: "Desk Kiosk"
   },
   {
     slug: "self-kiosk",
@@ -293,13 +273,13 @@ export const products: Product[] = [
     slug: "haritalama-kiosk",
     type: "haritalama",
     name: "Haritalama & Navigasyon Kiosk",
-    description: "Haritalama kiosku: bina içi yönlendirme, harita ve bilgilendirme. AVM, hastane, kampüs ve belediye için.",
+    description: "Haritalama kiosku: bina içi yönlendirme, harita ve bilgilendirme. AVM, hastane, kampüs ve belediye için dikey, totem ya da yatay masa tipi (desk) gövde.",
     intro: "Haritalama kiosku, ziyaretçilere bina veya alan içinde yol tarifi, konum ve bilgi sunar. Kampüs, AVM ve hastanelerde yönlendirmeyi kolaylaştırır.",
     tags: [],
     features: [
       "Bina içi harita ve yönlendirme arayüzü",
       "Arama ve kategori bazlı konum bulma",
-      "Geniş dikey dokunmatik ekran",
+      "Girişler için ayaklı dikey ya da totem gövde, danışma bankosu için yatay masa tipi (desk) gövde",
       "Uzaktan harita ve içerik güncelleme"
     ],
     uses: [
@@ -311,6 +291,10 @@ export const products: Product[] = [
       {
         q: "Haritamızı sizin için hazırlıyor musunuz?",
         a: "Alan planınıza göre harita arayüzünün hazırlanması konusunda birlikte çalışırız."
+      },
+      {
+        q: "Masa tipi haritalama kiosku var mı?",
+        a: "Evet. Danışma bankosu ve resepsiyon için haritalama arayüzü yatay masa tipi (desk) kiosk gövdesinde sunulur; girişler ve koridorlar için ayaklı dikey ya da totem gövde kullanılır."
       }
     ],
     title: "Haritalama & Navigasyon Kiosk | Vectanom Kiosk Konya",
