@@ -7,3 +7,6 @@
 
 # Otopark slug değişikliği
 /kullanim-alanlari/otopark-tahsilat-kiosku/ /kullanim-alanlari/otopark-odeme-kiosku/ 301
+
+# Blog yazısı kiosk-nedir rehberine dönüştürüldü
+/blog/kiosk-nedir-nerelerde-kullanilir/ /kiosk-nedir/ 301

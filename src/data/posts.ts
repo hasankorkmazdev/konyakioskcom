@@ -4,24 +4,6 @@ export type { Post } from '../types';
 // body: '## ' ile başlayan satır H2, '- ' ile başlayan satır liste, diğerleri paragraf.
 export const posts: Post[] = [
   {
-    slug: 'kiosk-nedir-nerelerde-kullanilir',
-    title: 'Kiosk Nedir? Nerelerde Kullanılır?',
-    description: 'Kiosk nedir, hangi sektörlerde kullanılır, işletmeye ne kazandırır? Kafe, restoran, belediye ve kütüphane örnekleriyle kısa rehber.',
-    date: '2026-09-26',
-    body: [
-      '## Kiosk nedir?',
-      'Kiosk, kullanıcının personel yardımı olmadan işlem yapabildiği dokunmatik ekranlı self-servis cihazdır. Sipariş verme, bilgi sorgulama, randevu alma veya kayıt gibi işlemler tek bir cihazda yapılır.',
-      '## Nerelerde kullanılır?',
-      '- Kafe ve restoran: self-servis sipariş',
-      '- Büfe ve hızlı satış: kuyruğu azaltma',
-      '- Belediye ve kamu: bilgilendirme, sorgulama, randevu',
-      '- Kütüphane: kitap ödünç alma ve iade',
-      '- Hastane ve kurumlar: kayıt ve yönlendirme',
-      '## Doğru kiosk nasıl seçilir?',
-      'Üç soruya cevap verin: Kullanıcı yazı yazacak mı (klavyeli model)? İçerik görsel mi, liste mi (yatay ya da dikey)? Cihaz nerede duracak (alan, yükseklik, iç veya dış mekan)? Bu cevaplara göre 21, 24 veya 32 inç seçeneklerinden biri belirlenir.',
-    ],
-  },
-  {
     slug: 'kafe-kiosk-nasil-secilir',
     title: 'Kafe İçin Kiosk Nasıl Seçilir?',
     description: 'Kafe için self-servis sipariş kiosku seçerken dikkat edilecek ekran boyutu, yön, yazıcı ve yazılım kriterleri.',

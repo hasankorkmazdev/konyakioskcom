@@ -65,7 +65,7 @@ const articleLd = buildArticleJsonLd({ title: n.h1, description: n.description, 
       {related.length > 0 && (
         <>
           <h2>Bunlara da Bakın</h2>
-          <TagList items={related.map((r) => ({ label: r.h1, href: `/${r.slug}/` }))} />
+          <TagList items={[...related.map((r) => ({ label: r.h1, href: `/${r.slug}/` })), { label: "Kısa rehberler: Blog", href: "/blog/" }]} />
         </>
       )}
     </Section>
