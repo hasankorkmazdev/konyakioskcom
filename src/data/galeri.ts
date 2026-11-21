@@ -96,7 +96,7 @@ export const productPhotoGroups: Record<string, string[]> = {
 /** Kullanım alanı sayfası -> gösterilecek galeri grupları */
 export const useCasePhotoGroups: Record<string, string[]> = {
   'self-servis-siparis-kiosku': ['urunler/self-servis-kiosk'],
-  'belediye-siramatik-kiosku': ['urunler/tahsilat-kabini', 'urunler/odeme-kiosku'],
+  'belediye-siramatik-kiosku': ['urunler/tahsilat-kabini', 'urunler/odeme-kiosku', 'referanslar/koski', 'referanslar/sivas-belediyesi', 'referanslar/igdir-belediyesi'],
   'hastane-kiosk': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
   'havalimani-check-in-kiosku': ['urunler/dikey-kiosk', 'urunler/standart-kiosk'],
   'kutuphane-kiosku': ['urunler/kutuphane-kiosk'],

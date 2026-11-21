@@ -19,18 +19,4 @@ export const posts: Post[] = [
       'Kiosk arayüzü menü değişikliklerini kolay yapabilmeli ve kullanıcının cihazdan çıkıp başka uygulamaya geçmesini engellemelidir.',
     ],
   },
-  {
-    slug: 'belediyeler-icin-kiosk',
-    title: 'Belediyeler İçin Kiosk: Kullanım Alanları',
-    description: 'Belediye kiosku ile vatandaş bilgilendirme, borç sorgulama ve randevu. Klavyeli ve dikey model seçimi rehberi.',
-    date: '2026-09-26',
-    body: [
-      '## Belediyelerde kiosk ne işe yarar?',
-      'Vatandaş, hizmet binasında sıra beklemeden borç sorgulama, duyuru okuma, randevu alma ve yönlendirme işlemlerini yapabilir.',
-      '## Hangi model?',
-      'Kimlik numarası veya arama girişi gerektiren işlemlerde klavyeli model, bilgilendirme ve yönlendirmede dikey model önerilir.',
-      '## Entegrasyon',
-      'Web tabanlı belediye yazılımları kiosk modunda çalıştırılabilir. Teknik detaylar için iletişim formundan bize ulaşabilirsiniz.',
-    ],
-  },
 ];

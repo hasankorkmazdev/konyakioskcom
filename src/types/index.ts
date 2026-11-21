@@ -44,7 +44,7 @@ export interface Product {
   tags: string[];
   features: string[];
   uses: string[];
-  faq: { q: string; a: string }[];
+  faq: { q: string; a: string; link?: { href: string; label: string } }[];
 }
 
 export interface Reference {
@@ -74,7 +74,7 @@ export interface UseCase {
   benefits?: string[]; // "Sağladığı Faydalar" listesi; sections kullanan sayfada faydalar bir bölüm olarak yazılır
   sections?: ContentSection[]; // girişten sonra gelen ayrıntılı bölümler
   recommended: string[];
-  faq: { q: string; a: string }[];
+  faq: { q: string; a: string; link?: { href: string; label: string } }[];
 }
 
 export interface ContentListItem {
@@ -107,5 +107,5 @@ export interface Nedir {
   product: string; // products.ts slug'ı: sayfada referans verilen bizim ürünümüz
   useCases: string[]; // useCases.ts slug'ları
   related: string[]; // başka nedir sayfalarının slug'ları
-  faq: { q: string; a: string }[];
+  faq: { q: string; a: string; link?: { href: string; label: string } }[];
 }
