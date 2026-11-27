@@ -376,6 +376,11 @@
    "w": 200,
    "h": 200
   },
+  "ordu-oski": {
+   "src": "/images/referanslar/logolar/ordu-oski.webp",
+   "w": 400,
+   "h": 156
+  },
   "sivas-belediyesi": {
    "src": "/images/referanslar/logolar/sivas-belediyesi.webp",
    "w": 200,

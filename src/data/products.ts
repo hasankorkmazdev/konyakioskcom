@@ -213,30 +213,70 @@ export const products: Product[] = [
     slug: "siramatik-kiosk",
     type: "siramatik",
     name: "Sıramatik Kiosk",
-    description: "Sıramatik kiosk: fişli sıra alma ve randevu kiosku. Belediye, hastane, banka ve kamu kurumları için.",
-    intro: "Sıramatik kiosk, ziyaretçinin hizmet türünü seçip fiş alarak sıraya girmesini sağlar. Kalabalığı düzenler, bekleme süresini yönetilebilir kılar.",
+    description: "Sıramatik kiosk (sıra alma makinesi): ziyaretçi ekrandan işlemini seçer, numaralı sıra fişini alır. Belediye, hastane ve banka için yerli üretim.",
+    intro: "Sıramatik kiosk, halk arasında sıra alma makinesi ya da sıra fişi makinesi denen cihazdır: ziyaretçi dokunmatik ekrandan işlemini seçer, sıra numarasını termal yazıcıdan basılan fişle alır ve sırası gelince ekranda ve sesli anonsla çağrılır. Nüfus müdürlüğünde, hastanede ya da bankada ekrandan işlem seçip fiş aldığınız cihaz budur. Kioskun gövdesini ve sıramatik yazılımını kendimiz geliştiriyor, Türkiye geneline gönderiyoruz.",
     tags: [
-      "Termal Yazıcı"
+      "Termal Yazıcı",
+      "Barkod/QR Okuyucu",
+      "Kimlik Okuyucu"
     ],
     features: [
-      "Dokunmatik hizmet seçimi",
-      "Termal fiş yazıcısı",
-      "Randevu ve kimlik doğrulama seçeneği",
-      "Sıra yönetim yazılımı ile entegrasyon"
+      "Dokunmatik ekrandan hizmet veya birim seçimi",
+      "Termal yazıcıdan numaralı sıra fişi",
+      "T.C. kimlik numarası, randevu barkodu veya kartla sıra alma seçeneği",
+      "Kendi sıramatik yazılımımızla ya da kurumunuzun mevcut sıra yazılımıyla çalışma",
+      "Sanal terminal: görevli sıradaki kişiyi bilgisayarından çağırır",
+      "Fiziksel terminal: bankoda tuşlu çağrı cihazı",
+      "Banko yapısı: her banko ayrı tanımlanır, çağrılan numara banko ekranında görünür",
+      "Online randevu: internetten alınan randevuyla kioskta sıraya girme",
+      "Önceliklendirme: 65 yaş üstü, engelli, hamile ve gaziler için öncelikli sıra",
+      "Kiosk modu: ziyaretçi yalnızca sıra alma ekranını görür",
+      "Ayaklı, zemine sabitlenebilir gövde"
     ],
     uses: [
-      "Belediye ve kamu kurumları",
-      "Hastane ve poliklinik",
-      "Banka ve hizmet merkezleri"
+      "Belediye hizmet binaları ve vezneler",
+      "Hastane, poliklinik ve aile sağlığı merkezleri",
+      "Nüfus müdürlüğü, göç idaresi ve diğer kamu kurumları",
+      "Banka, vergi dairesi ve noterler"
     ],
     faq: [
       {
-        q: "Mevcut sıra sistemimizle çalışır mı?",
-        a: "Sisteminizin kiosk kullanımına uygunluğunu birlikte değerlendiririz."
+        q: "Sıra alma makinesi ile sıramatik aynı şey mi?",
+        a: "Evet. Sıramatik, sıra numarası veren ve sırası gelen numarayı çağıran sistemin adıdır. Halk arasında sıra alma makinesi, sıra fişi makinesi ya da numaratör denen cihaz bu sistemin fiş veren parçası, yani sıramatik kiosktur. Numaranın çağrılması ve ekranda gösterilmesi ise sıramatik yazılımı, sanal ya da fiziksel terminaller ve banko ekranlarıyla yapılır."
+      },
+      {
+        q: "Sıramatik cihazı nasıl çalışır?",
+        a: "Ziyaretçi ekrandan işlemini seçer ya da T.C. kimlik numarası veya randevu barkoduyla kendini tanıtır. Kiosk, sıramatik yazılımından sıra numarasını alır ve termal yazıcıdan fişi basar. Görevli sıradaki numarayı çağırdığında numara bekleme alanındaki ekranda görünür ve sesli anons yapılır."
+      },
+      {
+        q: "Görevli sıradaki kişiyi nasıl çağırır?",
+        a: "Sıramatik yazılımımızda iki yol var. Sanal terminalde görevli, bilgisayarındaki çağırma ekranından sıradaki numarayı çağırır; ayrı bir cihaz gerekmez. Fiziksel terminalde bankoya konan tuşlu çağrı cihazı kullanılır. Her banko yazılımda ayrı tanımlanır ve çağrılan numara o bankonun ekranında görünür."
+      },
+      {
+        q: "Online randevu ve 65 yaş önceliği var mı?",
+        a: "Evet. Sıramatik yazılımımızla ziyaretçi internetten randevu alabilir ve geldiğinde kioskta randevusuyla sıraya girer. 65 yaş üstü, engelli, hamile ve gaziler gibi öncelik hakkı olan kişiler için ayrı öncelikli sıra tanımlanır; bu kişiler çağrıda öne alınır."
+      },
+      {
+        q: "Kendi sıra yazılımımızla çalışır mı?",
+        a: "İki seçenek var. Kurumunuz bir sıramatik yazılımı kullanıyorsa yalnızca kioskları alırsınız; kiosk, o yazılımın sıra alma ekranını kiosk modunda çalıştıracak şekilde hazırlanır. Yazılımınız yoksa kioskla birlikte kendi sıramatik yazılımımızı kurarız: online randevu, öncelikli sıra, banko yapısı ve banko ekranları, sanal ve fiziksel terminal, raporlar ve kullanıcı yönetimi içerir. Yazıcı ve okuyucuların yazılımla nasıl haberleşeceği kurulumdan önce netleştirilir."
+      },
+      {
+        q: "Butonlu sıramatik ile dokunmatik sıramatik kiosk arasındaki fark nedir?",
+        a: "Butonlu sıramatikte her hizmet için bir tuş bulunur; az sayıda hizmeti olan noktalar için yeterlidir. Dokunmatik sıramatik kioskta ekrandaki menüde çok sayıda birim listelenir ve hizmetler yazılımdan değiştirilir, tuş eklemek gerekmez. Yazılım destekliyorsa randevu sorgulama ve T.C. kimlik numarasıyla sıra alma da yapılır."
+      },
+      {
+        q: "Sıramatik kiosk hangi kurumlarda kullanılır?",
+        a: "Aynı anda çok kişinin hizmet beklediği her yerde: belediye, nüfus müdürlüğü, göç idaresi, hastane, aile sağlığı merkezi, banka, vergi dairesi ve noter gibi. Hastanede sıramatik sisteminin nasıl kurulduğunu ayrıntılı anlattık.",
+        link: { href: "/kullanim-alanlari/hastane-kiosk/", label: "Hastane sıramatik sistemi" }
+      },
+      {
+        q: "Sıramatik fiyatları neye göre değişir?",
+        a: "Fiyat; ekran boyutuna, yazıcı, barkod/QR ve kimlik okuyucu gibi donanımlara ve adede göre değişir. Sıramatik yazılımı da bizden alınacaksa teklif yazılımı, fiziksel terminal ve banko ekranı sayısını da kapsar. İhtiyacınızı iletin, size özel teklif hazırlayalım.",
+        link: { href: "/iletisim/", label: "Teklif isteyin" }
       }
     ],
-    title: "Sıramatik Kiosk – Fişli Sıra Alma Kiosku | Vectanom Konya",
-    h1: "Sıramatik Kiosk"
+    title: "Sıramatik Kiosk (Sıra Alma Makinesi) | Vectanom",
+    h1: "Sıramatik Kiosk (Sıra Alma Makinesi)"
   },
   {
     slug: "haritalama-kiosk",

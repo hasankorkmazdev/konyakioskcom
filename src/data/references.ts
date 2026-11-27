@@ -212,6 +212,61 @@ export const references: Reference[] = [
       { q: 'Akıllı vezneler 7/24 çalışır mı?', a: 'Evet. Vezneler mesai saatine bağlı kalmadan gece gündüz hizmet veriyor.' },
     ],
   },
+  {
+    // Kullanıcı (28 Kasım 2026): 8 kiosk "bu hafta kurulacak"; yalnız kredi kartı, nakit yok. Metin bu yüzden "kurmaktadır" ve
+    // zamandan bağımsız geniş zamanla yazıldı. Kurulum bitince intro ve SSS'yi geçmiş zamana çevir, kurulum noktalarını ekle.
+    // Fotoğraflar gelince gorsel-kaynak/referanslar/ordu-oski/ klasörüne konur. Logo: ordu.bel.tr footer-logo.png (lacivert, orijinal
+    // renk) ile oski.gov.tr mainlogo.png renkleri değiştirilmeden yan yana birleştirildi (logolar/ordu-oski.png), beyaz zemin.
+    // Ordu'da su faturası ve EKS kontör dolumunu belediyeye bağlı OSKİ yürütüyor (oski.gov.tr "Ödeme ve EKS kontör dolum noktaları").
+    slug: 'ordu-oski',
+    name: 'Ordu Büyükşehir Belediyesi OSKİ',
+    group: 'referanslar/ordu-oski',
+    note: 'Su faturası ödeme ve EKS kontör yükleme yapan 8 kredi kartlı kiosk',
+    useCases: ['fatura-odeme-kiosku', 'belediye-siramatik-kiosku'],
+    title: 'Ordu OSKİ Fatura Ödeme ve EKS Kontör Kiosku | Vectanom',
+    description: 'Vectanom, Ordu Büyükşehir Belediyesi OSKİ için 8 kiosk kurmaktadır: su faturası ödeme ve kartlı su sayacına EKS kontör yükleme, yalnızca kredi kartıyla.',
+    h1: 'Ordu Büyükşehir Belediyesi OSKİ – Fatura Ödeme ve EKS Kontör Kioskları',
+    intro: 'Vectanom, Ordu Büyükşehir Belediyesi OSKİ (Ordu Su ve Kanalizasyon İdaresi) için 8 kiosk kurmaktadır. Kiosklarda su faturası ödenir ve kartlı su sayacına (EKS) kontör yüklenir. Ödeme yalnızca kredi kartıyla alınır.',
+    facts: [
+      { value: '8', label: 'kiosk' },
+      { value: '2', label: 'işlem tek cihazda' },
+    ],
+    sections: [
+      {
+        heading: 'Proje kapsamı',
+        paragraphs: [
+          "Ordu'da su faturası tahsilatını ve kartlı su sayaçlarının kontör dolumunu Ordu Büyükşehir Belediyesi'ne bağlı OSKİ yürütmektedir. OSKİ için kurulan 8 kiosk bu iki işlemi tek cihazda toplar; abone vezneye ya da kontör dolum noktasına gitmeden işlemini kioskta yapar.",
+        ],
+      },
+      {
+        heading: 'Kiosklarda hangi işlemler yapılır?',
+        list: [
+          { label: 'Su faturası ödeme', text: 'Abone su faturasını kioskta kredi kartıyla öder.' },
+          { label: 'EKS kontör yükleme', text: 'Kartlı (ön ödemeli) su sayacının kartına kontör yüklenir.' },
+        ],
+      },
+      {
+        heading: 'Ödeme yöntemi: yalnızca kredi kartı',
+        paragraphs: ['Kiosklarda nakit birimi yoktur; ödeme yalnızca kredi kartıyla alınır.'],
+      },
+      {
+        heading: 'Su idareniz için fatura ve kontör kiosku',
+        paragraphs: [
+          'Abone sistemi ve kartlı sayaç altyapısı her kurumda farklıdır; kiosk yazılımı ve kart okuma donanımı kurumun sistemine göre yapılandırılır. Hangi işlemleri kioska taşımak istediğinizi ve kurulum noktalarını iletin, size özel teklif hazırlayalım.',
+        ],
+        list: [
+          { text: 'Fatura ödeme kiosku', href: '/kullanim-alanlari/fatura-odeme-kiosku/' },
+          { text: 'Belediyeler için kiosk: sıramatik, tahsilat ve akıllı vezne', href: '/kullanim-alanlari/belediye-siramatik-kiosku/' },
+        ],
+      },
+    ],
+    faq: [
+      { q: 'Ordu OSKİ kiosklarında hangi işlemler yapılır?', a: 'Su faturası ödeme ve kartlı su sayacına (EKS) kontör yükleme.' },
+      { q: 'OSKİ kiosklarında nakitle ödeme yapılır mı?', a: 'Hayır. Kiosklarda ödeme yalnızca kredi kartıyla alınır.' },
+      { q: 'EKS kontör yükleme nedir?', a: 'Kartlı su sayacı (EKS) kullanan abone, suyu önceden kontör yükleyerek satın alır. Kioskta abonenin sayaç kartına kontör yüklenir.' },
+      { q: "Ordu'da kaç OSKİ kiosku kuruluyor?", a: 'Ordu Büyükşehir Belediyesi OSKİ için 8 kiosk kurulmaktadır.' },
+    ],
+  },
   { slug: 'necmettin-erbakan-universitesi', name: 'Necmettin Erbakan Üniversitesi', group: 'referanslar/necmettin-erbakan-universitesi', note: 'Üniversite kiosk projesi' },
   { slug: 'cukurova-havalimani', name: 'Çukurova Uluslararası Havalimanı', group: 'referanslar/cukurova-havalimani', note: 'Havalimanı kiosk projesi', useCases: ['havalimani-check-in-kiosku'] },
 ];

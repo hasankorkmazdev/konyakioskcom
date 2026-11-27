@@ -164,8 +164,9 @@ export const useCases: UseCase[] = [
           rows: [
             ['Hizmet ve birim tanımı', 'Vezne, imar, ruhsat, sosyal yardım gibi birimler için ayrı sıra serileri ve çalışma saatleri; hizmet listesini belediye kendisi değiştirir'],
             ['Önceliklendirme', 'Yaşlı, engelli, gazi ve hamile vatandaşlar için öncelikli sıra; birimler arası öncelik kuralları'],
+            ['Online randevu', 'Vatandaşın internetten randevu alması; geldiğinde kioskta randevusuyla sıraya girmesi'],
             ['Banko izleme ekranı', 'Bekleme salonunda çağrılan numara, banko adı ve duyurular; sesli anons'],
-            ['Çağrı cihazı', 'Personelin masasından sıradaki vatandaşı çağırması, çağrıyı tekrarlaması, gelmeyeni atlaması, başka birime aktarması'],
+            ['Sanal ve fiziksel terminal', 'Personelin sıradaki vatandaşı bilgisayarındaki sanal terminalden ya da bankodaki fiziksel çağrı cihazından çağırması, çağrıyı tekrarlaması, gelmeyeni atlaması, başka birime aktarması'],
             ['Raporlar', 'Birim ve personel bazında işlem sayısı, ortalama bekleme ve işlem süresi, yoğun saatler'],
             ['Kullanıcı yönetimi', 'Personel, banko ve yetki tanımları'],
           ],
@@ -238,6 +239,7 @@ export const useCases: UseCase[] = [
         list: [
           { label: 'Konya Büyükşehir Belediyesi', text: '58 Konya Kart dolum ve satış kiosku; dış mekân kabinli, 7/24, günde yaklaşık 60.000 işlem', href: '/referanslar/konya-buyuksehir-belediyesi/' },
           { label: 'Adıyaman Belediyesi', text: '3 akıllı vezne; fatura, su kartı, Yaman Kart yükleme ve kart satışı tek cihazda, iki kurum için iki POS', href: '/referanslar/adiyaman-belediyesi/' },
+          { label: 'Ordu Büyükşehir Belediyesi OSKİ', text: 'su faturası ödeme ve EKS kontör yükleme yapan 8 kredi kartlı kiosk', href: '/referanslar/ordu-oski/' },
           { label: 'KOSKİ', text: 'Konya su idaresi için nakit ve kredi kartlı su bedeli tahsilat kioskları', href: '/referanslar/koski/' },
           { label: 'KASKİ', text: 'Kahramanmaraş su idaresi için tahsilat kiosku', href: '/referanslar/kaski/' },
           { label: 'Sivas Belediyesi', text: 'nakit ve kredi kartlı tahsilat kioskları', href: '/referanslar/sivas-belediyesi/' },
@@ -298,7 +300,7 @@ export const useCases: UseCase[] = [
     recommended: ['siramatik-kiosk', 'klavyeli-kiosk', 'dikey-kiosk'],
     faq: [
       { q: 'Belediye sıramatik sistemi nasıl çalışır?', a: 'Vatandaş kiosktan hizmeti seçip sıra fişini alır ve banko ekranından çağrılan numaraları izler; personel çağrı cihazından sıradaki vatandaşı çağırır. Yazılım öncelikli sırayı yönetir ve bekleme sürelerini raporlar.' },
-      { q: 'Sıramatik yazılımını da siz mi sağlıyorsunuz?', a: 'Evet. Önceliklendirme, banko izleme ekranı, çağrı cihazı, raporlar ve kullanıcı yönetimi içeren tam kapsamlı sıramatik yazılımımız var. Kendi sıra yönetim yazılımı olan belediyeler yalnızca kioskları alıp mevcut yazılımlarıyla kullanabilir.' },
+      { q: 'Sıramatik yazılımını da siz mi sağlıyorsunuz?', a: 'Evet. Önceliklendirme, online randevu, banko izleme ekranı, sanal ve fiziksel terminal, raporlar ve kullanıcı yönetimi içeren tam kapsamlı sıramatik yazılımımız var. Kendi sıra yönetim yazılımı olan belediyeler yalnızca kioskları alıp mevcut yazılımlarıyla kullanabilir.' },
       { q: 'Akıllı vezne nedir?', a: 'Vergi, fatura, su kartı ve ulaşım kartı işlemlerini tek cihazda, nakit ve kartla, 7/24 yapan tahsilat kioskudur. Adıyaman Belediyesi için kurduğumuz vezneler bu tiptir.' },
       { q: 'Tahsilat kiosku nakit alır mı, para üstü verir mi?', a: 'Evet. Banknot alma ve verme ünitesi kâğıt para kabul eder ve para üstünü banknot olarak verir. Bozuk para ünitesi isteğe bağlıdır.' },
       { q: 'Vatandaş borcunu kioskta nasıl sorgular?', a: 'T.C. kimlik, abone ya da sicil numarasını girerek, faturasının barkodunu ya da su ve ulaşım kartını okutarak. Borç her seferinde kurumun servisinden güncel olarak çekilir.' },
@@ -329,7 +331,7 @@ export const useCases: UseCase[] = [
         list: [
           { label: 'Sıramatik kiosk', text: 'Hastanın hizmet seçip sıra fişini aldığı dokunmatik ekranlı cihaz.' },
           { label: 'Sıramatik yazılımı', text: 'Sıra numaralarını üreten, birimlere dağıtan, çağrıları yöneten ve raporlayan yazılım.' },
-          { label: 'Çağrı terminali', text: 'Hekimin veya görevlinin sıradaki hastayı çağırdığı tuşlu cihaz ya da bilgisayardaki çağırma ekranı.' },
+          { label: 'Çağrı terminali', text: 'Hekimin veya görevlinin sıradaki hastayı çağırdığı tuşlu cihaz (fiziksel terminal) ya da bilgisayardaki çağırma ekranı (sanal terminal).' },
           { label: 'Ana ekran', text: 'Bekleme salonunda çağrılan numarayı ve gidilecek odayı ya da bankoyu gösteren büyük ekran.' },
           { label: 'Oda ve banko ekranları', text: 'Poliklinik kapısında veya bankonun üstünde, o noktaya çağrılan numarayı gösteren küçük ekranlar.' },
           { label: 'Sesli anons', text: 'Çağrıyı zil sesi ve anonsla duyuran hoparlör sistemi.' },
@@ -342,6 +344,7 @@ export const useCases: UseCase[] = [
           'Sıramatik kiosk, sıramatik sisteminin hastanın kullandığı ön yüzüdür. Hasta dokunmatik ekrandan gitmek istediği birimi seçer, kiosk termal yazıcıdan sıra fişini basar. Fişte genellikle sıra numarası, birim veya poliklinik adı, tarih ve saat yer alır; yazılıma göre önünde bekleyen kişi sayısı da yazdırılabilir.',
           'Hastanelerde sıramatik kiosk yalnızca fiş vermekle kalmaz. Entegrasyona göre hasta T.C. kimlik numarasını girerek ya da randevu barkodunu okutarak kendini tanıtır; kiosk randevusunu bulur ve hastayı doğru polikliniğin sırasına alır. Bu akış kurulduğunda hasta, sıra almak için önce kayıt bankosunda beklemez.',
         ],
+        list: [{ text: 'Sıramatik kiosk (sıra alma makinesi) modelimiz ve donanım seçenekleri', href: '/urunler/siramatik-kiosk/' }],
       },
       {
         heading: 'Butonlu sıramatik ile dokunmatik sıramatik kiosk arasındaki fark',
@@ -422,7 +425,7 @@ export const useCases: UseCase[] = [
       {
         heading: 'Sıramatik kiosk hangi yazılımla çalışır?',
         paragraphs: [
-          "İki seçenek vardır. Hastaneniz HBYS'nin sıramatik modülünü ya da anlaştığı bir sıramatik yazılımını kullanıyorsa yalnızca kioskları alır; kiosk, bu yazılımın kiosk uygulamasını veya web tabanlı sıra alma ekranını çalıştıracak şekilde hazırlanır. Yazılımı yoksa kioskla birlikte kendi sıramatik yazılımımızı kurarız: öncelikli sıra, banko ve oda ekranları, çağrı cihazı, raporlar ve kullanıcı yönetimi içerir, HBYS ile entegre çalışabilir.",
+          "İki seçenek vardır. Hastaneniz HBYS'nin sıramatik modülünü ya da anlaştığı bir sıramatik yazılımını kullanıyorsa yalnızca kioskları alır; kiosk, bu yazılımın kiosk uygulamasını veya web tabanlı sıra alma ekranını çalıştıracak şekilde hazırlanır. Yazılımı yoksa kioskla birlikte kendi sıramatik yazılımımızı kurarız: online randevu, öncelikli sıra, banko ve oda ekranları, sanal ve fiziksel terminal, raporlar ve kullanıcı yönetimi içerir, HBYS ile entegre çalışabilir.",
           'Kiosk, kiosk modunda çalışır: hasta yalnızca sıra alma ekranını görür, masaüstüne veya başka uygulamalara erişemez. Yazıcı, barkod okuyucu ve kimlik okuyucu gibi donanımların yazılımla nasıl haberleşeceği kurulumdan önce yazılım firmanızla birlikte netleştirilir.',
         ],
       },
@@ -449,7 +452,7 @@ export const useCases: UseCase[] = [
             ['Kimlik doğrulama', 'Kimlik / kart okuyucu'],
             ['Kamera', 'İsteğe bağlı'],
             ['Gövde', 'Sağlam, boyalı metal gövde; kablolar gövde içinde'],
-            ['Model', 'Ayaklı (zemine sabitlenebilir) veya masa üstü'],
+            ['Model', 'Ayaklı, zemine sabitlenebilir'],
           ],
         },
         after: ['Model ve donanım; kioskun konacağı yere, günlük hasta sayısına ve kullandığınız yazılımın gerekliliklerine göre birlikte seçilir.'],
@@ -585,7 +588,7 @@ export const useCases: UseCase[] = [
       { q: 'Fatura ödeme kiosku nedir?', a: 'Abonenin fatura veya borcunu sorgulayıp kredi kartı ya da nakitle kendi başına ödediği dokunmatik ekranlı cihazdır.' },
       { q: 'Kurumumuzun tahsilat yazılımıyla çalışır mı?', a: 'Fatura ve borç bilgisi kurumun kendi yazılımından alınır. Entegrasyon imkânlarına göre birlikte değerlendirme yapılır.' },
       { q: 'Fatura ödeme kioskunda hangi ödeme yöntemleri kullanılabilir?', a: 'Kredi kartı / POS ve nakit gibi seçenekler kurumun tahsilat altyapısına göre belirlenir.' },
-      { q: 'Hangi kurumlara tahsilat kiosku sağladınız?', a: 'KOSKİ, KASKİ, Sivas ve Iğdır belediyeleri için tahsilat kioskları, Adıyaman Belediyesi için akıllı vezne kurduk.', link: { href: '/kullanim-alanlari/belediye-siramatik-kiosku/', label: 'Belediye kioskları' } },
+      { q: 'Hangi kurumlara tahsilat kiosku sağladınız?', a: "KOSKİ, KASKİ, Sivas ve Iğdır belediyeleri için tahsilat kioskları, Adıyaman Belediyesi için akıllı vezne kurduk. Ordu Büyükşehir Belediyesi OSKİ için su faturası ödeme ve EKS kontör yükleme yapan 8 kiosk kurulmaktadır.", link: { href: '/kullanim-alanlari/belediye-siramatik-kiosku/', label: 'Belediye kioskları' } },
       { q: 'Fatura ödeme kiosku fiyatı nedir?', a: 'Fiyat; model, donanım (POS, okuyucu, yazıcı) ve adede göre değişir. İhtiyacınızı iletin, size özel teklif hazırlayalım.' },
     ],
   },
